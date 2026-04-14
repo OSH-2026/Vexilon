@@ -1,5 +1,9 @@
 # Vexilon
 
+## Logo
+
+![Vexilon_Logo](./img/logo.png)
+
 ### 成员
 
 * PB24000189 付锦鹏
