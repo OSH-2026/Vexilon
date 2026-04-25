@@ -14,6 +14,12 @@
     - [3.2 待改写核心模块的Rust适配性与优先级](#32-待改写核心模块的rust适配性与优先级)
     - [3.3 实现路径](#33-实现路径)
     - [3.4 基于IronClaw的用户层-内核层对接与接口设计](#34-基于ironclaw的用户层-内核层对接与接口设计)
+      - [3.4.1 IronClaw（Agent）植入部位](#341-ironclawagent植入部位)
+      - [3.4.2 IronClaw（Agent）核心交互接口定义](#342-ironclawagent核心交互接口定义)
+        - [（1）用户层 → 内核层：同步系统调用接口（SVC触发）](#1用户层--内核层同步系统调用接口svc触发)
+        - [（2）内核层 → 用户层：异步回调/通知接口（内核主动触发）](#2内核层--用户层异步回调通知接口内核主动触发)
+      - [3.4.3 接口实现机制](#343-接口实现机制)
+      - [3.4.4 接口适配性](#344-接口适配性)
     - [3.5 编译与构建环境](#35-编译与构建环境)
   - [4. 性能与安全性分析](#4-性能与安全性分析)
   - [5. 创新点与技术挑战](#5-创新点与技术挑战)
@@ -22,7 +28,7 @@
   - [6. 测试与验证方案](#6-测试与验证方案)
 
 ## 1. 摘要
-LiteOS作为面向IoT领域的轻量级实时操作系统，采用C语言开发，存在缓冲区溢出、释放后使用、数据竞争等内存安全问题，难以满足IoT设备高安全需求。本项目计划以**已完成Rust改写的`los_memory.c`为基础**，继续用Rust重构剩余11个内核核心模块（含任务管理、调度器、IPC组件等），同时引入**IronClaw作为用户层与内核层的对接中间层**，设计双向调用接口。本文聚焦可行性分析，阐述待改写模块的Rust适配性、分阶段实现路径、IronClaw接口设计，论证在保持轻量实时特性的同时，从语言层面提升内核内存安全与交互可靠性的可行性。
+LiteOS作为面向IoT领域的轻量级实时操作系统，采用C语言开发，存在缓冲区溢出、释放后使用、数据竞争等内存安全问题，难以满足IoT设备高安全需求。本项目计划以**已完成Rust改写的`los_memory.c`为基础**，继续用Rust重构剩余11个内核核心模块（含任务管理、调度器、IPC组件等），同时引入**IronClaw作为用户层与内核层的对接中间层（Agent）**，设计双向调用接口。本文聚焦可行性分析，阐述待改写模块的Rust适配性、分阶段实现路径、IronClaw接口设计，论证在保持轻量实时特性的同时，从语言层面提升内核内存安全与交互可靠性的可行性。
 
 ## 2. 理论依据
 ### 2.1 LiteOS内核核心模块与C语言原生缺陷
@@ -72,27 +78,58 @@ LiteOS内核核心模块包含动态内存管理、排序链表、任务管理�
 4. 改写`los_tick.c`/`los_swtmr.c`，最后适配`los_init.c`，完成全流程初始化逻辑，实现内核完整运行。
 
 ### 3.4 基于IronClaw的用户层-内核层对接与接口设计
-本项目引入**IronClaw轻量化中间层**，作为用户层（应用程序）与Rust重构内核层的统一对接入口，屏蔽语言差异、权限隔离、调用规范，实现**用户→内核、内核→用户双向安全调用**，是项目核心交互组件。
-1. **IronClaw层定位**
-   作为系统调用封装层、权限校验层、跨语言适配层，承接LiteOS用户态应用，对接Rust内核核心模块，兼容原有LiteOS用户生态，无额外性能损耗。
-2. **核心双向调用接口设计**
-   （1）用户层 → 内核层调用接口（系统调用入口）
-   IronClaw封装标准系统调用（SVC）接口，向上提供给用户程序调用，向下转发至Rust内核，核心接口（暂定，后续可能更改）：
-   - 任务管理接口：`ironclaw_task_create`、`ironclaw_task_delete`、`ironclaw_task_suspend`
-   - 调度控制接口：`ironclaw_sched_yield`、`ironclaw_sched_set_priority`
-   - IPC通信接口：`ironclaw_sem_pend`、`ironclaw_queue_send`
-   - 内存管理接口：`ironclaw_mem_alloc`、`ironclaw_mem_free`
-   （2）内核层 → 用户层回调/通知接口
-   Rust内核通过IronClaw向用户层主动推送事件、执行回调，核心接口（暂定，后续可能更改）：
-   - 事件通知接口：`ironclaw_event_notify`（任务调度完成、中断触发、数据就绪）
-   - 回调注册接口：`ironclaw_callback_register`（用户层注册自定义回调函数）
-3. **接口实现机制**
-   - 基于LiteOS原生异常中断（SVC）实现内核态切换；
-   - 通过Rust FFI完成IronClaw（C兼容）与Rust内核的函数映射；
-   - 接口参数强类型校验，内核层做权限隔离，杜绝非法调用。
-4. **接口适配性**
-   兼容LiteOS原有用户层API规范，现有应用无需修改即可对接重构后的内核，保证项目兼容性。
-
+本项目引入**IronClaw轻量化中间层（Agent）**，作为用户层（应用程序）与Rust重构内核层的统一对接入口，屏蔽语言差异、权限隔离、调用规范，实现**用户→内核、内核→用户双向安全调用**，是项目核心交互组件。
+#### 3.4.1 IronClaw（Agent）植入部位
+IronClaw作为核心交互Agent，其植入位置严格锚定LiteOS原有系统调用链路，无侵入式修改原有框架，具体植入层级与部位如下：
+1. **用户态-内核态边界层（核心植入点）**
+挂载于LiteOS原生SVC（Supervisor Call）异常处理入口，替代原有C实现的系统调用分发逻辑：
+- 物理位置：`los_syscall.c`（原有系统调用分发文件）的`SVC_Handler`中断处理函数内，将系统调用分发逻辑接管至IronClaw层；
+- 作用：所有用户层发起的系统调用请求，先进入IronClaw进行权限校验、参数合法性检查，再转发至Rust重构内核模块，避免非法调用直接触达内核。
+1. **内核层回调转发层（辅助植入点）**
+植入于Rust内核模块的事件通知/回调触发逻辑处（如任务调度完成、定时器超时、IPC消息就绪等场景）：
+- 物理位置：Rust改写的`los_sched.rs`（调度器）、`los_swtmr.rs`（软件定时器）、`los_queue.rs`（消息队列）等模块的事件触发节点；
+- 作用：内核层产生的主动通知/回调请求，先经由IronClaw完成跨语言类型转换、用户态权限映射，再推送至用户层，保证回调的安全性与兼容性。
+1. **编译构建链路（部署植入）**
+在LiteOS构建系统（Makefile/CMake）中，将IronClaw编译单元（C/Rust混合实现）链接至内核镜像的`os_adapter`段，与原有C内核代码段隔离，保证内存布局兼容性，且支持独立编译调试。
+#### 3.4.2 IronClaw（Agent）核心交互接口定义
+IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追溯”原则，分为**用户→内核（同步调用）** 和**内核→用户（异步回调）** 两类，接口定义、参数、调用规范如下：
+##### （1）用户层 → 内核层：同步系统调用接口（SVC触发）
+所有接口均为C兼容格式（便于原有用户态应用直接调用），由IronClaw接管分发，核心接口定义如下（含参数校验规则）（暂定，可能会更改）：
+|接口名称|功能描述|入参类型|入参校验规则（IronClaw层）|内核对接模块|
+|---|---|---|---|---|
+|`ironclaw_task_create`|创建任务|`u32 *task_id, TaskAttr *attr`|1. task_id非空；2. attr优先级∈[0,31]；3. 栈大小≥最小阈值|`los_task.rs`|
+|`ironclaw_task_delete`|删除任务|`u32 task_id`|1. task_id存在；2. 非空闲/内核任务|`los_task.rs`|
+|`ironclaw_task_suspend`|挂起任务|`u32 task_id`|1. task_id非当前运行任务；2. 任务状态为就绪/运行|`los_task.rs`|
+|`ironclaw_sched_yield`|任务主动让出CPU|无|无（仅校验当前CPU模式为用户态）|`los_sched.rs`|
+|`ironclaw_sched_set_priority`|设置任务优先级|`u32 task_id, u8 prio`|1. prio∈[0,31]；2. task_id非内核关键任务|`los_sched.rs`|
+|`ironclaw_sem_pend`|获取信号量|`u32 sem_id, u32 timeout`|1. sem_id存在；2. timeout≤最大Tick数|`los_sem.rs`|
+|`ironclaw_sem_post`|释放信号量|`u32 sem_id`|1. sem_id存在；2. 信号量未溢出|`los_sem.rs`|
+|`ironclaw_queue_send`|发送消息至队列|`u32 queue_id, void *data, u32 len`|1. queue_id存在；2. data非空；3. len≤队列最大容量|`los_queue.rs`|
+|`ironclaw_queue_recv`|从队列接收消息|`u32 queue_id, void *buf, u32 *len`|1. queue_id存在；2. buf非空；3. len指针非空|`los_queue.rs`|
+|`ironclaw_mem_alloc`|动态内存分配|`u32 size, u32 align`|1. size>0；2. align为2的幂次|`los_memory.rs`|
+|`ironclaw_mem_free`|动态内存释放|`void *ptr`|1. ptr为内核分配的有效地址；2. 非重复释放|`los_memory.rs`|
+**调用流程**：
+1. 用户态应用调用IronClaw接口 → 触发SVC中断 → 进入IronClaw SVC处理函数；
+2. IronClaw校验参数合法性、用户态权限 → 转换参数为Rust兼容类型；
+3. 调用Rust内核模块对应函数 → 执行结果通过IronClaw转换为C兼容返回值 → 返回到用户态。
+##### （2）内核层 → 用户层：异步回调/通知接口（内核主动触发）
+由Rust内核模块触发，IronClaw负责跨语言适配与安全转发，核心接口定义如下：
+|接口名称|功能描述|入参类型|回调触发场景|用户层注册方式|
+|---|---|---|---|---|
+|`ironclaw_event_notify`|通用事件通知|`u32 event_id, void *data, u32 len`|任务调度完成、定时器超时、IPC消息就绪|预注册`event_callback_t`函数指针|
+|`ironclaw_task_exit_notify`|任务退出通知|`u32 task_id, i32 exit_code`|任务异常退出/正常终止|`ironclaw_callback_register`|
+|`ironclaw_isr_notify`|中断处理完成通知|`u32 irq_num`|外部中断处理完成（如GPIO/串口）|`ironclaw_callback_register`|
+**回调流程**：
+1. Rust内核模块触发事件 → 调用IronClaw回调转发函数；
+2. IronClaw校验用户层注册的回调函数合法性（非空、权限匹配）；
+3. 切换至用户态上下文 → 执行用户层回调函数 → 完成后返回内核态。
+#### 3.4.3 接口实现机制
+- 基于LiteOS原生异常中断（SVC）实现内核态切换；
+- 通过Rust FFI完成IronClaw（C兼容）与Rust内核的函数映射；
+- 接口参数强类型校验，内核层做权限隔离，杜绝非法调用；
+- 所有接口调用均记录日志（可选编译开关），包含调用者PID、参数、返回值，便于问题追溯。
+#### 3.4.4 接口适配性
+兼容LiteOS原有用户层API规范，现有应用无需修改即可对接重构后的内核，保证项目兼容性。
 ### 3.5 编译与构建环境
 1. 安装嵌入式目标交叉编译支持：`rustup target add thumbv7m-none-eabi riscv32imac-unknown-none-elf`；
 2. 配置Rust模块与LiteOS原有构建系统的链接规则，将Rust编译生成的静态库与C代码打包；
