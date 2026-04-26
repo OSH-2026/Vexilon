@@ -12,15 +12,20 @@
   - [3. 技术依据与实现路径](#3-技术依据与实现路径)
     - [3.1 核心技术栈与Crates选型](#31-核心技术栈与crates选型)
     - [3.2 待改写核心模块的Rust适配性与优先级](#32-待改写核心模块的rust适配性与优先级)
-    - [3.3 实现路径](#33-实现路径)
-    - [3.4 基于IronClaw的用户层-内核层对接与接口设计](#34-基于ironclaw的用户层-内核层对接与接口设计)
-      - [3.4.1 IronClaw（Agent）植入部位](#341-ironclawagent植入部位)
-      - [3.4.2 IronClaw（Agent）核心交互接口定义](#342-ironclawagent核心交互接口定义)
+    - [3.3 Rust改写示例和优化体现](#33-rust改写示例和优化体现)
+      - [3.3.1 `los_sortlink.c`：固定容量排序链表，避免指针失误](#331-los_sortlinkc固定容量排序链表避免指针失误)
+      - [3.3.2 `los_event.c`：事件标志位改成强类型位集](#332-los_eventc事件标志位改成强类型位集)
+      - [3.3.3 `los_sem.c`：信号量用原子计数，减少手工加锁风险](#333-los_semc信号量用原子计数减少手工加锁风险)
+      - [3.3.4 `los_tick.c` + `los_swtmr.c`：Tick 驱动定时器，逻辑更集中](#334-los_tickc--los_swtmrctick-驱动定时器逻辑更集中)
+    - [3.4 实现路径](#34-实现路径)
+    - [3.5 基于IronClaw的用户层-内核层对接与接口设计](#35-基于ironclaw的用户层-内核层对接与接口设计)
+      - [3.5.1 IronClaw（Agent）植入部位](#351-ironclawagent植入部位)
+      - [3.5.2 IronClaw（Agent）核心交互接口定义](#352-ironclawagent核心交互接口定义)
         - [（1）用户层 → 内核层：同步系统调用接口（SVC触发）](#1用户层--内核层同步系统调用接口svc触发)
         - [（2）内核层 → 用户层：异步回调/通知接口（内核主动触发）](#2内核层--用户层异步回调通知接口内核主动触发)
-      - [3.4.3 接口实现机制](#343-接口实现机制)
-      - [3.4.4 接口适配性](#344-接口适配性)
-    - [3.5 编译与构建环境](#35-编译与构建环境)
+      - [3.5.3 接口实现机制](#353-接口实现机制)
+      - [3.5.4 接口适配性](#354-接口适配性)
+    - [3.6 编译与构建环境](#36-编译与构建环境)
   - [4. C/Rust FFI 设计示例](#4-crust-ffi-设计示例)
   - [5. 性能与安全性分析](#5-性能与安全性分析)
   - [6. 创新点与技术挑战](#6-创新点与技术挑战)
@@ -72,15 +77,182 @@ LiteOS内核核心模块包含动态内存管理、排序链表、任务管理�
 | `los_tick.c`      | Tick时钟         | 基础时钟模块，逻辑简单，可快速改写并与定时器/调度器联动                         |
 | `los_init.c`      | 内核初始化       | 依赖所有核心模块，需在其他模块改写完成后适配，统一初始化流程                     |
 
-### 3.3 实现路径
+### 3.3 Rust改写示例和优化体现
+下面是3.2表格中一些模块的Rust改写示例和优化点。
+
+#### 3.3.1 `los_sortlink.c`：固定容量排序链表，避免指针失误
+**改动思路**：
+C 版通常需要手动维护前驱/后继指针，Rust 改成“边界明确的固定数组 + 有序插入”，可以先验证数据结构迁移的可行性。
+```rust
+pub struct SortedLink<const N: usize> {
+    buf: [u32; N],
+    len: usize,
+}
+
+impl<const N: usize> SortedLink<N> {
+    pub const fn new(init: u32) -> Self {
+        Self { buf: [0; N], len: 0 }
+    }
+
+    pub fn insert(&mut self, value: u32) -> Result<(), ()> {
+        if self.len == N {
+            return Err(());
+        }
+
+        let mut i = self.len;
+        while i > 0 && self.buf[i - 1] > value {
+            self.buf[i] = self.buf[i - 1];
+            i -= 1;
+        }
+
+        self.buf[i] = value;
+        self.len += 1;
+        Ok(())
+    }
+}
+```
+**优化体现**：
+* 没有裸指针和链表断链风险。
+* `len <= N` 在编译期/运行期都更容易约束。
+* 更适合先做 Rust 适配验证，改动小、风险低。
+
+#### 3.3.2 `los_event.c`：事件标志位改成强类型位集
+**改动思路**：
+C 里常见的是 `uint32_t flag` + 宏定义，Rust 可以用结构体封装，避免“写错位掩码”或“不同模块重复定义”。
+```rust
+use core::sync::atomic::{AtomicU32, Ordering};
+
+#[derive(Copy, Clone)]
+pub struct EventFlags(u32);
+
+impl EventFlags {
+    pub const RX_READY: Self = Self(1 << 0);
+    pub const TX_DONE:  Self = Self(1 << 1);
+    pub const ERROR:    Self = Self(1 << 2);
+}
+
+pub struct EventGroup {
+    bits: AtomicU32,
+}
+
+impl EventGroup {
+    pub const fn new() -> Self {
+        Self { bits: AtomicU32::new(0) }
+    }
+
+    pub fn set(&self, flags: EventFlags) {
+        self.bits.fetch_or(flags.0, Ordering::Release);
+    }
+
+    pub fn clear(&self, flags: EventFlags) {
+        self.bits.fetch_and(!flags.0, Ordering::Release);
+    }
+
+    pub fn is_set(&self, flags: EventFlags) -> bool {
+        (self.bits.load(Ordering::Acquire) & flags.0) != 0
+    }
+}
+```
+**优化体现**：
+* 事件含义从“魔法数字”变成“显式常量”。
+* 原子操作替代手动临界区拼接，降低并发错误。
+* 适合展示“Rust 的类型安全可以直接提升同步模块可靠性”。
+
+#### 3.3.3 `los_sem.c`：信号量用原子计数，减少手工加锁风险
+**改动思路**：
+信号量核心就是计数器。Rust 可把计数逻辑和同步逻辑封装在一个对象里，减少“计数减到负数”或“释放时遗漏加锁”的问题。
+```rust
+use core::sync::atomic::{AtomicU32, Ordering};
+
+pub struct Semaphore {
+    count: AtomicU32,
+}
+
+impl Semaphore {
+    pub const fn new(init: u32) -> Self {
+        Self { count: AtomicU32::new(init) }
+    }
+
+    pub fn try_pend(&self) -> bool {
+        let mut cur = self.count.load(Ordering::Acquire);
+        while cur > 0 {
+            match self.count.compare_exchange_weak(
+                cur,
+                cur - 1,
+                Ordering::AcqRel,
+                Ordering::Acquire,
+            ) {
+                Ok(_) => return true,
+                Err(v) => cur = v,
+            }
+        }
+        false
+    }
+
+    pub fn post(&self) {
+        self.count.fetch_add(1, Ordering::Release);
+    }
+}
+```
+**优化体现**：
+* 信号量状态由原子变量统一管理。
+* 避免 C 中“先判断再修改”的竞态窗口。
+* 说明 Rust 不仅能“搬代码”，还能把同步原语做得更稳。
+
+#### 3.3.4 `los_tick.c` + `los_swtmr.c`：Tick 驱动定时器，逻辑更集中
+**改动思路**：
+把 Tick 计数和软件定时器检查逻辑拆开，再用 Rust 的结构体连接，便于和调度器联动。
+```rust
+use core::sync::atomic::{AtomicU64, Ordering};
+
+pub struct TickClock {
+    tick: AtomicU64,
+}
+
+impl TickClock {
+    pub const fn new() -> Self {
+        Self { tick: AtomicU64::new(0) }
+    }
+
+    pub fn on_tick(&self) {
+        self.tick.fetch_add(1, Ordering::Relaxed);
+    }
+
+    pub fn now(&self) -> u64 {
+        self.tick.load(Ordering::Acquire)
+    }
+}
+
+pub struct SoftTimer {
+    deadline: u64,
+    fired: bool,
+    callback: fn(),
+}
+
+pub fn check_timers(clock: &TickClock, timers: &mut [SoftTimer]) {
+    let now = clock.now();
+    for t in timers.iter_mut() {
+        if !t.fired && t.deadline <= now {
+            t.fired = true;
+            (t.callback)();
+        }
+    }
+}
+```
+**优化体现**：
+* Tick 源统一，定时器逻辑更清晰。
+* 触发条件明确，避免 C 中多处共享状态导致的修改分散。
+* 适合说明“定时器模块可与调度器协同改写”。
+
+### 3.4 实现路径
 1. 完成`los_sortlink.c`的Rust改写，验证数据结构、FFI交互与单元测试流程，为后续模块改写建立模板；
 2. 重点改写`los_task.c`+`los_sched.c`，实现任务创建、状态管理与调度逻辑的Rust重构，完成任务切换核心功能；
 3. 根据项目进度，选做1~2个IPC模块（如`los_sem.c`/`los_queue.c`），实现任务间安全通信；
 4. 改写`los_tick.c`/`los_swtmr.c`，最后适配`los_init.c`，完成全流程初始化逻辑，实现内核完整运行。
 
-### 3.4 基于IronClaw的用户层-内核层对接与接口设计
+### 3.5 基于IronClaw的用户层-内核层对接与接口设计
 本项目引入**IronClaw轻量化中间层（Agent）**，作为用户层（应用程序）与Rust重构内核层的统一对接入口，屏蔽语言差异、权限隔离、调用规范，实现**用户→内核、内核→用户双向安全调用**，是项目核心交互组件。
-#### 3.4.1 IronClaw（Agent）植入部位
+#### 3.5.1 IronClaw（Agent）植入部位
 IronClaw作为核心交互Agent，其植入位置严格锚定LiteOS原有系统调用链路，无侵入式修改原有框架，具体植入层级与部位如下：
 1. **用户态-内核态边界层（核心植入点）**
 挂载于LiteOS原生SVC（Supervisor Call）异常处理入口，替代原有C实现的系统调用分发逻辑：
@@ -92,7 +264,7 @@ IronClaw作为核心交互Agent，其植入位置严格锚定LiteOS原有系统�
 - 作用：内核层产生的主动通知/回调请求，先经由IronClaw完成跨语言类型转换、用户态权限映射，再推送至用户层，保证回调的安全性与兼容性。
 1. **编译构建链路（部署植入）**
 在LiteOS构建系统（Makefile/CMake）中，将IronClaw编译单元（C/Rust混合实现）链接至内核镜像的`os_adapter`段，与原有C内核代码段隔离，保证内存布局兼容性，且支持独立编译调试。
-#### 3.4.2 IronClaw（Agent）核心交互接口定义
+#### 3.5.2 IronClaw（Agent）核心交互接口定义
 IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追溯”原则，分为**用户→内核（同步调用）** 和**内核→用户（异步回调）** 两类，接口定义、参数、调用规范如下：
 ##### （1）用户层 → 内核层：同步系统调用接口（SVC触发）
 所有接口均为C兼容格式（便于原有用户态应用直接调用），由IronClaw接管分发，核心接口定义如下（含参数校验规则）（暂定，可能会更改）：
@@ -124,14 +296,14 @@ IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追
 1. Rust内核模块触发事件 → 调用IronClaw回调转发函数；
 2. IronClaw校验用户层注册的回调函数合法性（非空、权限匹配）；
 3. 切换至用户态上下文 → 执行用户层回调函数 → 完成后返回内核态。
-#### 3.4.3 接口实现机制
+#### 3.5.3 接口实现机制
 - 基于LiteOS原生异常中断（SVC）实现内核态切换；
 - 通过Rust FFI完成IronClaw（C兼容）与Rust内核的函数映射；
 - 接口参数强类型校验，内核层做权限隔离，杜绝非法调用；
 - 所有接口调用均记录日志（可选编译开关），包含调用者PID、参数、返回值，便于问题追溯。
-#### 3.4.4 接口适配性
+#### 3.5.4 接口适配性
 兼容LiteOS原有用户层API规范，现有应用无需修改即可对接重构后的内核，保证项目兼容性。
-### 3.5 编译与构建环境
+### 3.6 编译与构建环境
 1. 安装嵌入式目标交叉编译支持：`rustup target add thumbv7m-none-eabi riscv32imac-unknown-none-elf`；
 2. 配置Rust模块与LiteOS原有构建系统的链接规则，将Rust编译生成的静态库与C代码打包；
 3. 为每个改写模块编写独立编译单元，支持增量编译与单模块调试。
