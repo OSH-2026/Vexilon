@@ -28,10 +28,34 @@
     - [3.6 编译与构建环境](#36-编译与构建环境)
   - [4. C/Rust FFI 设计示例](#4-crust-ffi-设计示例)
   - [5. 性能与安全性分析](#5-性能与安全性分析)
-  - [6. 创新点与技术挑战](#6-创新点与技术挑战)
-    - [6.1 预期创新点](#61-预期创新点)
-    - [6.2 难点评估与应对](#62-难点评估与应对)
-  - [7. 测试与验证方案](#7-测试与验证方案)
+  - [6. 开发板选择与上板验证可行性流程分析（基于 Hi3861V100 单开发板的 EcoPet 上板可行性与实现流程分析）](#6-开发板选择与上板验证可行性流程分析基于-hi3861v100-单开发板的-ecopet-上板可行性与实现流程分析)
+    - [6.1 案例目标](#61-案例目标)
+    - [6.2 不采购其他设备时的演示形式](#62-不采购其他设备时的演示形式)
+    - [6.3 最短上板路径](#63-最短上板路径)
+    - [6.4 C/Rust FFI 设计](#64-crust-ffi-设计)
+      - [6.4.1 C 侧 FFI 头文件](#641-c-侧-ffi-头文件)
+      - [6.4.2 Rust 侧 FFI 最小实现](#642-rust-侧-ffi-最小实现)
+    - [6.5 命令解析函数](#65-命令解析函数)
+    - [6.6 LiteOS-M 任务与队列流程](#66-liteos-m-任务与队列流程)
+      - [6.6.1 为什么使用 Queue](#661-为什么使用-queue)
+      - [6.6.2 任务结构](#662-任务结构)
+    - [6.7 C 侧任务伪代码](#67-c-侧任务伪代码)
+    - [6.8 Rust 宠物状态机](#68-rust-宠物状态机)
+      - [6.8.1 状态定义](#681-状态定义)
+      - [6.8.2 状态更新函数](#682-状态更新函数)
+      - [6.8.3 关于 `static mut` 的说明](#683-关于-static-mut-的说明)
+    - [6.9 内存管理压力测试](#69-内存管理压力测试)
+      - [6.9.1 测试目标](#691-测试目标)
+      - [6.9.2 命令与参数边界](#692-命令与参数边界)
+      - [6.9.3 压测接口示意](#693-压测接口示意)
+      - [6.9.4 通过标准](#694-通过标准)
+    - [6.10 WiFi-only 上板步骤](#610-wifi-only-上板步骤)
+    - [6.11 真实可行性评价](#611-真实可行性评价)
+    - [6.12 本阶段不建议做](#612-本阶段不建议做)
+  - [7. 创新点与技术挑战](#7-创新点与技术挑战)
+    - [7.1 预期创新点](#71-预期创新点)
+    - [7.2 难点评估与应对](#72-难点评估与应对)
+  - [8. 测试与验证方案](#8-测试与验证方案)
 
 ## 1. 摘要
 LiteOS作为面向IoT领域的轻量级实时操作系统，采用C语言开发，存在缓冲区溢出、释放后使用、数据竞争等内存安全问题，难以满足IoT设备高安全需求。本项目计划以**已完成Rust改写的`los_memory.c`为基础**，继续用Rust重构剩余11个内核核心模块（含任务管理、调度器、IPC组件等），同时引入**IronClaw作为用户层与内核层的对接中间层（Agent）**，设计双向调用接口。本文聚焦可行性分析，阐述待改写模块的Rust适配性、分阶段实现路径、IronClaw接口设计，论证在保持轻量实时特性的同时，从语言层面提升内核内存安全与交互可靠性的可行性。
@@ -258,11 +282,11 @@ IronClaw作为核心交互Agent，其植入位置严格锚定LiteOS原有系统�
 挂载于LiteOS原生SVC（Supervisor Call）异常处理入口，替代原有C实现的系统调用分发逻辑：
 - 物理位置：`los_syscall.c`（原有系统调用分发文件）的`SVC_Handler`中断处理函数内，将系统调用分发逻辑接管至IronClaw层；
 - 作用：所有用户层发起的系统调用请求，先进入IronClaw进行权限校验、参数合法性检查，再转发至Rust重构内核模块，避免非法调用直接触达内核。
-1. **内核层回调转发层（辅助植入点）**
+2. **内核层回调转发层（辅助植入点）**
 植入于Rust内核模块的事件通知/回调触发逻辑处（如任务调度完成、定时器超时、IPC消息就绪等场景）：
 - 物理位置：Rust改写的`los_sched.rs`（调度器）、`los_swtmr.rs`（软件定时器）、`los_queue.rs`（消息队列）等模块的事件触发节点；
 - 作用：内核层产生的主动通知/回调请求，先经由IronClaw完成跨语言类型转换、用户态权限映射，再推送至用户层，保证回调的安全性与兼容性。
-1. **编译构建链路（部署植入）**
+3. **编译构建链路（部署植入）**
 在LiteOS构建系统（Makefile/CMake）中，将IronClaw编译单元（C/Rust混合实现）链接至内核镜像的`os_adapter`段，与原有C内核代码段隔离，保证内存布局兼容性，且支持独立编译调试。
 #### 3.5.2 IronClaw（Agent）核心交互接口定义
 IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追溯”原则，分为**用户→内核（同步调用）** 和**内核→用户（异步回调）** 两类，接口定义、参数、调用规范如下：
@@ -281,6 +305,7 @@ IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追
 |`ironclaw_queue_recv`|从队列接收消息|`u32 queue_id, void *buf, u32 *len`|1. queue_id存在；2. buf非空；3. len指针非空|`los_queue.rs`|
 |`ironclaw_mem_alloc`|动态内存分配|`u32 size, u32 align`|1. size>0；2. align为2的幂次|`los_memory.rs`|
 |`ironclaw_mem_free`|动态内存释放|`void *ptr`|1. ptr为内核分配的有效地址；2. 非重复释放|`los_memory.rs`|
+
 **调用流程**：
 1. 用户态应用调用IronClaw接口 → 触发SVC中断 → 进入IronClaw SVC处理函数；
 2. IronClaw校验参数合法性、用户态权限 → 转换参数为Rust兼容类型；
@@ -292,6 +317,7 @@ IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追
 |`ironclaw_event_notify`|通用事件通知|`u32 event_id, void *data, u32 len`|任务调度完成、定时器超时、IPC消息就绪|预注册`event_callback_t`函数指针|
 |`ironclaw_task_exit_notify`|任务退出通知|`u32 task_id, i32 exit_code`|任务异常退出/正常终止|`ironclaw_callback_register`|
 |`ironclaw_isr_notify`|中断处理完成通知|`u32 irq_num`|外部中断处理完成（如GPIO/串口）|`ironclaw_callback_register`|
+
 **回调流程**：
 1. Rust内核模块触发事件 → 调用IronClaw回调转发函数；
 2. IronClaw校验用户层注册的回调函数合法性（非空、权限匹配）；
@@ -450,23 +476,726 @@ fn enqueue_checked_command(_cmd: &EcoCommand) -> Result<(), ()> {
   1. 内存安全：排序链表、任务控制块等数据结构的边界校验由Rust类型系统自动完成，消除缓冲区溢出、野指针风险；
   2. 并发安全：IPC模块的同步原语基于Rust `Send`/`Sync` trait实现，从编译期避免数据竞争；
   3. 调用安全：IronClaw接口提供参数校验与权限隔离，防止用户态非法调用内核接口；
+   
+## 6. 开发板选择与上板验证可行性流程分析（基于 Hi3861V100 单开发板的 EcoPet 上板可行性与实现流程分析）
 
-## 6. 创新点与技术挑战
-### 6.1 预期创新点
+### 6.1 案例目标
+本阶段仅采购并使用一块 Hi3861V100 WiFi 开发板完成 EcoPet 电子生态智能小宠物上板实验。该板支持 LiteOS/HarmonyOS 生态，具备 2.4GHz WiFi 能力，资源规模适合轻量 RTOS 演示。
+
+项目核心目标是验证 Rust 部分重写 LiteOS-M 后的任务、IPC、内存管理和 IronClaw-Lite 安全接口链路，而非蓝牙协议栈或多开发板移植能力。因此采用 **WiFi-only + UART 保底调试** 的主线方案。
+
+Hi3861V100 关键资源规格如下：
+
+- 160MHz MCU
+- 352KB SRAM
+- 288KB ROM
+- 2MB Flash
+- 2.4GHz 802.11 b/g/n WiFi
+
+整体验证链路：
+
+`Hi3861V100 -> LiteOS-M 启动 -> C/Rust FFI 链接 -> IronClaw-Lite 校验命令 -> LiteOS-M Queue 传递命令 -> Rust 状态机更新状态 -> UART/WiFi 输出结果`
+
+EcoPet 是系统验证场景，不是外设堆料场景。其验证对象与体现如下：
+
+| 验证对象 | EcoPet 中的体现 |
+|---|---|
+| LiteOS-M 启动 | Hi3861V100 上电后进入 LiteOS-M 主任务 |
+| C/Rust FFI | C 任务调用 Rust 导出函数进行命令校验与状态更新 |
+| IronClaw-Lite | 对用户命令进行能力检查、参数检查、错误码返回 |
+| 任务管理 | 创建接收任务、状态任务、上报任务 |
+| IPC | 通过 LiteOS-M Queue 将命令从接收任务传给状态任务 |
+| 内存管理 | 通过受控命令进行小规模 alloc/free 压测 |
+| WiFi-only 输入 | PC/手机通过 WiFi 发送文本命令 |
+| UART 保底调试 | WiFi 不稳定时仍可完成完整演示 |
+
+### 6.2 不采购其他设备时的演示形式
+在仅采购 Hi3861V100 的前提下，不额外购买 OLED、温湿度传感器、蜂鸣器等外设，建议采用以下展示方式：
+
+1. UART 串口日志；
+2. WiFi TCP/UDP 文本命令；
+3. 板载 LED + 软件模拟环境数据。
+
+例如，小宠物环境可先用软件模拟：
+
+```c
+temperature = 24 + (tick % 5);
+light_level = 60 + (tick % 20);
+comfort = f(temperature, light_level);
+```
+
+该方式可避免传感器接线、驱动、I2C 时序问题影响主线进度。
+
+### 6.3 最短上板路径
+推荐按以下 4 步推进（不在起步阶段启用 WiFi）：
+
+1. **LiteOS-M + UART 跑通**：上电启动并输出 boot log，创建 `NetRxTask`、`PetStateTask`、`TelemetryTask`。
+2. **C 调 Rust 跑通**：C 调用 `ic_parse_command()`，Rust 返回标准错误码。最小输入为 `FEED 10`。
+3. **Queue 跑通**：`NetRxTask` 接收命令并校验后 `LOS_QueueWrite()`，`PetStateTask` 通过 `LOS_QueueRead()` 消费并更新状态。
+4. **WiFi-only 输入**：PC/手机发送 `STATUS`、`FEED`、`PLAY`，开发板返回宠物状态。
+
+建议优先使用 TCP/UDP 文本协议，不在首阶段引入 HTTP + JSON，以降低内存压力与实现复杂度。
+
+### 6.4 C/Rust FFI 设计
+仅使用 Hi3861V100 时，FFI 设计应尽量简洁：
+
+- C 负责：LiteOS-M 任务创建、Queue 创建与读写、UART/WiFi 输入输出；
+- Rust 负责：命令解析、参数检查、能力检查、宠物状态机、受控内存测试逻辑。
+
+该划分的优势：
+
+1. Rust 初期无需绑定大量 LiteOS-M API；
+2. C 侧可复用成熟的 LiteOS-M 任务、队列、WiFi 接口；
+3. Rust 聚焦安全接口层与状态逻辑，价值更易验证。
+
+#### 6.4.1 C 侧 FFI 头文件
+```c
+// bridge/ic_pet_ffi.h
+#pragma once
+#include <stdint.h>
+
+#define ECO_ARG_MAX 2
+
+typedef enum {
+    ECO_CMD_STATUS     = 1,
+    ECO_CMD_FEED       = 2,
+    ECO_CMD_PLAY       = 3,
+    ECO_CMD_SLEEP      = 4,
+    ECO_CMD_STRESS_IPC = 5,
+    ECO_CMD_STRESS_MEM = 6,
+} EcoCmdKind;
+
+typedef enum {
+    ECO_SRC_UART = 0,
+    ECO_SRC_WIFI = 1,
+} EcoCmdSource;
+
+typedef struct {
+    uint32_t kind;
+    int32_t args[ECO_ARG_MAX];
+    uint32_t arg_len;
+    uint32_t source;
+    uint32_t capability;
+} EcoCommand;
+
+typedef struct {
+    int32_t health;
+    int32_t hunger;
+    int32_t mood;
+    int32_t energy;
+    int32_t comfort;
+    uint32_t tick;
+    uint32_t error_count;
+} EcoPetState;
+
+typedef enum {
+    ECO_OK = 0,
+    ECO_ERR_NULL_PTR = 1,
+    ECO_ERR_INVALID_CMD = 2,
+    ECO_ERR_INVALID_ARG = 3,
+    ECO_ERR_PERMISSION = 4,
+    ECO_ERR_ALLOC = 5,
+} EcoErrorCode;
+
+uint32_t ic_parse_command(const uint8_t *buf, uint32_t len, EcoCommand *out);
+uint32_t ic_pet_apply_command(const EcoCommand *cmd);
+uint32_t ic_pet_get_state(EcoPetState *out);
+uint32_t ic_pet_mem_stress(uint32_t count, uint32_t block_size);
+```
+
+说明：结构体仅使用 `uint32_t`、`int32_t` 和固定数组，降低 ABI 不稳定风险。
+
+#### 6.4.2 Rust 侧 FFI 最小实现
+```rust
+#![no_std]
+
+#[repr(C)]
+pub struct EcoCommand {
+    pub kind: u32,
+    pub args: [i32; 2],
+    pub arg_len: u32,
+    pub source: u32,
+    pub capability: u32,
+}
+
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EcoPetState {
+    pub health: i32,
+    pub hunger: i32,
+    pub mood: i32,
+    pub energy: i32,
+    pub comfort: i32,
+    pub tick: u32,
+    pub error_count: u32,
+}
+
+#[repr(u32)]
+pub enum EcoErr {
+    Ok = 0,
+    NullPtr = 1,
+    InvalidCmd = 2,
+    InvalidArg = 3,
+    Permission = 4,
+    Alloc = 5,
+}
+
+const CAP_READ: u32 = 0x01;
+const CAP_WRITE: u32 = 0x02;
+const CAP_STRESS: u32 = 0x04;
+
+#[unsafe(no_mangle)]
+pub extern "C" fn ic_parse_command(
+    buf: *const u8,
+    len: u32,
+    out: *mut EcoCommand,
+) -> u32 {
+    if buf.is_null() || out.is_null() {
+        return EcoErr::NullPtr as u32;
+    }
+
+    let bytes = unsafe { core::slice::from_raw_parts(buf, len as usize) };
+    let cmd = match parse_text_command(bytes) {
+        Some(c) => c,
+        None => return EcoErr::InvalidCmd as u32,
+    };
+
+    if !check_capability(&cmd) || !check_args(&cmd) {
+        return EcoErr::InvalidArg as u32;
+    }
+
+    unsafe { *out = cmd; }
+    EcoErr::Ok as u32
+}
+```
+
+### 6.5 命令解析函数
+为适配 Hi3861V100 资源限制，建议保持简单文本命令格式：
+
+```text
+STATUS
+FEED 10
+PLAY 5
+SLEEP
+STRESS_MEM 100 64
+```
+
+Rust 解析可先采用固定匹配，不引入复杂 parser：
+
+```rust
+fn parse_text_command(bytes: &[u8]) -> Option<EcoCommand> {
+    let mut cmd = EcoCommand {
+        kind: 0,
+        args: [0; 2],
+        arg_len: 0,
+        source: 0,
+        capability: CAP_READ | CAP_WRITE | CAP_STRESS,
+    };
+
+    if starts_with(bytes, b"STATUS") {
+        cmd.kind = 1;
+        cmd.arg_len = 0;
+        return Some(cmd);
+    }
+    if starts_with(bytes, b"FEED ") {
+        cmd.kind = 2;
+        cmd.args[0] = parse_number_after_space(bytes)?;
+        cmd.arg_len = 1;
+        return Some(cmd);
+    }
+    if starts_with(bytes, b"PLAY ") {
+        cmd.kind = 3;
+        cmd.args[0] = parse_number_after_space(bytes)?;
+        cmd.arg_len = 1;
+        return Some(cmd);
+    }
+    if starts_with(bytes, b"SLEEP") {
+        cmd.kind = 4;
+        cmd.arg_len = 0;
+        return Some(cmd);
+    }
+    None
+}
+
+fn starts_with(buf: &[u8], pat: &[u8]) -> bool {
+    buf.len() >= pat.len() && &buf[..pat.len()] == pat
+}
+
+fn parse_number_after_space(buf: &[u8]) -> Option<i32> {
+    let mut value: i32 = 0;
+    let mut seen_space = false;
+    let mut seen_digit = false;
+
+    for &b in buf {
+        if b == b' ' {
+            seen_space = true;
+            continue;
+        }
+        if seen_space && b.is_ascii_digit() {
+            seen_digit = true;
+            value = value * 10 + (b - b'0') as i32;
+        }
+    }
+
+    if seen_digit { Some(value) } else { None }
+}
+
+fn check_capability(cmd: &EcoCommand) -> bool {
+    match cmd.kind {
+        1 => cmd.capability & CAP_READ != 0,
+        2 | 3 | 4 => cmd.capability & CAP_WRITE != 0,
+        5 | 6 => cmd.capability & CAP_STRESS != 0,
+        _ => false,
+    }
+}
+
+fn check_args(cmd: &EcoCommand) -> bool {
+    match cmd.kind {
+        1 | 4 => cmd.arg_len == 0,
+        2 | 3 => cmd.arg_len == 1 && (1..=100).contains(&cmd.args[0]),
+        5 | 6 => cmd.arg_len >= 1,
+        _ => false,
+    }
+}
+```
+
+该路径体现 IronClaw-Lite 的核心价值：用户命令先经过识别、参数约束和能力检查，再进入 LiteOS-M 队列。
+
+### 6.6 LiteOS-M 任务与队列流程
+#### 6.6.1 为什么使用 Queue
+LiteOS 队列典型流程是创建队列、写队列、读队列、获取队列信息和删除队列。在 EcoPet 中，Queue 用于解耦输入任务与状态任务：
+
+- 输入任务负责接收和校验命令；
+- 状态任务负责更新宠物状态；
+- 两者通过 Queue 通信。
+
+这与项目阶段目标中的 IPC 改写与联调要求一致。
+
+#### 6.6.2 任务结构
+- `NetRxTask`：UART/WiFi 收到文本命令，调用 `ic_parse_command()`，校验成功后 `LOS_QueueWrite()`；
+- `PetStateTask`：`LOS_QueueRead()` 读取命令，调用 `ic_pet_apply_command()`；
+- `TelemetryTask`：周期调用 `ic_pet_get_state()`，通过 UART/WiFi 输出状态。
+
+### 6.7 C 侧任务伪代码
+以下为 LiteOS-M 风格伪代码，实际函数签名应以 Hi3861 SDK / OpenHarmony 版本为准：
+
+```c
+// app/ecopet_main.c
+#include <stdio.h>
+#include <string.h>
+#include "los_task.h"
+#include "los_queue.h"
+#include "ic_pet_ffi.h"
+
+#define ECO_CMD_QUEUE_LEN  8
+#define ECO_CMD_BUF_SIZE   64
+#define ECO_TASK_STACK     0x1000
+
+static UINT32 g_cmd_queue;
+static UINT32 g_net_task_id;
+static UINT32 g_pet_task_id;
+static UINT32 g_telemetry_task_id;
+
+static int ReadCommandLine(uint8_t *buf, uint32_t max_len)
+{
+    // 阶段1：UART 读取；阶段2：替换为 WiFi TCP/UDP recv
+    return uart_try_read_line(buf, max_len);
+}
+
+static VOID NetRxTask(VOID)
+{
+    uint8_t raw[ECO_CMD_BUF_SIZE];
+    while (1) {
+        memset(raw, 0, sizeof(raw));
+        int len = ReadCommandLine(raw, ECO_CMD_BUF_SIZE - 1);
+        if (len <= 0) {
+            LOS_TaskDelay(5);
+            continue;
+        }
+
+        EcoCommand cmd;
+        UINT32 ret = ic_parse_command(raw, (UINT32)len, &cmd);
+        if (ret != ECO_OK) {
+            printf("[IronClaw] reject cmd, ret=%u, raw=%s\n", ret, raw);
+            continue;
+        }
+
+        ret = LOS_QueueWrite(g_cmd_queue, &cmd, sizeof(EcoCommand), 0);
+        if (ret != LOS_OK) {
+            printf("[Queue] write failed ret=%u\n", ret);
+        } else {
+            printf("[Queue] command accepted: kind=%u\n", cmd.kind);
+        }
+    }
+}
+
+static VOID PetStateTask(VOID)
+{
+    EcoCommand cmd;
+    while (1) {
+        UINT32 ret = LOS_QueueRead(
+            g_cmd_queue,
+            &cmd,
+            sizeof(EcoCommand),
+            LOS_WAIT_FOREVER
+        );
+        if (ret == LOS_OK) {
+            UINT32 r = ic_pet_apply_command(&cmd);
+            if (r != ECO_OK) {
+                printf("[Pet] apply failed ret=%u\n", r);
+            }
+        }
+    }
+}
+
+static VOID TelemetryTask(VOID)
+{
+    EcoPetState state;
+    while (1) {
+        UINT32 ret = ic_pet_get_state(&state);
+        if (ret == ECO_OK) {
+            printf(
+                "[EcoPet] health=%d hunger=%d mood=%d energy=%d comfort=%d tick=%u err=%u\n",
+                state.health,
+                state.hunger,
+                state.mood,
+                state.energy,
+                state.comfort,
+                state.tick,
+                state.error_count
+            );
+        }
+        LOS_TaskDelay(100);
+    }
+}
+
+void EcoPetMain(void)
+{
+    UINT32 ret = LOS_QueueCreate(
+        "eco_cmd_q",
+        ECO_CMD_QUEUE_LEN,
+        &g_cmd_queue,
+        0,
+        sizeof(EcoCommand)
+    );
+    if (ret != LOS_OK) {
+        printf("[EcoPet] queue create failed ret=%u\n", ret);
+        return;
+    }
+
+    TSK_INIT_PARAM_S task = {0};
+    task.pfnTaskEntry = (TSK_ENTRY_FUNC)NetRxTask;
+    task.uwStackSize = ECO_TASK_STACK;
+    task.pcName = "NetRxTask";
+    task.usTaskPrio = 10;
+    LOS_TaskCreate(&g_net_task_id, &task);
+
+    task.pfnTaskEntry = (TSK_ENTRY_FUNC)PetStateTask;
+    task.uwStackSize = ECO_TASK_STACK;
+    task.pcName = "PetStateTask";
+    task.usTaskPrio = 8;
+    LOS_TaskCreate(&g_pet_task_id, &task);
+
+    task.pfnTaskEntry = (TSK_ENTRY_FUNC)TelemetryTask;
+    task.uwStackSize = ECO_TASK_STACK;
+    task.pcName = "TelemetryTask";
+    task.usTaskPrio = 15;
+    LOS_TaskCreate(&g_telemetry_task_id, &task);
+}
+```
+
+关键点：
+
+1. `NetRxTask` 不直接修改宠物状态；
+2. Rust 先校验命令，再允许入队；
+3. `PetStateTask` 是唯一写状态的任务；
+4. `TelemetryTask` 仅读取状态快照。
+
+### 6.8 Rust 宠物状态机
+#### 6.8.1 状态定义
+电子小宠物保留 5 个核心状态：
+
+- `health`：健康值
+- `hunger`：饥饿值
+- `mood`：心情值
+- `energy`：精力值
+- `comfort`：舒适度
+
+该状态集合足以支撑 Demo，不依赖真实 AI 模型。
+
+#### 6.8.2 状态更新函数
+```rust
+#[unsafe(no_mangle)]
+pub extern "C" fn ic_pet_apply_command(cmd: *const EcoCommand) -> u32 {
+    if cmd.is_null() {
+        return EcoErr::NullPtr as u32;
+    }
+
+    let cmd = unsafe { &*cmd };
+    unsafe {
+        match cmd.kind {
+            1 => {
+                // STATUS：不修改状态
+            }
+            2 => {
+                // FEED n：降低饥饿，提高心情
+                let n = cmd.args[0];
+                PET_STATE.hunger -= n;
+                PET_STATE.mood += 3;
+            }
+            3 => {
+                // PLAY n：提高心情，消耗精力，增加饥饿
+                let n = cmd.args[0];
+                PET_STATE.mood += n;
+                PET_STATE.energy -= 10;
+                PET_STATE.hunger += 5;
+            }
+            4 => {
+                // SLEEP：恢复精力
+                PET_STATE.energy += 20;
+                PET_STATE.hunger += 3;
+            }
+            _ => {
+                PET_STATE.error_count += 1;
+                return EcoErr::InvalidCmd as u32;
+            }
+        }
+        update_health();
+        normalize();
+    }
+
+    EcoErr::Ok as u32
+}
+
+unsafe fn update_health() {
+    if PET_STATE.hunger > 80 {
+        PET_STATE.health -= 2;
+    }
+    if PET_STATE.energy < 20 {
+        PET_STATE.health -= 1;
+    }
+    if PET_STATE.mood < 20 {
+        PET_STATE.health -= 1;
+    }
+}
+
+unsafe fn normalize() {
+    PET_STATE.health = clamp(PET_STATE.health, 0, 100);
+    PET_STATE.hunger = clamp(PET_STATE.hunger, 0, 100);
+    PET_STATE.mood = clamp(PET_STATE.mood, 0, 100);
+    PET_STATE.energy = clamp(PET_STATE.energy, 0, 100);
+    PET_STATE.comfort = clamp(PET_STATE.comfort, 0, 100);
+    PET_STATE.tick = PET_STATE.tick.wrapping_add(1);
+}
+
+fn clamp(x: i32, lo: i32, hi: i32) -> i32 {
+    if x < lo {
+        lo
+    } else if x > hi {
+        hi
+    } else {
+        x
+    }
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn ic_pet_get_state(out: *mut EcoPetState) -> u32 {
+    if out.is_null() {
+        return EcoErr::NullPtr as u32;
+    }
+
+    unsafe { *out = PET_STATE; }
+    EcoErr::Ok as u32
+}
+```
+
+#### 6.8.3 关于 `static mut` 的说明
+为了走通最短路径，Demo 使用 `static mut PET_STATE`。该写法需要 `unsafe`，不能被表述为“天然安全”。
+
+当前安全前提是 **单写者模型**：仅 `PetStateTask` 修改状态，`TelemetryTask` 只读快照。后续若出现多任务并发写状态，需要引入 LiteOS-M mutex 或 Rust critical-section 封装。
+
+### 6.9 内存管理压力测试
+#### 6.9.1 测试目标
+内存压测的目的不是证明“显著性能优化”，而是验证：
+
+1. Rust FFI 可安全触发内存测试；
+2. 参数越界能被 IronClaw-Lite 拦截；
+3. 多次 alloc/free 后系统仍可响应；
+4. 压测后 Queue 和任务调度仍正常。
+
+#### 6.9.2 命令与参数边界
+命令示例：
+
+```text
+STRESS_MEM 100 64
+```
+
+含义：申请并释放 100 次，每次 64 字节。
+
+为适配 Hi3861V100，建议限制：
+
+- `count <= 200`
+- `block_size <= 128`
+
+避免高次数和大块分配将问题误导为“资源不足”。
+
+#### 6.9.3 压测接口示意
+工程上建议先在 C 中封装 LiteOS-M 内存接口，再通过 FFI 提供给 Rust。
+
+```c
+// bridge/liteos_mem_wrap.c
+#include "los_memory.h"
+
+extern UINT8 m_aucSysMem0[];
+
+void *eco_malloc(uint32_t size) {
+    return LOS_MemAlloc(m_aucSysMem0, size);
+}
+
+uint32_t eco_free(void *ptr) {
+    return LOS_MemFree(m_aucSysMem0, ptr);
+}
+```
+
+```rust
+unsafe extern "C" {
+    fn eco_malloc(size: u32) -> *mut u8;
+    fn eco_free(ptr: *mut u8) -> u32;
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn ic_pet_mem_stress(count: u32, block_size: u32) -> u32 {
+    if count == 0 || count > 200 {
+        return EcoErr::InvalidArg as u32;
+    }
+    if block_size == 0 || block_size > 128 {
+        return EcoErr::InvalidArg as u32;
+    }
+
+    for _ in 0..count {
+        let ptr = unsafe { eco_malloc(block_size) };
+        if ptr.is_null() {
+            return EcoErr::Alloc as u32;
+        }
+
+        unsafe {
+            core::ptr::write_bytes(ptr, 0xA5, block_size as usize);
+            let ret = eco_free(ptr);
+            if ret != 0 {
+                return EcoErr::Alloc as u32;
+            }
+        }
+    }
+    EcoErr::Ok as u32
+}
+```
+
+#### 6.9.4 通过标准
+输入 `STRESS_MEM 100 64` 后，至少满足：
+
+1. 返回 `ECO_OK`；
+2. 无 hard fault；
+3. `TelemetryTask` 仍持续打印；
+4. 后续 `STATUS` 返回正常；
+5. 后续 `FEED 10` 能正常更新状态。
+
+### 6.10 WiFi-only 上板步骤
+1. **阶段 A：串口最小闭环**
+
+   先不启用 WiFi，仅验证：
+
+   `UART -> IronClaw-Lite -> Queue -> Rust 状态机 -> UART`
+
+   示例输入：
+
+   ```text
+   STATUS
+   FEED 10
+   PLAY 5
+   SLEEP
+   ```
+
+   预期日志示例：
+
+   ```text
+   [BOOT] LiteOS-M started on Hi3861V100
+   [RUST] ic_pet linked
+   [CMD] FEED 10
+   [IronClaw] check OK
+   [Queue] write OK
+   [Pet] health=100 hunger=40 mood=63 energy=80 comfort=70
+   ```
+
+2. **阶段 B：WiFi 输入替换 UART 输入**
+
+   Hi3861 支持 2.4GHz WiFi（STA/AP）。为降低网络环境不确定性，建议优先：
+
+   - 方案 1：开发板开 AP，电脑连接开发板热点；
+   - 方案 2：手机开热点，开发板和电脑都连手机热点。
+
+   不建议一开始直接接入校园网。
+
+3. **阶段 C：加入受控压力测试**
+
+   建议命令：
+
+   ```text
+   STRESS_MEM 100 64
+   STRESS_IPC 100
+   ```
+
+   其中 IPC 压测可以先在 C 侧实现；若队列长度仅为 8，连续写 100 次会满，应通过“写后消费、设置超时或统计 queue full 次数”来设计测试。
+
+### 6.11 真实可行性评价
+仅使用 Hi3861V100，当前可完成的关键验收项包括：
+
+1. LiteOS-M 真机启动；
+2. UART 调试；
+3. WiFi 文本命令输入；
+4. C/Rust FFI 调用；
+5. IronClaw-Lite 参数检查；
+6. LiteOS-M Queue IPC；
+7. Rust 宠物状态机；
+8. 小规模内存压力测试；
+9. 长时间状态上报。
+
+### 6.12 本阶段不建议做
+以下内容不建议作为当前阶段验收目标：
+
+1. 完整 IronClaw runtime；
+2. WASM 动态加载；
+3. 复杂 HTTP 网页；
+4. 大 JSON 解析；
+5. 大规模内存压测；
+6. 多传感器 + OLED + 蜂鸣器同时集成；
+7. BLE 手机控制。
+
+这些方向会偏离“Rust-LiteOS-M + IronClaw-Lite 接口验证”主线。
+
+
+
+## 7. 创新点与技术挑战
+### 7.1 预期创新点
 - **分模块渐进式重构**：以`los_sortlink.c`为起点，按优先级分步改写核心模块，兼顾兼容性与安全性；
 - **类型安全内核原语**：用Rust结构体与trait封装任务、调度、IPC对象，杜绝非法操作；
 - **IronClaw统一交互层**：标准化用户-内核双向调用接口，兼容原有生态的同时提升交互可靠性；
-- **混合内核架构**：保留C语言内核框架，Rust重构核心逻辑，兼顾实时性与安全性。
+- **混合内核架构**：保留C语言内核框架，Rust重构核心逻辑，兼顾实时性与安全性；
+- **Hi3861V100真机闭环验证**：以单块开发板为载体，将LiteOS-M启动、C/Rust FFI、IronClaw-Lite接口、Queue IPC、Rust状态机串联为完整上板演示链路，在资源受限（352KB SRAM、2MB Flash）的真实硬件环境中验证系统可行性。
 
-### 6.2 难点评估与应对
-- **no_std嵌入式环境适配**：需自定义内存分配器、panic处理与硬件抽象层，可复用`cortex-m-rt`、`embedded-hal`等成熟嵌入式生态组件；
-- **C/Rust混合调用**：全局变量、裸指针、回调函数的类型映射与生命周期管理，通过`bindgen`自动生成绑定，配合`#[repr(C)]`结构体保证内存布局兼容；
-- **实时性保障**：调度器、中断上下文的临界区管理，通过Rust `unsafe`块隔离硬件操作，确保无额外延迟；
+### 7.2 难点评估与应对
+- **no_std嵌入式环境适配**：需自定义内存分配器、panic处理与硬件抽象层，可复用`cortex-m-rt`、`embedded-hal`等成熟嵌入式生态组件；Hi3861V100需针对OpenHarmony SDK配置交叉编译目标，确保Rust静态库能正确链接进LiteOS-M工程；
+- **C/Rust混合调用**：全局变量、裸指针、回调函数的类型映射与生命周期管理，通过`bindgen`自动生成绑定，配合`#[repr(C)]`结构体保证内存布局兼容；FFI接口结构体仅使用`uint32_t`/`int32_t`与固定数组，规避ABI不稳定风险；
+- **实时性保障**：调度器、中断上下文的临界区管理，通过Rust `unsafe`块隔离硬件操作，确保无额外延迟；Hi3861V100主频160MHz，需严格控制Rust侧逻辑的栈深度与堆分配频次，避免影响LiteOS-M任务调度时序；
+- **资源约束下的内存管理**：Hi3861V100 SRAM仅352KB，受控压力测试需将单次分配块大小限制在128字节以内、总次数不超过200次，防止资源耗尽掩盖接口正确性问题；
+- **WiFi网络环境适配**：校园网存在网页认证与客户端隔离，需采用开发板开AP或手机热点中转方案，避免依赖校园网直连；
 - **模块协同验证**：多阶段改写模块的联调测试，通过单元测试+QEMU仿真+真机验证三级测试流程保障模块兼容性。
 
-## 7. 测试与验证方案
+## 8. 测试与验证方案
 1. **单模块单元测试**：对每个改写模块（如排序链表、任务管理）编写`cargo test`用例，验证数据结构与核心逻辑的正确性；
 2. **FFI交互测试**：验证Rust模块与C代码的双向调用、参数传递与返回值正确性；
-3. **QEMU仿真测试**：在ARM/RISC-V虚拟机加载重构内核，运行任务调度、IPC通信等核心场景，验证功能完整性；
-4. **真机验证**：在STM32、RISC-V开发板烧录内核，测试任务切换、调度延迟、内存稳定性等指标，确保实时性与可靠性；
-5. **IronClaw接口测试**：通过用户态应用调用系统接口，验证双向调用的安全性与兼容性。
+3. **QEMU仿真测试**：在ARM虚拟机加载重构内核，运行任务调度、IPC通信等核心场景，验证功能完整性；
+4. **Hi3861V100真机验证（分阶段）**：
+   - **阶段A（串口最小闭环）**：Hi3861V100上电后通过UART验证`LiteOS-M启动 → C/Rust FFI链接 → IronClaw-Lite校验 → Queue IPC → Rust状态机 → UART输出`全链路，此阶段为最高优先级；
+   - **阶段B（WiFi输入替换）**：将UART命令输入替换为WiFi TCP/UDP文本协议，验证网络通路下同一处理链路的正确性；
+   - **阶段C（受控压力测试）**：在真机上执行小规模内存压力测试（count≤200，block_size≤128字节），统计分配成功率与内存稳定性指标；
+5. **IronClaw接口测试**：通过UART/WiFi发送`STATUS`/`FEED`/`PLAY`/`SLEEP`/`STRESS_MEM`等命令，验证IronClaw-Lite参数校验、权限隔离与双向调用的安全性与兼容性。
