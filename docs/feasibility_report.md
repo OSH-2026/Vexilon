@@ -21,11 +21,12 @@
       - [3.4.3 接口实现机制](#343-接口实现机制)
       - [3.4.4 接口适配性](#344-接口适配性)
     - [3.5 编译与构建环境](#35-编译与构建环境)
-  - [4. 性能与安全性分析](#4-性能与安全性分析)
-  - [5. 创新点与技术挑战](#5-创新点与技术挑战)
-    - [5.1 预期创新点](#51-预期创新点)
-    - [5.2 难点评估与应对](#52-难点评估与应对)
-  - [6. 测试与验证方案](#6-测试与验证方案)
+  - [4. C/Rust FFI 设计示例](#4-crust-ffi-设计示例)
+  - [5. 性能与安全性分析](#5-性能与安全性分析)
+  - [6. 创新点与技术挑战](#6-创新点与技术挑战)
+    - [6.1 预期创新点](#61-预期创新点)
+    - [6.2 难点评估与应对](#62-难点评估与应对)
+  - [7. 测试与验证方案](#7-测试与验证方案)
 
 ## 1. 摘要
 LiteOS作为面向IoT领域的轻量级实时操作系统，采用C语言开发，存在缓冲区溢出、释放后使用、数据竞争等内存安全问题，难以满足IoT设备高安全需求。本项目计划以**已完成Rust改写的`los_memory.c`为基础**，继续用Rust重构剩余11个内核核心模块（含任务管理、调度器、IPC组件等），同时引入**IronClaw作为用户层与内核层的对接中间层（Agent）**，设计双向调用接口。本文聚焦可行性分析，阐述待改写模块的Rust适配性、分阶段实现路径、IronClaw接口设计，论证在保持轻量实时特性的同时，从语言层面提升内核内存安全与交互可靠性的可行性。
@@ -135,27 +136,163 @@ IronClaw的接口设计遵循“兼容原有API、强类型校验、双向可追
 2. 配置Rust模块与LiteOS原有构建系统的链接规则，将Rust编译生成的静态库与C代码打包；
 3. 为每个改写模块编写独立编译单元，支持增量编译与单模块调试。
 
-## 4. 性能与安全性分析
+## 4. C/Rust FFI 设计示例
+C 和 Rust 之间需要使用稳定 ABI，不能传 Rust 的 String、Vec、trait object，也不能让 C 直接释放 Rust 分配的对象。
+下面是C侧头文件代码示例：
+```c
+// bridge/include/ic_pet_ffi.h
+
+#pragma once
+#include <stdint.h>
+
+#define ECO_ARG_MAX 4
+
+typedef enum {
+    ECO_CMD_STATUS     = 1,
+    ECO_CMD_FEED       = 2,
+    ECO_CMD_PLAY       = 3,
+    ECO_CMD_SLEEP      = 4,
+    ECO_CMD_CLEAN      = 5,
+    ECO_CMD_STRESS_IPC = 6,
+    ECO_CMD_STRESS_MEM = 7,
+} EcoCmdKind;
+
+typedef enum {
+    ECO_SRC_UART = 0,
+    ECO_SRC_WIFI = 1,
+} EcoCmdSource;
+
+typedef struct {
+    uint32_t kind;
+    int32_t args[ECO_ARG_MAX];
+    uint32_t arg_len;
+    uint32_t source;
+    uint32_t capability;
+} EcoCommand;
+
+typedef struct {
+    int32_t health;
+    int32_t hunger;
+    int32_t mood;
+    int32_t energy;
+    int32_t comfort;
+    uint32_t tick;
+    uint32_t error_count;
+} EcoPetState;
+
+uint32_t ic_pet_dispatch(const EcoCommand *cmd);
+uint32_t ic_pet_get_state(EcoPetState *out);
+uint32_t ic_pet_mem_stress(uint32_t count, uint32_t block_size);
+```
+下面是Rust 侧 FFI 示例
+```rust
+#![no_std]
+
+#[repr(C)]
+pub struct EcoCommand {
+    pub kind: u32,
+    pub args: [i32; 4],
+    pub arg_len: u32,
+    pub source: u32,
+    pub capability: u32,
+}
+
+#[repr(C)]
+pub struct EcoPetState {
+    pub health: i32,
+    pub hunger: i32,
+    pub mood: i32,
+    pub energy: i32,
+    pub comfort: i32,
+    pub tick: u32,
+    pub error_count: u32,
+}
+
+#[repr(u32)]
+pub enum EcoError {
+    Ok = 0,
+    NullPtr = 1,
+    InvalidCommand = 2,
+    PermissionDenied = 3,
+    InvalidArgument = 4,
+    QueueFailed = 5,
+    AllocFailed = 6,
+}
+
+const CAP_READ: u32 = 0x01;
+const CAP_WRITE: u32 = 0x02;
+const CAP_STRESS_IPC: u32 = 0x04;
+const CAP_STRESS_MEM: u32 = 0x08;
+
+#[unsafe(no_mangle)]
+pub extern "C" fn ic_pet_dispatch(cmd: *const EcoCommand) -> u32 {
+    if cmd.is_null() {
+        return EcoError::NullPtr as u32;
+    }
+
+    let cmd = unsafe { &*cmd };
+
+    if !check_capability(cmd) {
+        return EcoError::PermissionDenied as u32;
+    }
+
+    if !check_args(cmd) {
+        return EcoError::InvalidArgument as u32;
+    }
+
+    match enqueue_checked_command(cmd) {
+        Ok(()) => EcoError::Ok as u32,
+        Err(_) => EcoError::QueueFailed as u32,
+    }
+}
+
+fn check_capability(cmd: &EcoCommand) -> bool {
+    match cmd.kind {
+        1 => cmd.capability & CAP_READ != 0,
+        2 | 3 | 4 | 5 => cmd.capability & CAP_WRITE != 0,
+        6 => cmd.capability & CAP_STRESS_IPC != 0,
+        7 => cmd.capability & CAP_STRESS_MEM != 0,
+        _ => false,
+    }
+}
+
+fn check_args(cmd: &EcoCommand) -> bool {
+    match cmd.kind {
+        1 | 4 | 5 => cmd.arg_len == 0,
+        2 | 3 => cmd.arg_len == 1 && (0..=100).contains(&cmd.args[0]),
+        6 => cmd.arg_len == 1 && (1..=2000).contains(&cmd.args[0]),
+        7 => cmd.arg_len == 2 && (1..=500).contains(&cmd.args[0]) && (1..=256).contains(&cmd.args[1]),
+        _ => false,
+    }
+}
+
+fn enqueue_checked_command(_cmd: &EcoCommand) -> Result<(), ()> {
+    // 实际项目中这里调用 Rust 封装后的 LiteOS-M queue 接口，
+    // 或通过 C FFI 调用 LOS_QueueWrite。
+    Ok(())
+}
+```
+## 5. 性能与安全性分析
 - **性能保障**：Rust编译为原生机器码，无额外运行时开销，调度器、任务管理、IPC等核心模块的执行性能与原生C版本持平，满足RTOS实时性要求；IronClaw接口调用仅增加单次SVC中断开销，对整体性能影响可忽略；
 - **安全性提升**：
   1. 内存安全：排序链表、任务控制块等数据结构的边界校验由Rust类型系统自动完成，消除缓冲区溢出、野指针风险；
   2. 并发安全：IPC模块的同步原语基于Rust `Send`/`Sync` trait实现，从编译期避免数据竞争；
   3. 调用安全：IronClaw接口提供参数校验与权限隔离，防止用户态非法调用内核接口；
 
-## 5. 创新点与技术挑战
-### 5.1 预期创新点
+## 6. 创新点与技术挑战
+### 6.1 预期创新点
 - **分模块渐进式重构**：以`los_sortlink.c`为起点，按优先级分步改写核心模块，兼顾兼容性与安全性；
 - **类型安全内核原语**：用Rust结构体与trait封装任务、调度、IPC对象，杜绝非法操作；
 - **IronClaw统一交互层**：标准化用户-内核双向调用接口，兼容原有生态的同时提升交互可靠性；
 - **混合内核架构**：保留C语言内核框架，Rust重构核心逻辑，兼顾实时性与安全性。
 
-### 5.2 难点评估与应对
+### 6.2 难点评估与应对
 - **no_std嵌入式环境适配**：需自定义内存分配器、panic处理与硬件抽象层，可复用`cortex-m-rt`、`embedded-hal`等成熟嵌入式生态组件；
 - **C/Rust混合调用**：全局变量、裸指针、回调函数的类型映射与生命周期管理，通过`bindgen`自动生成绑定，配合`#[repr(C)]`结构体保证内存布局兼容；
 - **实时性保障**：调度器、中断上下文的临界区管理，通过Rust `unsafe`块隔离硬件操作，确保无额外延迟；
 - **模块协同验证**：多阶段改写模块的联调测试，通过单元测试+QEMU仿真+真机验证三级测试流程保障模块兼容性。
 
-## 6. 测试与验证方案
+## 7. 测试与验证方案
 1. **单模块单元测试**：对每个改写模块（如排序链表、任务管理）编写`cargo test`用例，验证数据结构与核心逻辑的正确性；
 2. **FFI交互测试**：验证Rust模块与C代码的双向调用、参数传递与返回值正确性；
 3. **QEMU仿真测试**：在ARM/RISC-V虚拟机加载重构内核，运行任务调度、IPC通信等核心场景，验证功能完整性；
