@@ -24,6 +24,10 @@
   - [三、前瞻性分析](#三-前瞻性分析)
     - [1、技术趋势](#1-技术趋势)
     - [2、AI 与操作系统深度融合](#2-ai-与操作系统深度融合)
+  - [四、开发板调研](#四开发板调研)
+    - [1、横向对比表](#1-横向对比表)
+    - [2、选择 WiFi only 的原因](#2-选择-wifi-only-的原因)
+    - [3、主推荐开发板](#3主推荐开发板)
   - [五、现有缺点 (基于原版 C-LiteOS)](#五-现有缺点-基于原版-c-liteos)
     - [1、内存安全缺陷](#1-内存安全缺陷)
     - [2、并发安全缺陷](#2-并发安全缺陷)
@@ -301,6 +305,54 @@ WASM 工具通过「LiteOS-IronClaw Bridge」调用编译好的 LiteOS 内核接
 生成 research report（性能报告、行为分析等）
 ```
 
+## 四、开发板调研
+
+### 1、横向对比表
+|序号|	开发板/芯片	|无线能力	|资源	|LiteOS-M / OpenHarmony 适配性|	Rust / IronClaw-Lite 适配性|	优点	|缺点|	本项目建议|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|1|	Hi3861 / HiSpark WiFi IoT / BearPi-HM Nano	|WiFi-only 为主	|160MHz，352KB SRAM，288KB ROM，2MB Flash	|最强。Hi3861 官方资料明确支持 Huawei LiteOS；HiSpark WiFi IoT 基于 Hi3861，支持 LiteOS 和 HarmonyOS	|中等。LiteOS-M 路线成熟，但 Rust 静态库、FFI、链接脚本仍需自行适配	|最贴近 LiteOS-M/OpenHarmony 生态；WiFi IoT 示例多；最适合降低上板风险|	无蓝牙；RAM/Flash 较小，不适合复杂 HTTP/JSON/完整 IronClaw runtime	|WiFi-only 主线首选|
+|2|	RK2206 OpenHarmony IoT 开发板|	WiFi/AP + NFC	|资料显示运行 OpenHarmony mini system	|较强。OpenHarmony 开发板列表中有 RK2206，带 WiFi/AP、NFC、LCD、E53 接口	|中等偏弱。Rust 工具链和社区经验不如 Hi3861/ESP32	|OpenHarmony mini system 方向明确，外设接口丰富	|价格、购买渠道、Rust 资料不如 Hi3861 明确	|WiFi-only 备选，不作为首选|
+|3|	ESP32-C3-DevKitM-1	|WiFi + BLE	|RISC-V，160MHz，400KB SRAM，4MB Flash	|中等。需要 BSP/HAL 移植	|较强。RISC-V 对 Rust no_std 更友好	|便宜、RISC-V、WiFi/BLE 兼备、适合 Rust 最小验证	|LiteOS-M 原生生态不如 Hi3861；资源也不算宽裕	|Rust/FFI 备选验证板|
+|4|	ESP32-S3-DevKitC-1-N8R8|	WiFi + BLE	|Xtensa LX7 双核，8MB Flash + 8MB PSRAM	|中等。资源强，但 LiteOS-M 适配不是最直接	|中等偏难。Xtensa 的 Rust 和链接适配复杂	|资源充足，适合完整展示 Demo	|操作难度高于 Hi3861；不适合作为首个上板目标|	展示备选，不走主线|
+|5|	BL602 / DT-BL10 / Ai-WB2|	WiFi + BLE 5.0|	RISC-V，约 276KB SRAM，2MB Flash|	弱到中等|	中等。RISC-V 友好，但资源太紧|	便宜、RISC-V、WiFi/BLE 兼备|	RAM/Flash 紧张，WiFi 栈 + Rust + IronClaw-Lite 压力较大|	可做极简备选，不推荐主线|
+|6|	W800 / Neptune100|	WiFi + Bluetooth/BLE 4.2	|W800，2MB Flash，内置 TCP/IP 栈|	较强。OpenHarmony 开发板列表中有 Neptune100/W800|	偏弱。C-SKY / WinnerMicro 工具链下 Rust 适配风险较高|	同时具备 OpenHarmony 方向和 WiFi/蓝牙|	Rust 裸机工具链、ABI、调试链路更复杂|	不适合作为 Rust 主线|
+|7|	HH-D02 / WS63E NearLink|	WiFi 6 + BLE + SLE|	240MHz，606KB SRAM，4MB Flash|	中等。属于较新的 OpenHarmony/Oniro 生态方向|	中等。资料较新，工具链和移植经验需要确认|	无线能力强，资源比 Hi3861 充足|	资料成熟度和课程可控性不如 Hi3861||
+
+### 2、选择 WiFi only 的原因
+**项目的难点不在无线协议栈，而在 Rust-LiteOS-M 与 IronClaw-Lite 接口层的安全调用闭环。放弃蓝牙可以显著降低操作难度，把时间集中在真正的项目核心上。**
+
+- **优点**：
+  - **LiteOS-M 适配成功率更高**：Hi3861/HiSpark/BearPi-HM Nano 本身就是 OpenHarmony/LiteOS-M 生态里非常典型的开发板。相比 ESP32-C3/S3，不需要先花大量时间证明“这块板能否跑 LiteOS-M”，OpenHarmony LiteOS-M 官方仓库说明它本身只支持 C/C++，这意味着 Rust 必须通过静态库和 FFI 的方式接入，而不能假设系统原生支持 Rust。所以选择更成熟的 LiteOS-M 开发板，比选择功能更多但移植链路更复杂的板子更稳。
+  - **WiFi 已经足够验证 IronClaw-Lite**：WiFi 可以通过 TCP、UDP、HTTP、MQTT 任意一种方式完成外部输入。因此，BLE 不是核心验证路径。
+  - **调试链路更清晰**：WiFi-only 方案可以采用 UART 保底调试、WiFi 做远程命令、串口日志记录所有内部状态，而 WiFi + 蓝牙方案会额外引入BLE GATT 服务、蓝牙配对、手机权限、BLE 回调线程、WiFi/BLE 共存、多协议内存池冲突等问题。
+  - **降低内存压力**：Hi3861 只有 352KB SRAM 和 2MB Flash。如果同时做 WiFi + BLE + Rust alloc + IronClaw-Lite + Demo 任务，很容易出现堆栈不够、网络 buffer 不够、日志空间不足等问题。WiFi-only 之后，系统可以裁剪成：
+  > LiteOS-M kernel
+  > Rust 改写模块
+  > IronClaw-Lite bridge
+  > WiFi socket 或 UDP
+  > UART log
+  > EcoPet 状态机
+
+本阶段不选择 WiFi + 蓝牙开发板作为主线，是为了降低操作难度和移植风险。蓝牙属于扩展交互通道，不作为 Rust-LiteOS-M 与 IronClaw-Lite 核心链路的验收条件。
+
+### 3、主推荐开发板
+> HiSpark WiFi IoT Development Board
+> BearPi-HM Nano Hi3861 开发板
+> Hi3861 OpenHarmony / LiteOS-M WiFi IoT 开发板
+
+| 项目      | 参数                                   |
+| ------- | ------------------------------------ |
+| 主控      | HiSilicon Hi3861V100                 |
+| CPU     | 32 位 MCU，最高 160MHz                   |
+| SRAM    | 352KB                                |
+| ROM     | 288KB                                |
+| Flash   | 2MB                                  |
+| 无线      | 2.4GHz WiFi，802.11b/g/n              |
+| 模式      | STA / AP                             |
+| RTOS 支持 | Huawei LiteOS / OpenHarmony LiteOS-M |
+| 适合场景    | WiFi IoT、智能家居、轻量 RTOS 上板实验           |
+
+![](../img/Hi3861.png)
 
 ## 五、现有缺点 (基于原版 C-LiteOS)
 
