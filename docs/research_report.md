@@ -224,6 +224,7 @@ kernel/src/
 ```
 ![](../img/OpenHarmony-LiteOS-M.png)
 
+
 #### 后续可进行工作
 
 ##### 核心
