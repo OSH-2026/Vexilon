@@ -49,7 +49,7 @@
       - [6.9.2 命令与参数边界](#692-命令与参数边界)
       - [6.9.3 压测接口示意](#693-压测接口示意)
       - [6.9.4 通过标准](#694-通过标准)
-    - [6.10 WiFi-only 上板步骤](#610-wifi-only-上板步骤)
+    - [6.10 WiFi 上板步骤](#610-wifi-上板步骤)
     - [6.11 真实可行性评价](#611-真实可行性评价)
     - [6.12 本阶段不建议做](#612-本阶段不建议做)
   - [7. 创新点与技术挑战](#7-创新点与技术挑战)
@@ -482,7 +482,7 @@ fn enqueue_checked_command(_cmd: &EcoCommand) -> Result<(), ()> {
 ### 6.1 案例目标
 本阶段仅采购并使用一块 Hi3861V100 WiFi 开发板完成 EcoPet 电子生态智能小宠物上板实验。该板支持 LiteOS/HarmonyOS 生态，具备 2.4GHz WiFi 能力，资源规模适合轻量 RTOS 演示。
 
-项目核心目标是验证 Rust 部分重写 LiteOS-M 后的任务、IPC、内存管理和 IronClaw-Lite 安全接口链路，而非蓝牙协议栈或多开发板移植能力。因此采用 **WiFi-only + UART 保底调试** 的主线方案。
+项目核心目标是验证 Rust 部分重写 LiteOS-M 后的任务、IPC、内存管理和 IronClaw-Lite 安全接口链路，而非蓝牙协议栈或多开发板移植能力。因此采用 **WiFi + UART 保底调试** 的主线方案。
 
 Hi3861V100 关键资源规格如下：
 
@@ -506,7 +506,7 @@ EcoPet 是系统验证场景，不是外设堆料场景。其验证对象与体�
 | 任务管理 | 创建接收任务、状态任务、上报任务 |
 | IPC | 通过 LiteOS-M Queue 将命令从接收任务传给状态任务 |
 | 内存管理 | 通过受控命令进行小规模 alloc/free 压测 |
-| WiFi-only 输入 | PC/手机通过 WiFi 发送文本命令 |
+| WiFi 输入 | PC/手机通过 WiFi 发送文本命令 |
 | UART 保底调试 | WiFi 不稳定时仍可完成完整演示 |
 
 ### 6.2 不采购其他设备时的演示形式
@@ -532,7 +532,7 @@ comfort = f(temperature, light_level);
 1. **LiteOS-M + UART 跑通**：上电启动并输出 boot log，创建 `NetRxTask`、`PetStateTask`、`TelemetryTask`。
 2. **C 调 Rust 跑通**：C 调用 `ic_parse_command()`，Rust 返回标准错误码。最小输入为 `FEED 10`。
 3. **Queue 跑通**：`NetRxTask` 接收命令并校验后 `LOS_QueueWrite()`，`PetStateTask` 通过 `LOS_QueueRead()` 消费并更新状态。
-4. **WiFi-only 输入**：PC/手机发送 `STATUS`、`FEED`、`PLAY`，开发板返回宠物状态。
+4. **WiFi 输入**：PC/手机发送 `STATUS`、`FEED`、`PLAY`，开发板返回宠物状态。
 
 建议优先使用 TCP/UDP 文本协议，不在首阶段引入 HTTP + JSON，以降低内存压力与实现复杂度。
 
@@ -1099,7 +1099,7 @@ pub extern "C" fn ic_pet_mem_stress(count: u32, block_size: u32) -> u32 {
 4. 后续 `STATUS` 返回正常；
 5. 后续 `FEED 10` 能正常更新状态。
 
-### 6.10 WiFi-only 上板步骤
+### 6.10 WiFi 上板步骤
 1. **阶段 A：串口最小闭环**
 
    先不启用 WiFi，仅验证：
