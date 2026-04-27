@@ -233,7 +233,7 @@ kernel/src/
     ├── los_memory.c  动态内存管理  ← 已由 OSH-2024 RushToLight 改写
     └── los_membox.c  静态内存池管理
 ```
-![](https://gitee.com/openharmony/kernel_liteos_m/raw/master/figures/OpenHarmony-LiteOS-M%E6%A0%B8%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
+![](../img/OpenHarmony-LiteOS-M.png)
 
 #### 后续可进行工作
 
