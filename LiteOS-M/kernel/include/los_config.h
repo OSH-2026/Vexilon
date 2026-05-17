@@ -37,7 +37,8 @@
 #ifndef _LOS_CONFIG_H
 #define _LOS_CONFIG_H
 
-#include "target_config.h"
+//The following line was deleted by Vexilon
+// #include "target_config.h"
 #include "los_compiler.h"
 
 #ifdef __cplusplus
