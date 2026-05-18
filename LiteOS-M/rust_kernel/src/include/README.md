@@ -90,7 +90,7 @@ pub struct OsMemNodeHead {
 ```
 其中的`pub linkReg: [usize; LOSCFG_MEM_RECORD_LR_CNT as usize]`是手动添加的。
 
-事实上用bindgen转化出的原代码这里结构体长度的静态断言：
+事实上，bindgen转化的Rust代码对这个结构体长度有静态断言：
 ```rust
 ["Size of OsMemNodeHead"][::std::mem::size_of::<OsMemNodeHead>() - 16usize];
 ```
