@@ -6,7 +6,7 @@ edition = "2021"
 [lib]
 name = "los_memory_lib"
 crate-type = ["staticlib"]
-path = "los_memory.rs"
+path = "src/los_memory.rs"
 
 [dependencies]
 libc = "0.2"

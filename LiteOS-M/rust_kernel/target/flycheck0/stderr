@@ -1,0 +1,92 @@
+    Updating crates.io index
+     Locking 1 package to latest compatible version
+   1.191777700s  INFO prepare_target{force=false package_id=RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel) target="los_memory_lib"}: cargo::core::compiler::fingerprint: fingerprint error for RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel)/Check { test: false }/TargetInner { ..: lib_target("los_memory_lib", ["staticlib"], "\\\\wsl.localhost\\Ubuntu\\home\\lenovo\\Desktop\\Vexilon\\LiteOS-M\\rust_kernel\\src\\los_memory.rs", Edition2021) }
+   1.191816400s  INFO prepare_target{force=false package_id=RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel) target="los_memory_lib"}: cargo::core::compiler::fingerprint:     err: failed to read `\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel\target\debug\.fingerprint\RustCompileTest-087db22888863980\lib-los_memory_lib`
+
+Caused by:
+    系统找不到指定的文件。 (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+   1.234417500s  INFO prepare_target{force=false package_id=libc v0.2.186 target="libc"}: cargo::core::compiler::fingerprint: fingerprint error for libc v0.2.186/Check { test: false }/TargetInner { ..: lib_target("libc", ["lib"], "C:\\Users\\Lenovo\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\libc-0.2.186\\src\\lib.rs", Edition2021) }
+   1.234434500s  INFO prepare_target{force=false package_id=libc v0.2.186 target="libc"}: cargo::core::compiler::fingerprint:     err: failed to read `\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel\target\debug\.fingerprint\libc-569ed3e1e05f48d7\lib-libc`
+
+Caused by:
+    系统找不到指定的文件。 (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_filter_source_repo
+  12: git_libgit2_prerelease
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: <unknown>
+  17: git_midx_writer_dump
+  18: git_filter_source_repo
+  19: git_midx_writer_dump
+  20: BaseThreadInitThunk
+  21: RtlUserThreadStart
+   1.286981500s  INFO prepare_target{force=false package_id=RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel) target="los_memory_lib"}: cargo::core::compiler::fingerprint: fingerprint error for RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel)/Check { test: true }/TargetInner { ..: lib_target("los_memory_lib", ["staticlib"], "\\\\wsl.localhost\\Ubuntu\\home\\lenovo\\Desktop\\Vexilon\\LiteOS-M\\rust_kernel\\src\\los_memory.rs", Edition2021) }
+   1.287006200s  INFO prepare_target{force=false package_id=RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel) target="los_memory_lib"}: cargo::core::compiler::fingerprint:     err: failed to read `\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel\target\debug\.fingerprint\RustCompileTest-f06a61d489a43553\test-lib-los_memory_lib`
+
+Caused by:
+    系统找不到指定的文件。 (os error 2)
+
+Stack backtrace:
+   0: git_midx_writer_dump
+   1: git_midx_writer_dump
+   2: git_midx_writer_dump
+   3: git_midx_writer_dump
+   4: git_filter_source_repo
+   5: git_filter_source_repo
+   6: git_filter_source_repo
+   7: git_filter_source_repo
+   8: git_filter_source_repo
+   9: git_filter_source_repo
+  10: git_filter_source_repo
+  11: git_libgit2_prerelease
+  12: <unknown>
+  13: <unknown>
+  14: <unknown>
+  15: <unknown>
+  16: git_midx_writer_dump
+  17: git_filter_source_repo
+  18: git_midx_writer_dump
+  19: BaseThreadInitThunk
+  20: RtlUserThreadStart
+    Checking libc v0.2.186
+    Checking RustCompileTest v0.1.0 (\\wsl.localhost\Ubuntu\home\lenovo\Desktop\Vexilon\LiteOS-M\rust_kernel)
+error: could not compile `RustCompileTest` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `RustCompileTest` (lib test) due to 1 previous error
