@@ -1,0 +1,28 @@
+[package]
+name = "RustCompileTest"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "los_memory_lib"
+crate-type = ["staticlib"]
+path = "los_memory.rs"
+
+[dependencies]
+libc = "0.2"
+[features]
+default = ["LOSCFG_MEM_WATERLINE", "LOSCFG_MEM_MUL_POOL", "OS_MEM_EXPAND_ENABLE", "LOSCFG_KERNEL_PRINTF", "LOSCFG_MEM_LEAKCHECK"]
+LOSCFG_KERNEL_LMS = [] #0
+LOSCFG_KERNEL_LMK = [] #0
+LOSCFG_SYS_EXTERNAL_HEAP = [] #0
+LOSCFG_MEM_MUL_POOL = [] #1
+LOSCFG_TASK_MEM_USED = []  #0
+LOSCFG_MEM_FREE_BY_TASKID = [] #0
+LOSCFG_BASE_CORE_TSK_LIMIT = [] #0
+OS_MEM_EXPAND_ENABLE = [] #0
+LOSCFG_MEM_MUL_REGIONS = [] #0
+LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK = [] #0
+LOSCFG_KERNEL_PRINTF = [] #1
+LOSCFG_MEM_WATERLINE = [] #1
+LOSCFG_MEM_LEAKCHECK = [] #1
+LOSCFG_PLATFORM_EXC = []

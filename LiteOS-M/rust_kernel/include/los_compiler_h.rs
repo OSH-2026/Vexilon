@@ -4,6 +4,7 @@ pub const OS_LITTLE_ENDIAN: u32 = 4660;
 pub const OS_BIG_ENDIAN: u32 = 17185;
 pub const OS_BYTE_ORDER: u32 = 4660;
 pub const LOS_OK: u32 = 0;
+pub const LOS_NOK: u32 = u32::MAX; //Added by Vexilon
 pub const OS_FAIL: u32 = 1;
 pub const OS_64BIT_MAX: i32 = -1;
 pub const __LIBATOMIC_N_LOCKS: u32 = 16;

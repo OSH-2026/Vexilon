@@ -195,3 +195,55 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn ArchIntOpsGet() -> *mut HwiControllerOps;
 }
+
+//The following code was added by RushToLight
+pub type LOS_IntLock = unsafe fn() -> u32;
+pub type LOS_IntRestore = unsafe fn(intSave: u32);
+pub type LOS_IntUnLock = unsafe fn() -> u32;
+pub type LOS_HwiTrigger = unsafe fn(hwiNum: u32) -> u32;
+pub type LOS_HwiEnable = unsafe fn(hwiNum: u32) -> u32;
+pub type LOS_HwiDisable = unsafe fn(hwiNum: u32) -> u32;
+pub type LOS_HwiClear = unsafe fn(hwiNum: u32) -> u32;
+pub type LOS_HwiSetPriority = unsafe fn(hwiNum: u32, priority: u32) -> u32;
+pub type LOS_HwiCurIrqNum = unsafe fn() -> u32;
+pub type LOS_HwiOpsGet = unsafe fn() -> *mut HwiControllerOps;
+
+pub unsafe fn LOS_IntLock() -> u32 {
+    ArchIntLock()
+}
+
+pub unsafe fn LOS_IntRestore(intSave: u32) {
+    ArchIntRestore(intSave)
+}
+
+pub unsafe fn LOS_IntUnLock() -> u32 {
+    ArchIntUnLock()
+}
+
+pub unsafe fn LOS_HwiTrigger(hwiNum: u32) -> u32 {
+    ArchIntTrigger(hwiNum)
+}
+
+pub unsafe fn LOS_HwiEnable(hwiNum: u32) -> u32 {
+    ArchIntEnable(hwiNum)
+}
+
+pub unsafe fn LOS_HwiDisable(hwiNum: u32) -> u32 {
+    ArchIntDisable(hwiNum)
+}
+
+pub unsafe fn LOS_HwiClear(hwiNum: u32) -> u32 {
+    ArchIntClear(hwiNum)
+}
+
+pub unsafe fn LOS_HwiSetPriority(hwiNum: u32, priority: u32) -> u32 {
+    ArchIntSetPriority(hwiNum, priority.try_into().unwrap())
+}
+
+pub unsafe fn LOS_HwiCurIrqNum() -> u32 {
+    ArchIntCurIrqNum()
+}
+
+pub unsafe fn LOS_HwiOpsGet() -> *mut HwiControllerOps {
+    ArchIntOpsGet()
+}
