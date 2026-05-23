@@ -32,18 +32,18 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = get_path_info(rebase_path("."), "name")
 kernel_module(module_name) {
   sources = [
-    "src/include/los_event.c",
-    "src/include/los_init.c",
-    "src/include/los_mux.c",
-    "src/include/los_queue.c",
-    "src/include/los_sched.c",
-    "src/include/los_sem.c",
-    "src/include/los_sortlink.c",
-    "src/include/los_swtmr.c",
-    "src/include/los_task.c",
-    "src/include/los_tick.c",
-    "src/include/mm/los_membox.c",
-    "src/include/mm/los_memory.c",
+    "src/los_event.c",
+    "src/los_init.c",
+    "src/los_mux.c",
+    "src/los_queue.c",
+    "src/los_sched.c",
+    "src/los_sem.c",
+    "src/los_sortlink.c",
+    "src/los_swtmr.c",
+    "src/los_task.c",
+    "src/los_tick.c",
+    "src/mm/los_membox.c",
+    "src/mm/los_memory.c",
   ]
   configs += [ "$LITEOSTOPDIR:warn_config" ]
 }
