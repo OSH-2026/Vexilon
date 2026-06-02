@@ -1,0 +1,38 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\batch_512\run0002_A002_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 512 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+页表是操作系统中的一种内存管理机制，它用于存储和管理内存地址。而TLB（Translation Lookaside Buffer，内存映射表间接缓冲）是操作系统中的一种内存映射技术，用于快速查找内存地址。缺页中断是在操作系统中发生的一种中断，用来检查内存是否可用，是否被映射到内存，以及是否需要重新映射。
+
+缺页中断和页表的关系是：缺页中断的产生通常是由于页表失效或被映射到错误的地址。当系统检测到缺页中断时，通常需要重新映射系统中的页，以确保数据
+
+[ Prompt: 16.3 t/s | Generation: 10.4 t/s ]
+
+Exiting...

@@ -1,0 +1,38 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\ctx_1024\run0002_A002_prompt.txt -n 128 --threads 4 --ctx-size 1024 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+页表，TLB，以及缺页中断是操作系统中的三个基本概念，它们之间存在紧密的联系，但又有一些不同之处。
+
+1. 页表：页表是一种表，用于映射计算机内存中的物理地址到物理内存的映像。页表包含了一个指向内存地址的指针，以及一个指向内存映像的指针。页表中每个页面都有一个对应的页号，页号可以与内存地址进行映射。在操作系统中，每个进程都有一个页面表，用于映射进程中的各个页面到内存的物理地址。页表用来存储内存映
+
+[ Prompt: 16.4 t/s | Generation: 10.2 t/s ]
+
+Exiting...

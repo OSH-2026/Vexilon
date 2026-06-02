@@ -1,0 +1,36 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\threads_4\run0002_A002_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+页表（Page Table）是一个在计算机内存管理中用来跟踪内存地址的表格，它记录了每个内存块的映射关系。在计算机系统中，每个进程都有自己的页表，它记录了该进程所使用的内存块的映射关系。这个映射关系决定了内存块的访问顺序。当内存请求到达一个内存块时，操作系统会将该请求发到页表中寻找，找到该内存块的地址后，操作系统会把请求放到该内存块的页面上，以便在该内存块上进行访问。而当访问的内存块不再需要时，操作系统
+
+[ Prompt: 15.2 t/s | Generation: 10.6 t/s ]
+
+Exiting...

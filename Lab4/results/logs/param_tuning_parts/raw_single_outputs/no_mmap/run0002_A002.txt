@@ -1,0 +1,40 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\no_mmap\run0002_A002_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io --no-mmap
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+在计算机体系结构中，页表和TLB（Translation Table）都是重要的概念，它们在处理页式内存管理中的冲突时扮演着关键角色，缺页中断（Page Fault）则是系统中的一种故障中断类型。
+
+1. **页表（Page Table）**：
+   - **定义**：页表是内存分配表，它为每个已分配的内存块（page）提供了一个映射到其物理地址的映射。每个物理地址对应一个虚拟地址。
+   - **作用**：页表用于在内存分配表（RAM table）和物理地址之间进行映射
+
+[ Prompt: 16.2 t/s | Generation: 9.7 t/s ]
+
+Exiting...

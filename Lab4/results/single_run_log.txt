@@ -1,0 +1,52 @@
+# Single llama-cli Run
+Start time: 2026-06-02T20:45:31+08:00
+MODEL_PATH=/c/Users/cad/Desktop/OSH2026_Lab4_Local/Lab4/models/qwen2.5-0.5b-instruct-q4_k_m.gguf
+LLAMA_CLI=/c/Users/cad/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build-ucrt-win10/bin/llama-cli.exe
+PROMPT=请用三句话解释什么是虚拟内存，并说明页表和 TLB 的关系。
+N_PREDICT=128
+THREADS=4
+CTX_SIZE=2048
+BATCH_SIZE=256
+
+Command: /c/Users/cad/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build-ucrt-win10/bin/llama-cli.exe -m /c/Users/cad/Desktop/OSH2026_Lab4_Local/Lab4/models/qwen2.5-0.5b-instruct-q4_k_m.gguf -p 请用三句话解释什么是虚拟内存，并说明页表和 TLB 的关系。 -n 128 --threads 4 --ctx-size 2048 --batch-size 256
+
+# Single llama-cli Run via PowerShell
+Start time: 2026-06-02T20:46:10.9177911+08:00
+MODEL_PATH=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf
+LLAMA_CLI=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe
+PROMPT=请用三句话解释什么是虚拟内存，并说明页表和 TLB 的关系。
+N_PREDICT=128
+THREADS=4
+CTX_SIZE=2048
+BATCH_SIZE=256
+Command: C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -p <prompt> -n 128 --threads 4 --ctx-size 2048 --batch-size 256
+
+# Single llama-cli Run via PowerShell
+Start time: 2026-06-02T20:53:43.5491947+08:00
+MODEL_PATH=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf
+LLAMA_CLI=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe
+PROMPT=请用三句话解释什么是虚拟内存，并说明页表和 TLB 的关系。
+N_PREDICT=128
+THREADS=4
+CTX_SIZE=2048
+BATCH_SIZE=256
+Command: C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -p <prompt> -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+End time: 2026-06-02T20:53:55.0233031+08:00
+Exit code: 0
+Total latency seconds: 11.466715
+Output saved to: C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\single_inference_output.txt
+
+# Single llama-cli Run via PowerShell prompt file
+Start time: 2026-06-02T20:54:36.0518705+08:00
+MODEL_PATH=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf
+LLAMA_CLI=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe
+PROMPT_FILE=C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\single_prompt.txt
+N_PREDICT=128
+THREADS=4
+CTX_SIZE=2048
+BATCH_SIZE=256
+Command: C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\single_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+End time: 2026-06-02T20:54:52.3549357+08:00
+Exit code: 0
+Total latency seconds: 16.297055
+Output saved to: C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\single_inference_output.txt

@@ -1,0 +1,39 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\ctx_2048\run0002_A002_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+页表和 TLB 是内存管理中的两个关键组件，它们之间的关系主要体现在内存访问和性能优化上。页表和 TLB 在内存管理中的作用是互为补充的，它们共同协同工作以确保计算机系统的效率和性能。
+
+1. 内存访问与页表：
+   内存访问是计算机系统访问内存数据的第一步，但并不是唯一一次。内存访问的每一层都会访问相应的页表（Page Table）。页表中的每一块数据都是一个物理地址，计算机通过访问该地址来获取内存中的数据。而 TLB（Translation Lookaside Buffer）则是
+
+[ Prompt: 15.9 t/s | Generation: 10.5 t/s ]
+
+Exiting...

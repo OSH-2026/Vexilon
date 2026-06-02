@@ -1,0 +1,39 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\threads_1\run0002_A002_prompt.txt -n 128 --threads 1 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+在计算机系统中，页表、TLB（Translation Lookaside Buffer）和缺页中断是三个相互关联的重要概念，它们之间存在密切的联系，共同构成计算机系统中的内存管理机制。
+
+1. 页表：
+   页表（Page Table）是存储在内存中的一个表，用于映射内存地址到物理地址。页表表的大小是由操作系统或硬件决定的，一般为16 KB（32 KB）。一个页表表的存储方式和地址映射方法是固定的，它确保了每个虚拟内存地址与相应的物理内存地址的一一对应关系。
+
+[ Prompt: 5.0 t/s | Generation: 4.5 t/s ]
+
+Exiting...

@@ -1,0 +1,40 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0006_A001_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请用三句话解释什么是虚拟内存。
+
+虚拟内存是一种计算机内存管理技术，它允许在物理内存不足时，额外的内存空间被创建，以提高系统的可扩展性和安全性。虚拟内存的主要功能包括：
+
+1. 分配和分配：当系统内存不足时，系统会从物理内存中提取一部分，以填充到可用的内存空间。
+2. 虚拟化：虚拟内存是通过操作系统或硬件实现的，它使虚拟内存具有与物理内存相同的性能和安全性。
+3. 自动管理：虚拟内存的分配和释放由操作系统自动管理，以确保系统的稳定性和可靠性。
+
+[ Prompt: 16.0 t/s | Generation: 10.0 t/s ]
+
+Exiting...

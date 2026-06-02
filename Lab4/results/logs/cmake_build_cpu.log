@@ -1,0 +1,1178 @@
+[  0%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml.c.obj
+[  1%] Building CXX object common/CMakeFiles/llama-common-base.dir/build-info.cpp.obj
+[  1%] Building CXX object vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj
+[  1%] Building C object examples/gguf-hash/CMakeFiles/sha1.dir/deps/sha1/sha1.c.obj
+[  2%] Building C object examples/gguf-hash/CMakeFiles/sha256.dir/deps/sha256/sha256.c.obj
+[  3%] Building C object examples/gguf-hash/CMakeFiles/xxhash.dir/deps/xxhash/xxhash.c.obj
+[  3%] Building CXX object tools/ui/CMakeFiles/llama-ui-embed.dir/embed.cpp.obj
+[  3%] Building CXX object tools/mtmd/CMakeFiles/llama-llava-cli.dir/deprecation-warning.cpp.obj
+[  3%] Linking CXX static library libllama-common-base.a
+[  3%] Linking CXX executable ..\..\bin\llama-llava-cli.exe
+[  3%] Built target sha256
+[  3%] Built target sha1
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml.cpp.obj
+[  3%] Linking CXX executable llama-ui-embed.exe
+[  4%] Building CXX object tools/mtmd/CMakeFiles/llama-gemma3-cli.dir/deprecation-warning.cpp.obj
+[  4%] Built target llama-llava-cli
+[  4%] Built target llama-common-base
+[  4%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.obj
+[  4%] Built target xxhash
+[  5%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.obj
+[  5%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend-meta.cpp.obj
+[  5%] Linking CXX executable ..\..\bin\llama-gemma3-cli.exe
+[  6%] Building CXX object tools/mtmd/CMakeFiles/llama-minicpmv-cli.dir/deprecation-warning.cpp.obj
+[  6%] Built target llama-ui-embed
+[  6%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.obj
+[  6%] Linking CXX executable ..\..\bin\llama-minicpmv-cli.exe
+In file included from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1496:30: error: 'std::thread' has not been declared
+   void move_to_finished(std::thread::id id);
+                              ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1507:20: error: 'thread' is not a member of 'std'
+   std::vector<std::thread> threads_;       // base threads
+                    ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1507:20: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:339:1:
++#include <thread>
+ #include <utility>
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1507:20:
+   std::vector<std::thread> threads_;       // base threads
+                    ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1507:26: error: template argument 1 is invalid
+   std::vector<std::thread> threads_;       // base threads
+                          ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1507:26: error: template argument 2 is invalid
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1508:18: error: 'thread' is not a member of 'std'
+   std::list<std::thread> dynamic_threads_; // dynamic threads
+                  ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1508:18: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1508:24: error: template argument 1 is invalid
+   std::list<std::thread> dynamic_threads_; // dynamic threads
+                        ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1508:24: error: template argument 2 is invalid
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1509:20: error: 'thread' is not a member of 'std'
+   std::vector<std::thread>
+                    ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1509:20: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1509:26: error: template argument 1 is invalid
+   std::vector<std::thread>
+                          ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1509:26: error: template argument 2 is invalid
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1512:8: error: 'condition_variable' in namespace 'std' does not name a type
+   std::condition_variable cond_;
+        ^~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1512:3: note: 'std::condition_variable' is defined in header '<condition_variable>'; did you forget to '#include <condition_variable>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:339:1:
++#include <condition_variable>
+ #include <utility>
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1512:3:
+   std::condition_variable cond_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1513:8: error: 'mutex' in namespace 'std' does not name a type
+   std::mutex mutex_;
+        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1513:3: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:339:1:
++#include <mutex>
+ #include <utility>
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1513:3:
+   std::mutex mutex_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1887:16: error: 'mutex' in namespace 'std' does not name a type
+   mutable std::mutex logger_mutex_;
+                ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:1887:11: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   mutable std::mutex logger_mutex_;
+           ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2325:16: error: 'mutex' in namespace 'std' does not name a type
+   mutable std::mutex socket_mutex_;
+                ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2325:11: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   mutable std::mutex socket_mutex_;
+           ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2326:8: error: 'recursive_mutex' in namespace 'std' does not name a type
+   std::recursive_mutex request_mutex_;
+        ^~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2326:3: note: 'std::recursive_mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   std::recursive_mutex request_mutex_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2330:8: error: 'thread' in namespace 'std' does not name a type
+   std::thread::id socket_requests_are_from_thread_ = std::thread::id();
+        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2330:3: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+   std::thread::id socket_requests_are_from_thread_ = std::thread::id();
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2389:16: error: 'mutex' in namespace 'std' does not name a type
+   mutable std::mutex logger_mutex_;
+                ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:2389:11: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   mutable std::mutex logger_mutex_;
+           ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3711:16: error: 'mutex' in namespace 'std' does not name a type
+   mutable std::mutex headers_mutex_;
+                ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3711:11: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   mutable std::mutex headers_mutex_;
+           ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3729:8: error: 'thread' in namespace 'std' does not name a type
+   std::thread async_thread_;
+        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3729:3: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+   std::thread async_thread_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3810:8: error: 'mutex' in namespace 'std' does not name a type
+   std::mutex write_mutex_;
+        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3810:3: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   std::mutex write_mutex_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3811:8: error: 'thread' in namespace 'std' does not name a type
+   std::thread ping_thread_;
+        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3811:3: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+   std::thread ping_thread_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3812:8: error: 'mutex' in namespace 'std' does not name a type
+   std::mutex ping_mutex_;
+        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3812:3: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+   std::mutex ping_mutex_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3813:8: error: 'condition_variable' in namespace 'std' does not name a type
+   std::condition_variable ping_cv_;
+        ^~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:3813:3: note: 'std::condition_variable' is defined in header '<condition_variable>'; did you forget to '#include <condition_variable>'?
+   std::condition_variable ping_cv_;
+   ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'httplib::sse::SSEClient& httplib::sse::SSEClient::set_headers(const Headers&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:144:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> lock(headers_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:144:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:2:1:
++#include <mutex>
+ namespace httplib {
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:144:24:
+   std::lock_guard<std::mutex> lock(headers_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:144:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> lock(headers_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:144:36: error: 'headers_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> lock(headers_mutex_);
+                                    ^~~~~~~~~~~~~~
+[  7%] Building CXX object tools/mtmd/CMakeFiles/llama-qwen2vl-cli.dir/deprecation-warning.cpp.obj
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:144:36: note: suggested alternative: 'headers_'
+   std::lock_guard<std::mutex> lock(headers_mutex_);
+                                    ^~~~~~~~~~~~~~
+                                    headers_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::sse::SSEClient::start_async()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:162:3: error: 'async_thread_' was not declared in this scope
+   async_thread_ = std::thread([this]() { run_event_loop(); });
+   ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:162:24: error: 'thread' is not a member of 'std'
+   async_thread_ = std::thread([this]() { run_event_loop(); });
+                        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:162:24: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:2:1:
++#include <thread>
+ namespace httplib {
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:162:24:
+   async_thread_ = std::thread([this]() { run_event_loop(); });
+                        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::sse::SSEClient::stop()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:168:7: error: 'async_thread_' was not declared in this scope
+   if (async_thread_.joinable()) { async_thread_.join(); }
+       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::sse::SSEClient::run_event_loop()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:229:28: error: 'mutex' is not a member of 'std'
+       std::lock_guard<std::mutex> lock(headers_mutex_);
+                            ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:229:28: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:229:33: error: template argument 1 is invalid
+       std::lock_guard<std::mutex> lock(headers_mutex_);
+                                 ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:229:40: error: 'headers_mutex_' was not declared in this scope
+       std::lock_guard<std::mutex> lock(headers_mutex_);
+                                        ^~~~~~~~~~~~~~
+[  7%] Built target llama-gemma3-cli
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:229:40: note: suggested alternative: 'headers_'
+       std::lock_guard<std::mutex> lock(headers_mutex_);
+                                        ^~~~~~~~~~~~~~
+                                        headers_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::sse::SSEClient::wait_for_reconnect()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:349:10: error: 'std::this_thread' has not been declared
+     std::this_thread::sleep_for(std::chrono::milliseconds(100));
+          ^~~~~~~~~~~
+[  7%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.obj
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::detail::mmap::open(const char*)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1467:9: error: '::CreateFile2' has not been declared
+       ::CreateFile2(wpath.c_str(), GENERIC_READ,
+         ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1467:9: note: suggested alternative: 'CreateFileA'
+       ::CreateFile2(wpath.c_str(), GENERIC_READ,
+         ^~~~~~~~~~~
+         CreateFileA
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'ssize_t httplib::detail::handle_EINTR(T)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1583:12: error: 'std::this_thread' has not been declared
+       std::this_thread::sleep_for(std::chrono::microseconds{1});
+            ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'int httplib::detail::poll_wrapper(httplib::detail::pollfd*, nfds_t, int)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1618:12: error: '::WSAPoll' has not been declared
+   return ::WSAPoll(fds, nfds, timeout);
+            ^~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1618:12: note: suggested alternative: 'WSANtohl'
+   return ::WSAPoll(fds, nfds, timeout);
+            ^~~~~~~
+            WSANtohl
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'ssize_t httplib::detail::select_impl(socket_t, short int, time_t, time_t)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1626:17: error: aggregate 'httplib::detail::pollfd pfd' has incomplete type and cannot be defined
+   struct pollfd pfd;
+                 ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'ssize_t httplib::detail::select_read(socket_t, time_t, time_t)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1637:28: error: 'POLLIN' was not declared in this scope
+   return select_impl(sock, POLLIN, sec, usec);
+                            ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1637:28: note: suggested alternative: 'LPOLELINK'
+   return select_impl(sock, POLLIN, sec, usec);
+                            ^~~~~~
+                            LPOLELINK
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'ssize_t httplib::detail::select_write(socket_t, time_t, time_t)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1641:28: error: 'POLLOUT' was not declared in this scope
+   return select_impl(sock, POLLOUT, sec, usec);
+                            ^~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1641:28: note: suggested alternative: 'PUAFOUT'
+   return select_impl(sock, POLLOUT, sec, usec);
+                            ^~~~~~~
+                            PUAFOUT
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'httplib::Error httplib::detail::wait_until_socket_is_ready(socket_t, time_t, time_t)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1646:17: error: aggregate 'httplib::detail::pollfd pfd_read' has incomplete type and cannot be defined
+   struct pollfd pfd_read;
+                 ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1648:21: error: 'POLLIN' was not declared in this scope
+   pfd_read.events = POLLIN | POLLOUT;
+                     ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1648:21: note: suggested alternative: 'LPOLELINK'
+   pfd_read.events = POLLIN | POLLOUT;
+                     ^~~~~~
+                     LPOLELINK
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1648:30: error: 'POLLOUT' was not declared in this scope
+   pfd_read.events = POLLIN | POLLOUT;
+                              ^~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1648:30: note: suggested alternative: 'PUAFOUT'
+   pfd_read.events = POLLIN | POLLOUT;
+                              ^~~~~~~
+                              PUAFOUT
+[  7%] Built target llama-minicpmv-cli
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In constructor 'httplib::ThreadPool::ThreadPool(size_t, size_t, size_t)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6200:12: error: request for member 'reserve' in '((httplib::ThreadPool*)this)->httplib::ThreadPool::threads_', which is of non-class type 'int'
+   threads_.reserve(base_thread_count_);
+            ^~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6205:16: error: request for member 'emplace_back' in '((httplib::ThreadPool*)this)->httplib::ThreadPool::threads_', which is of non-class type 'int'
+       threads_.emplace_back(std::thread([this]() { worker(false); }));
+                ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6205:34: error: 'thread' is not a member of 'std'
+       threads_.emplace_back(std::thread([this]() { worker(false); }));
+                                  ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6205:34: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6214:29: error: 'mutex' is not a member of 'std'
+       std::unique_lock<std::mutex> lock(mutex_);
+                             ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6214:29: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6214:34: error: template argument 1 is invalid
+       std::unique_lock<std::mutex> lock(mutex_);
+                                  ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6214:41: error: 'mutex_' was not declared in this scope
+       std::unique_lock<std::mutex> lock(mutex_);
+                                         ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6214:41: note: suggested alternative: 'putenv'
+       std::unique_lock<std::mutex> lock(mutex_);
+                                         ^~~~~~
+                                         putenv
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6217:5: error: 'cond_' was not declared in this scope
+     cond_.notify_all();
+     ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6218:20: error: 'begin' was not declared in this scope
+     for (auto &t : threads_) {
+                    ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6218:20: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:105:37: note:   'std::begin'
+   template<typename _Tp> const _Tp* begin(const valarray<_Tp>&);
+                                     ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6218:20: error: 'end' was not declared in this scope
+     for (auto &t : threads_) {
+                    ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6218:20: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:107:37: note:   'std::end'
+   template<typename _Tp> const _Tp* end(const valarray<_Tp>&);
+                                     ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'virtual bool httplib::ThreadPool::enqueue(std::function<void()>)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6228:27: error: 'mutex' is not a member of 'std'
+     std::unique_lock<std::mutex> lock(mutex_);
+                           ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6228:27: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6228:32: error: template argument 1 is invalid
+     std::unique_lock<std::mutex> lock(mutex_);
+                                ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6228:39: error: 'mutex_' was not declared in this scope
+     std::unique_lock<std::mutex> lock(mutex_);
+                                       ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6228:39: note: suggested alternative: 'putenv'
+     std::unique_lock<std::mutex> lock(mutex_);
+                                       ^~~~~~
+                                       putenv
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6237:18: error: request for member 'size' in '((httplib::ThreadPool*)this)->httplib::ThreadPool::threads_', which is of non-class type 'int'
+         threads_.size() + dynamic_threads_.size() < max_thread_count_) {
+                  ^~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6237:44: error: request for member 'size' in '((httplib::ThreadPool*)this)->httplib::ThreadPool::dynamic_threads_', which is of non-class type 'int'
+         threads_.size() + dynamic_threads_.size() < max_thread_count_) {
+                                            ^~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6239:24: error: request for member 'emplace_back' in '((httplib::ThreadPool*)this)->httplib::ThreadPool::dynamic_threads_', which is of non-class type 'int'
+       dynamic_threads_.emplace_back(std::thread([this]() { worker(true); }));
+                        ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6239:42: error: 'thread' is not a member of 'std'
+       dynamic_threads_.emplace_back(std::thread([this]() { worker(true); }));
+                                          ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6239:42: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6243:3: error: 'cond_' was not declared in this scope
+   cond_.notify_one();
+   ^~~~~
+[  7%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.obj
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'virtual void httplib::ThreadPool::shutdown()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6249:27: error: 'mutex' is not a member of 'std'
+     std::unique_lock<std::mutex> lock(mutex_);
+                           ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6249:27: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6249:32: error: template argument 1 is invalid
+     std::unique_lock<std::mutex> lock(mutex_);
+                                ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6249:39: error: 'mutex_' was not declared in this scope
+     std::unique_lock<std::mutex> lock(mutex_);
+                                       ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6249:39: note: suggested alternative: 'putenv'
+     std::unique_lock<std::mutex> lock(mutex_);
+                                       ^~~~~~
+                                       putenv
+[  7%] Linking CXX executable ..\..\bin\llama-qwen2vl-cli.exe
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6253:3: error: 'cond_' was not declared in this scope
+   cond_.notify_all();
+   ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6255:18: error: 'begin' was not declared in this scope
+   for (auto &t : threads_) {
+                  ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6255:18: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:105:37: note:   'std::begin'
+   template<typename _Tp> const _Tp* begin(const valarray<_Tp>&);
+                                     ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6255:18: error: 'end' was not declared in this scope
+   for (auto &t : threads_) {
+                  ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6255:18: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:107:37: note:   'std::end'
+   template<typename _Tp> const _Tp* end(const valarray<_Tp>&);
+                                     ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6261:18: error: 'thread' is not a member of 'std'
+   std::list<std::thread> remaining_dynamic;
+                  ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6261:18: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6261:24: error: template argument 1 is invalid
+   std::list<std::thread> remaining_dynamic;
+                        ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6261:24: error: template argument 2 is invalid
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6263:27: error: 'mutex' is not a member of 'std'
+     std::unique_lock<std::mutex> lock(mutex_);
+                           ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6263:27: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6263:32: error: template argument 1 is invalid
+     std::unique_lock<std::mutex> lock(mutex_);
+                                ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6263:39: error: 'mutex_' was not declared in this scope
+     std::unique_lock<std::mutex> lock(mutex_);
+                                       ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp:4:6: error: 'mutex' in namespace 'std' does not name a type
+ std::mutex ggml_critical_section_mutex;
+      ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp:4:1: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
++#include <mutex>
+ 
+ std::mutex ggml_critical_section_mutex;
+ ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp: In function 'void ggml_critical_section_start()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp:7:5: error: 'ggml_critical_section_mutex' was not declared in this scope
+     ggml_critical_section_mutex.lock();
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp:7:5: note: suggested alternative: 'ggml_critical_section_end'
+     ggml_critical_section_mutex.lock();
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ggml_critical_section_end
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp: In function 'void ggml_critical_section_end()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp:11:5: error: 'ggml_critical_section_mutex' was not declared in this scope
+     ggml_critical_section_mutex.unlock();
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\ggml\src\ggml-threading.cpp:11:5: note: suggested alternative: 'ggml_critical_section_end'
+     ggml_critical_section_mutex.unlock();
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ggml_critical_section_end
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6263:39: note: suggested alternative: 'putenv'
+     std::unique_lock<std::mutex> lock(mutex_);
+                                       ^~~~~~
+                                       putenv
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6266:18: error: 'begin' was not declared in this scope
+   for (auto &t : remaining_dynamic) {
+                  ^~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6266:18: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:105:37: note:   'std::begin'
+   template<typename _Tp> const _Tp* begin(const valarray<_Tp>&);
+                                     ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6266:18: error: 'end' was not declared in this scope
+   for (auto &t : remaining_dynamic) {
+                  ^~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6266:18: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:107:37: note:   'std::end'
+   template<typename _Tp> const _Tp* end(const valarray<_Tp>&);
+                                     ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6270:25: error: 'mutex' is not a member of 'std'
+   std::unique_lock<std::mutex> lock(mutex_);
+                         ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6270:25: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6270:30: error: template argument 1 is invalid
+   std::unique_lock<std::mutex> lock(mutex_);
+                              ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6270:37: error: 'mutex_' was not declared in this scope
+   std::unique_lock<std::mutex> lock(mutex_);
+                                     ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6270:37: note: suggested alternative: 'putenv'
+   std::unique_lock<std::mutex> lock(mutex_);
+                                     ^~~~~~
+                                     putenv
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: At global scope:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6274:40: error: variable or field 'move_to_finished' declared void
+ void ThreadPool::move_to_finished(std::thread::id id) {
+                                        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6274:40: error: 'std::thread' has not been declared
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ThreadPool::cleanup_finished_threads()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6287:18: error: 'begin' was not declared in this scope
+   for (auto &t : finished_threads_) {
+                  ^~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6287:18: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:105:37: note:   'std::begin'
+   template<typename _Tp> const _Tp* begin(const valarray<_Tp>&);
+                                     ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6287:18: error: 'end' was not declared in this scope
+   for (auto &t : finished_threads_) {
+                  ^~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6287:18: note: suggested alternative:
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/string:51,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdexcept:39,
+                 from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/array:39,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:309,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/range_access.h:107:37: note:   'std::end'
+   template<typename _Tp> const _Tp* end(const valarray<_Tp>&);
+                                     ^~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6290:21: error: request for member 'clear' in '((httplib::ThreadPool*)this)->httplib::ThreadPool::finished_threads_', which is of non-class type 'int'
+   finished_threads_.clear();
+                     ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ThreadPool::worker(bool)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6297:29: error: 'mutex' is not a member of 'std'
+       std::unique_lock<std::mutex> lock(mutex_);
+                             ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6297:29: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6297:34: error: template argument 1 is invalid
+       std::unique_lock<std::mutex> lock(mutex_);
+                                  ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6297:41: error: 'mutex_' was not declared in this scope
+       std::unique_lock<std::mutex> lock(mutex_);
+                                         ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6297:41: note: suggested alternative: 'putenv'
+       std::unique_lock<std::mutex> lock(mutex_);
+                                         ^~~~~~
+                                         putenv
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6301:25: error: 'cond_' was not declared in this scope
+         auto has_work = cond_.wait_for(
+                         ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6307:33: error: 'std::this_thread' has not been declared
+           move_to_finished(std::this_thread::get_id());
+                                 ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6311:9: error: 'cond_' was not declared in this scope
+         cond_.wait(lock, [&] { return !jobs_.empty() || shutdown_; });
+         ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'bool httplib::detail::parse_no_proxy_entry(const string&, httplib::detail::NoProxyEntry&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6701:9: error: 'inet_pton' was not declared in this scope
+     if (inet_pton(AF_INET, addr_part.c_str(), &v4) == 1) {
+         ^~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6701:9: note: suggested alternative: 'inet_ntoa'
+     if (inet_pton(AF_INET, addr_part.c_str(), &v4) == 1) {
+         ^~~~~~~~~
+         inet_ntoa
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6720:7: error: 'inet_pton' was not declared in this scope
+   if (inet_pton(AF_INET6, addr_part.c_str(), &v6) == 1) {
+       ^~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6720:7: note: suggested alternative: 'inet_ntoa'
+   if (inet_pton(AF_INET6, addr_part.c_str(), &v6) == 1) {
+       ^~~~~~~~~
+       inet_ntoa
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In function 'httplib::detail::NormalizedTarget httplib::detail::normalize_target(const string&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6777:9: error: 'inet_pton' was not declared in this scope
+     if (inet_pton(AF_INET, t.hostname.c_str(), &v4) == 1) {
+         ^~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:6777:9: note: suggested alternative: 'inet_ntoa'
+     if (inet_pton(AF_INET, t.hostname.c_str(), &v4) == 1) {
+         ^~~~~~~~~
+         inet_ntoa
+In file included from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In lambda function:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:163:24: error: 'std::thread' has not been declared
+   ((std::max)(8u, std::thread::hardware_concurrency() > 0                      \
+                        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7003:31: note: in expansion of macro 'CPPHTTPLIB_THREAD_POOL_COUNT'
+         return new ThreadPool(CPPHTTPLIB_THREAD_POOL_COUNT,
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:164:30: error: 'std::thread' has not been declared
+                       ? std::thread::hardware_concurrency() - 1                \
+                              ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7003:31: note: in expansion of macro 'CPPHTTPLIB_THREAD_POOL_COUNT'
+         return new ThreadPool(CPPHTTPLIB_THREAD_POOL_COUNT,
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:163:24: error: 'std::thread' has not been declared
+   ((std::max)(8u, std::thread::hardware_concurrency() > 0                      \
+                        ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:169:43: note: in expansion of macro 'CPPHTTPLIB_THREAD_POOL_COUNT'
+ #define CPPHTTPLIB_THREAD_POOL_MAX_COUNT (CPPHTTPLIB_THREAD_POOL_COUNT * 4)
+                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7004:31: note: in expansion of macro 'CPPHTTPLIB_THREAD_POOL_MAX_COUNT'
+                               CPPHTTPLIB_THREAD_POOL_MAX_COUNT);
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:164:30: error: 'std::thread' has not been declared
+                       ? std::thread::hardware_concurrency() - 1                \
+                              ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:169:43: note: in expansion of macro 'CPPHTTPLIB_THREAD_POOL_COUNT'
+ #define CPPHTTPLIB_THREAD_POOL_MAX_COUNT (CPPHTTPLIB_THREAD_POOL_COUNT * 4)
+                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7004:31: note: in expansion of macro 'CPPHTTPLIB_THREAD_POOL_MAX_COUNT'
+                               CPPHTTPLIB_THREAD_POOL_MAX_COUNT);
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In constructor 'httplib::Server::Server()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7005:8: error: no matching function for call to 'std::function<httplib::TaskQueue*()>::function(httplib::Server::Server()::<lambda()>)'
+       }) {
+        ^
+In file included from C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/functional:59,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.h:322,
+                 from C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:666:7: note: candidate: 'template<class _Functor, class, class> std::function<_Res(_ArgTypes ...)>::function(_Functor)'
+       function<_Res(_ArgTypes...)>::
+       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:666:7: note:   template argument deduction/substitution failed:
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:422:7: note: candidate: 'std::function<_Res(_ArgTypes ...)>::function(std::function<_Res(_ArgTypes ...)>&&) [with _Res = httplib::TaskQueue*; _ArgTypes = {}]'
+       function(function&& __x) noexcept : _Function_base()
+       ^~~~~~~~
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:422:7: note:   no known conversion for argument 1 from 'httplib::Server::Server()::<lambda()>' to 'std::function<httplib::TaskQueue*()>&&'
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:652:5: note: candidate: 'std::function<_Res(_ArgTypes ...)>::function(const std::function<_Res(_ArgTypes ...)>&) [with _Res = httplib::TaskQueue*; _ArgTypes = {}]'
+     function<_Res(_ArgTypes...)>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:652:5: note:   no known conversion for argument 1 from 'httplib::Server::Server()::<lambda()>' to 'const std::function<httplib::TaskQueue*()>&'
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:402:7: note: candidate: 'std::function<_Res(_ArgTypes ...)>::function(std::nullptr_t) [with _Res = httplib::TaskQueue*; _ArgTypes = {}; std::nullptr_t = std::nullptr_t]'
+       function(nullptr_t) noexcept
+       ^~~~~~~~
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:402:7: note:   no known conversion for argument 1 from 'httplib::Server::Server()::<lambda()>' to 'std::nullptr_t'
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:395:7: note: candidate: 'std::function<_Res(_ArgTypes ...)>::function() [with _Res = httplib::TaskQueue*; _ArgTypes = {}]'
+       function() noexcept
+       ^~~~~~~~
+C:/PROGRA~1/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_function.h:395:7: note:   candidate expects 0 arguments, 1 provided
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::Server::wait_until_ready() const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7318:10: error: 'std::this_thread' has not been declared
+     std::this_thread::sleep_for(std::chrono::milliseconds{1});
+          ^~~~~~~~~~~
+mingw32-make.exe[2]: *** [ggml\src\CMakeFiles\ggml-base.dir\build.make:169: ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.obj] Error 1
+mingw32-make.exe[2]: *** Waiting for unfinished jobs....
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::Server::listen_internal()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:7923:16: error: 'std::this_thread' has not been declared
+           std::this_thread::sleep_for(std::chrono::microseconds{1});
+                ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::Server::output_log(const httplib::Request&, const httplib::Response&) const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8544:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8544:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8544:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8544:39: error: 'logger_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+[  7%] Provisioning UI assets
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8544:39: note: suggested alternative: 'logger_'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       logger_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::Server::output_pre_compression_log(const httplib::Request&, const httplib::Response&) const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8552:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8552:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8552:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8552:39: error: 'logger_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8552:39: note: suggested alternative: 'logger_'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       logger_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::Server::output_error_log(const httplib::Error&, const httplib::Request*) const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8560:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8560:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8560:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8560:39: error: 'logger_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8560:39: note: suggested alternative: 'logger_'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       logger_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In destructor 'virtual httplib::ClientImpl::~ClientImpl()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8586:28: error: 'mutex' is not a member of 'std'
+       std::lock_guard<std::mutex> guard(socket_mutex_);
+                            ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8586:28: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8586:33: error: template argument 1 is invalid
+       std::lock_guard<std::mutex> guard(socket_mutex_);
+                                 ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8586:41: error: 'socket_mutex_' was not declared in this scope
+       std::lock_guard<std::mutex> guard(socket_mutex_);
+                                         ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8586:41: note: suggested alternative: 'socket_t'
+       std::lock_guard<std::mutex> guard(socket_mutex_);
+                                         ^~~~~~~~~~~~~
+                                         socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8589:10: error: 'std::this_thread' has not been declared
+     std::this_thread::sleep_for(std::chrono::milliseconds{1});
+          ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8592:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8592:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8592:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8592:37: error: 'socket_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8592:37: note: suggested alternative: 'socket_t'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+                                     socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::ClientImpl::send(httplib::Request&, httplib::Response&, httplib::Error&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8778:24: error: 'recursive_mutex' is not a member of 'std'
+   std::lock_guard<std::recursive_mutex> request_mutex_guard(request_mutex_);
+                        ^~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8778:24: note: 'std::recursive_mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8778:39: error: template argument 1 is invalid
+   std::lock_guard<std::recursive_mutex> request_mutex_guard(request_mutex_);
+                                       ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8778:61: error: 'request_mutex_' was not declared in this scope
+   std::lock_guard<std::recursive_mutex> request_mutex_guard(request_mutex_);
+                                                             ^~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8778:61: note: suggested alternative: 'request_mutex_guard'
+   std::lock_guard<std::recursive_mutex> request_mutex_guard(request_mutex_);
+                                                             ^~~~~~~~~~~~~~
+                                                             request_mutex_guard
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::ClientImpl::send_(httplib::Request&, httplib::Response&, httplib::Error&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8791:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8791:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8791:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8791:39: error: 'socket_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+-- UI: running npm install (first time)
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8791:39: note: suggested alternative: 'socket_t'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8839:5: error: 'socket_requests_are_from_thread_' was not declared in this scope
+     socket_requests_are_from_thread_ = std::this_thread::get_id();
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8839:5: note: suggested alternative: 'socket_requests_in_flight_'
+     socket_requests_are_from_thread_ = std::this_thread::get_id();
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     socket_requests_in_flight_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8839:45: error: 'std::this_thread' has not been declared
+     socket_requests_are_from_thread_ = std::this_thread::get_id();
+                                             ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In lambda function:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8853:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8853:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8853:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8853:39: error: 'socket_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8853:39: note: suggested alternative: 'socket_t'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8857:7: error: 'socket_requests_are_from_thread_' was not declared in this scope
+       socket_requests_are_from_thread_ = std::thread::id();
+       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[  7%] Built target llama-qwen2vl-cli
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8857:7: note: suggested alternative: 'socket_requests_in_flight_'
+       socket_requests_are_from_thread_ = std::thread::id();
+       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       socket_requests_in_flight_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8857:47: error: 'std::thread' has not been declared
+       socket_requests_are_from_thread_ = std::thread::id();
+                                               ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'httplib::ClientImpl::StreamHandle httplib::ClientImpl::open_stream(const string&, const string&, const Params&, const Headers&, const string&, const string&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8963:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8963:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8963:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8963:39: error: 'socket_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:8963:39: note: suggested alternative: 'socket_t'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::ClientImpl::handle_request(httplib::Stream&, httplib::Request&, httplib::Response&, bool, httplib::Error&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9290:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9290:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9290:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9290:39: error: 'socket_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9290:39: note: suggested alternative: 'socket_t'
+     std::lock_guard<std::mutex> guard(socket_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::ClientImpl::write_request(httplib::Stream&, httplib::Request&, bool, httplib::Error&, bool)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9700:12: error: 'std::this_thread' has not been declared
+       std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ClientImpl::output_log(const httplib::Request&, const httplib::Response&) const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9871:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9871:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9871:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9871:39: error: 'logger_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9871:39: note: suggested alternative: 'logger_'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       logger_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ClientImpl::output_error_log(const httplib::Error&, const httplib::Request*) const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9879:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9879:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9879:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9879:39: error: 'logger_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:9879:39: note: suggested alternative: 'logger_'
+     std::lock_guard<std::mutex> guard(logger_mutex_);
+                                       ^~~~~~~~~~~~~
+                                       logger_
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ClientImpl::stop()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10911:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10911:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10911:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10911:37: error: 'socket_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10911:37: note: suggested alternative: 'socket_t'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+                                     socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'size_t httplib::ClientImpl::is_socket_open() const':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10935:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10935:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10935:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10935:37: error: 'socket_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:10935:37: note: suggested alternative: 'socket_t'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+                                     socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ClientImpl::set_proxy(const string&, int)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11018:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11018:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11018:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11018:37: error: 'socket_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11018:37: note: suggested alternative: 'socket_t'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+                                     socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ClientImpl::set_no_proxy(const std::vector<std::__cxx11::basic_string<char> >&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11044:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11044:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11044:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11044:37: error: 'socket_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:11044:37: note: suggested alternative: 'socket_t'
+   std::lock_guard<std::mutex> guard(socket_mutex_);
+                                     ^~~~~~~~~~~~~
+                                     socket_t
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'bool httplib::ws::WebSocket::send_frame(httplib::ws::Opcode, const char*, size_t, bool)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16139:24: error: 'mutex' is not a member of 'std'
+   std::lock_guard<std::mutex> lock(write_mutex_);
+                        ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16139:24: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16139:29: error: template argument 1 is invalid
+   std::lock_guard<std::mutex> lock(write_mutex_);
+                             ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16139:36: error: 'write_mutex_' was not declared in this scope
+   std::lock_guard<std::mutex> lock(write_mutex_);
+                                    ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16139:36: note: suggested alternative: 'CreateMutexW'
+   std::lock_guard<std::mutex> lock(write_mutex_);
+                                    ^~~~~~~~~~~~
+                                    CreateMutexW
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'httplib::ws::ReadResult httplib::ws::WebSocket::read(std::__cxx11::string&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16158:28: error: 'mutex' is not a member of 'std'
+       std::lock_guard<std::mutex> lock(write_mutex_);
+                            ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16158:28: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16158:33: error: template argument 1 is invalid
+       std::lock_guard<std::mutex> lock(write_mutex_);
+                                 ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16158:40: error: 'write_mutex_' was not declared in this scope
+       std::lock_guard<std::mutex> lock(write_mutex_);
+                                        ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16158:40: note: suggested alternative: 'CreateMutexW'
+       std::lock_guard<std::mutex> lock(write_mutex_);
+                                        ^~~~~~~~~~~~
+                                        CreateMutexW
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16164:28: error: 'mutex' is not a member of 'std'
+       std::lock_guard<std::mutex> lock(ping_mutex_);
+                            ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16164:28: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16164:33: error: template argument 1 is invalid
+       std::lock_guard<std::mutex> lock(ping_mutex_);
+                                 ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16164:40: error: 'ping_mutex_' was not declared in this scope
+       std::lock_guard<std::mutex> lock(ping_mutex_);
+                                        ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16171:30: error: 'mutex' is not a member of 'std'
+         std::lock_guard<std::mutex> lock(write_mutex_);
+                              ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16171:30: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16171:35: error: template argument 1 is invalid
+         std::lock_guard<std::mutex> lock(write_mutex_);
+                                   ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16171:42: error: 'write_mutex_' was not declared in this scope
+         std::lock_guard<std::mutex> lock(write_mutex_);
+                                          ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16171:42: note: suggested alternative: 'CreateMutexW'
+         std::lock_guard<std::mutex> lock(write_mutex_);
+                                          ^~~~~~~~~~~~
+                                          CreateMutexW
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16195:34: error: 'mutex' is not a member of 'std'
+             std::lock_guard<std::mutex> lock(write_mutex_);
+                                  ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16195:34: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16195:39: error: template argument 1 is invalid
+             std::lock_guard<std::mutex> lock(write_mutex_);
+                                       ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16195:46: error: 'write_mutex_' was not declared in this scope
+             std::lock_guard<std::mutex> lock(write_mutex_);
+                                              ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16195:46: note: suggested alternative: 'CreateMutexW'
+             std::lock_guard<std::mutex> lock(write_mutex_);
+                                              ^~~~~~~~~~~~
+                                              CreateMutexW
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16202:34: error: 'mutex' is not a member of 'std'
+             std::lock_guard<std::mutex> lock(ping_mutex_);
+                                  ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16202:34: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16202:39: error: template argument 1 is invalid
+             std::lock_guard<std::mutex> lock(ping_mutex_);
+                                       ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16202:46: error: 'ping_mutex_' was not declared in this scope
+             std::lock_guard<std::mutex> lock(ping_mutex_);
+                                              ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16208:36: error: 'mutex' is not a member of 'std'
+               std::lock_guard<std::mutex> lock(write_mutex_);
+                                    ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16208:36: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16208:41: error: template argument 1 is invalid
+               std::lock_guard<std::mutex> lock(write_mutex_);
+                                         ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16208:48: error: 'write_mutex_' was not declared in this scope
+               std::lock_guard<std::mutex> lock(write_mutex_);
+                                                ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16208:48: note: suggested alternative: 'CreateMutexW'
+               std::lock_guard<std::mutex> lock(write_mutex_);
+                                                ^~~~~~~~~~~~
+                                                CreateMutexW
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ws::WebSocket::close(httplib::ws::CloseStatus, const string&)':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16251:3: error: 'ping_cv_' was not declared in this scope
+   ping_cv_.notify_all();
+   ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16260:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> lock(write_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16260:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16260:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> lock(write_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16260:38: error: 'write_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> lock(write_mutex_);
+                                      ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16260:38: note: suggested alternative: 'CreateMutexW'
+     std::lock_guard<std::mutex> lock(write_mutex_);
+                                      ^~~~~~~~~~~~
+                                      CreateMutexW
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In destructor 'httplib::ws::WebSocket::~WebSocket()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16279:26: error: 'mutex' is not a member of 'std'
+     std::lock_guard<std::mutex> lock(ping_mutex_);
+                          ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16279:26: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16279:31: error: template argument 1 is invalid
+     std::lock_guard<std::mutex> lock(ping_mutex_);
+                               ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16279:38: error: 'ping_mutex_' was not declared in this scope
+     std::lock_guard<std::mutex> lock(ping_mutex_);
+                                      ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16282:3: error: 'ping_cv_' was not declared in this scope
+   ping_cv_.notify_all();
+   ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16283:7: error: 'ping_thread_' was not declared in this scope
+   if (ping_thread_.joinable()) { ping_thread_.join(); }
+       ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16283:7: note: suggested alternative: '_hread'
+   if (ping_thread_.joinable()) { ping_thread_.join(); }
+       ^~~~~~~~~~~~
+       _hread
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In member function 'void httplib::ws::WebSocket::start_heartbeat()':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16288:3: error: 'ping_thread_' was not declared in this scope
+   ping_thread_ = std::thread([this]() {
+   ^~~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16288:3: note: suggested alternative: '_hread'
+   ping_thread_ = std::thread([this]() {
+   ^~~~~~~~~~~~
+   _hread
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16288:23: error: 'thread' is not a member of 'std'
+   ping_thread_ = std::thread([this]() {
+                       ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16288:23: note: 'std::thread' is defined in header '<thread>'; did you forget to '#include <thread>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In lambda function:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16289:27: error: 'mutex' is not a member of 'std'
+     std::unique_lock<std::mutex> lock(ping_mutex_);
+                           ^~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16289:27: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16289:32: error: template argument 1 is invalid
+     std::unique_lock<std::mutex> lock(ping_mutex_);
+                                ^
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16289:39: error: 'ping_mutex_' was not declared in this scope
+     std::unique_lock<std::mutex> lock(ping_mutex_);
+                                       ^~~~~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16291:7: error: 'ping_cv_' was not declared in this scope
+       ping_cv_.wait_for(lock, std::chrono::seconds(ping_interval_sec_));
+       ^~~~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16297:14: error: request for member 'unlock' in 'lock', which is of non-class type 'int'
+         lock.unlock();
+              ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16301:12: error: request for member 'unlock' in 'lock', which is of non-class type 'int'
+       lock.unlock();
+            ^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16303:14: error: request for member 'lock' in 'lock', which is of non-class type 'int'
+         lock.lock();
+              ^~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:16307:12: error: request for member 'lock' in 'lock', which is of non-class type 'int'
+       lock.lock();
+            ^~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In instantiation of 'ssize_t httplib::detail::handle_EINTR(T) [with T = httplib::detail::select_impl(socket_t, short int, time_t, time_t)::<lambda()>; ssize_t = long long int]':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1633:71:   required from here
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1581:9: error: void value not ignored as it ought to be
+     res = fn();
+     ~~~~^~~~~~
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp: In instantiation of 'ssize_t httplib::detail::handle_EINTR(T) [with T = httplib::detail::wait_until_socket_is_ready(socket_t, time_t, time_t)::<lambda()>; ssize_t = long long int]':
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1654:73:   required from here
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\vendor\cpp-httplib\httplib.cpp:1581:9: error: void value not ignored as it ought to be
+mingw32-make.exe[2]: *** [vendor\cpp-httplib\CMakeFiles\cpp-httplib.dir\build.make:78: vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.obj] Error 1
+mingw32-make.exe[1]: *** [CMakeFiles\Makefile2:2540: vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/all] Error 2
+mingw32-make.exe[1]: *** Waiting for unfinished jobs....
+mingw32-make.exe[1]: *** [CMakeFiles\Makefile2:2340: ggml/src/CMakeFiles/ggml-base.dir/all] Error 2
+
+> llama-ui@1.0.0 prepare
+> svelte-kit sync || echo ''
+
+
+added 646 packages, and audited 647 packages in 29s
+
+251 packages are looking for funding
+  run `npm fund` for details
+
+11 vulnerabilities (6 low, 1 moderate, 4 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+-- UI: running npm run build, output -> C:/Users/cad/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build/tools/ui/dist
+
+> llama-ui@1.0.0 build
+> vite build
+
+vite v7.3.2 building ssr environment for production...
+transforming...
+鉁?4825 modules transformed.
+rendering chunks...
+vite v7.3.2 building client environment for production...
+transforming...
+鉁?5961 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/client/_app/version.json                              0.02 kB 鈹?gzip:     0.04 kB
+.svelte-kit/output/client/.vite/manifest.json                            0.30 kB 鈹?gzip:     0.19 kB
+.svelte-kit/output/client/_app/immutable/assets/bundle.D7dBxY5D.css    511.63 kB 鈹?gzip:   289.45 kB
+.svelte-kit/output/client/_app/immutable/bundle.BC66OJks.js          5,301.71 kB 鈹?gzip: 1,587.69 kB
+鉁?built in 21.99s
+.svelte-kit/output/server/.vite/manifest.json                                      11.63 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.CV-KWLNP.css                  0.29 kB
+.svelte-kit/output/server/_app/immutable/assets/DialogConfirmation.bHHIbcsu.css     0.35 kB
+.svelte-kit/output/server/_app/immutable/assets/_layout.BlWqTsQV.css              130.59 kB
+.svelte-kit/output/server/_app/immutable/assets/sidebar-menu-button.C6kWnTzR.css  380.05 kB
+.svelte-kit/output/server/chunks/environment.js                                     0.07 kB
+.svelte-kit/output/server/chunks/api-key-validation.js                              0.19 kB
+.svelte-kit/output/server/chunks/server.js                                          0.20 kB
+.svelte-kit/output/server/entries/pages/(chat)/_page.ts.js                          0.29 kB
+.svelte-kit/output/server/entries/pages/(chat)/chat/_id_/_page.ts.js                0.31 kB
+.svelte-kit/output/server/chunks/arrow-right.js                                     0.31 kB
+.svelte-kit/output/server/internal.js                                               0.37 kB
+.svelte-kit/output/server/chunks/refresh-cw.js                                      0.44 kB
+.svelte-kit/output/server/chunks/utils.js                                           0.60 kB
+.svelte-kit/output/server/entries/pages/settings/_layout.svelte.js                  0.85 kB
+.svelte-kit/output/server/chunks/ui.js                                              0.86 kB
+.svelte-kit/output/server/entries/pages/(chat)/_page.svelte.js                      1.06 kB
+.svelte-kit/output/server/chunks/settings.js                                        1.12 kB
+.svelte-kit/output/server/chunks/trash-2.js                                         1.16 kB
+.svelte-kit/output/server/entries/pages/(chat)/chat/_id_/_page.svelte.js            1.21 kB
+.svelte-kit/output/server/chunks/exports.js                                         1.46 kB
+.svelte-kit/output/server/chunks/url.js                                             1.60 kB
+.svelte-kit/output/server/chunks/input.js                                           1.62 kB
+.svelte-kit/output/server/chunks/label.js                                           1.78 kB
+.svelte-kit/output/server/chunks/render-context.js                                  1.81 kB
+.svelte-kit/output/server/chunks/internal.js                                        2.60 kB
+.svelte-kit/output/server/chunks/DialogModelNotAvailable.js                         2.70 kB
+.svelte-kit/output/server/chunks/index2.js                                          3.41 kB
+.svelte-kit/output/server/chunks/dialog-footer.js                                   5.64 kB
+.svelte-kit/output/server/entries/pages/_error.svelte.js                            8.50 kB
+.svelte-kit/output/server/entries/pages/mcp-servers/_page.svelte.js                 9.30 kB
+.svelte-kit/output/server/chunks/McpServerIdentity.js                              10.27 kB
+.svelte-kit/output/server/remote-entry.js                                          14.02 kB
+.svelte-kit/output/server/chunks/shared.js                                         15.12 kB
+.svelte-kit/output/server/chunks/popper-layer-force-mount.js                       15.40 kB
+.svelte-kit/output/server/chunks/conversations.svelte.js                           16.82 kB
+.svelte-kit/output/server/chunks/index.js                                          20.65 kB
+.svelte-kit/output/server/chunks/ActionIcon.js                                     22.76 kB
+.svelte-kit/output/server/chunks/DialogConfirmation.js                             34.81 kB
+.svelte-kit/output/server/entries/pages/_layout.svelte.js                          37.78 kB
+.svelte-kit/output/server/chunks/root.js                                           40.11 kB
+.svelte-kit/output/server/chunks/url2.js                                           50.18 kB
+.svelte-kit/output/server/index.js                                                 57.10 kB
+.svelte-kit/output/server/chunks/chat.svelte.js                                    58.63 kB
+.svelte-kit/output/server/entries/pages/settings/__section__/_page.svelte.js       68.11 kB
+.svelte-kit/output/server/chunks/sidebar-menu-button.js                           137.57 kB
+.svelte-kit/output/server/entries/pages/(chat)/_layout.svelte.js                  258.57 kB
+鉁?built in 41.74s
+
+Run npm run preview to preview your production build locally.
+
+> Using @sveltejs/adapter-static
+Overwriting C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build\tools\ui\dist\index.html with fallback page. Consider using a different name for the fallback.
+  Wrote site to "C:/Users/cad/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build/tools/ui/dist"
+  鉁?done
+鉁?Inlined favicon.svg as base64 data URL
+鉁?Updated index.html
+鉁?Copied bundle.BC66OJks.js -> bundle.js
+鉁?Copied bundle.D7dBxY5D.css -> bundle.css
+鉁?Removed _app directory
+鉁?Removed favicon.svg
+-- UI: npm build succeeded
+[  7%] Built target llama-ui-assets
+mingw32-make.exe: *** [Makefile:145: all] Error 2

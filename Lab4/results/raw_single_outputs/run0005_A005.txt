@@ -1,0 +1,44 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0005_A005_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 有三个盒子，标签分别是苹果、橙子、混合，但三个标签都贴错了。你只能从一个盒子里拿出一个水果，如何确定三个盒子的真实内容？
+
+为了确定三个盒子的真实内容，可以按照以下步骤进行操作：
+
+1. **逐一尝试**：从每一个盒子中随机抽取一个，看这个盒子是否正确贴上了标签。
+
+2. **验证结果**：如果某一个盒子正确贴上了标签，那么这个盒子是正确的；如果某个盒子没有正确贴上标签，那么这个盒子可能是错误的。
+
+3. **总结结果**：如果经过多次尝试，从每个盒子中都能找到一个正确贴标签的盒子，那么就可以确定所有盒子都正确贴上了标签。
+
+4. **处理错误**：如果在尝试中，某些盒子没有找到
+
+[ Prompt: 15.8 t/s | Generation: 9.4 t/s ]
+
+Exiting...

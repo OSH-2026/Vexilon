@@ -1,0 +1,16 @@
+run_id,prompt_id,category,threads,ctx_size,batch_size,n_predict,no_mmap,start_time,end_time,total_latency_s,tokens_per_second,max_rss_kb,output_chars,success,error_message,raw_output_path
+run0001,A001,short_qa,4,2048,256,128,false,2026-06-02T20:55:06,2026-06-02T20:55:21,14.031681,9.9,,880,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0001_A001.txt
+run0002,A002,os_course,4,2048,256,128,false,2026-06-02T20:55:21,2026-06-02T20:55:37,16.189117,10.3,,878,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0002_A002.txt
+run0003,A003,code_explanation,4,2048,256,128,false,2026-06-02T20:55:37,2026-06-02T20:55:55,17.871464,10.3,,1015,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0003_A003.txt
+run0004,A004,summary,4,2048,256,128,false,2026-06-02T20:55:55,2026-06-02T20:56:08,13.539496,10.1,,880,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0004_A004.txt
+run0005,A005,reasoning,4,2048,256,128,false,2026-06-02T20:56:08,2026-06-02T20:56:27,18.786657,9.4,,966,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0005_A005.txt
+run0006,A001,short_qa,4,2048,256,128,false,2026-06-02T20:56:27,2026-06-02T20:56:43,15.766427,10.0,,897,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0006_A001.txt
+run0007,A002,os_course,4,2048,256,128,false,2026-06-02T20:56:43,2026-06-02T20:57:00,17.077318,9.7,,882,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0007_A002.txt
+run0008,A003,code_explanation,4,2048,256,128,false,2026-06-02T20:57:00,2026-06-02T20:57:18,18.380395,9.9,,965,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0008_A003.txt
+run0009,A004,summary,4,2048,256,128,false,2026-06-02T20:57:18,2026-06-02T20:57:31,12.375444,9.8,,841,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0009_A004.txt
+run0010,A005,reasoning,4,2048,256,128,false,2026-06-02T20:57:31,2026-06-02T20:57:48,17.389873,10.6,,973,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0010_A005.txt
+run0011,A001,short_qa,4,2048,256,128,false,2026-06-02T20:57:48,2026-06-02T20:57:58,9.808596,10.7,,803,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0011_A001.txt
+run0012,A002,os_course,4,2048,256,128,false,2026-06-02T20:57:58,2026-06-02T20:58:15,16.454439,10.0,,922,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0012_A002.txt
+run0013,A003,code_explanation,4,2048,256,128,false,2026-06-02T20:58:15,2026-06-02T20:58:32,17.353229,10.6,,980,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0013_A003.txt
+run0014,A004,summary,4,2048,256,128,false,2026-06-02T20:58:32,2026-06-02T20:58:45,12.932168,10.2,,871,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0014_A004.txt
+run0015,A005,reasoning,4,2048,256,128,false,2026-06-02T20:58:45,2026-06-02T20:59:02,17.580895,10.5,,948,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0015_A005.txt

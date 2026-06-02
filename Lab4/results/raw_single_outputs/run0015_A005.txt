@@ -1,0 +1,41 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0015_A005_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 有三个盒子，标签分别是苹果、橙子、混合，但三个标签都贴错了。你只能从一个盒子里拿出一个水果，如何确定三个盒子的真实内容？
+
+要确定三个盒子的真实内容，你需要从一个盒子中拿出一个水果。以下是逐步步骤：
+
+1. **验证标签**：首先，确定每个标签的实际标签。比如，如果标签是“苹果”、“橙子”、“混合”，那么“苹果”和“橙子”是正确的标签，而“混合”是错误的标签。
+
+2. **从一个盒子里拿出一个水果**：假设你从一个“混合”中拿出一个水果。这里有一些可能的情况：
+   - 如果从“混合”中拿出的是一个“橙子”，那么“橙子”是正确的标签，而“混合
+
+[ Prompt: 15.6 t/s | Generation: 10.5 t/s ]
+
+Exiting...

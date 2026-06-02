@@ -1,0 +1,3 @@
+run_id,prompt_id,category,threads,ctx_size,batch_size,n_predict,no_mmap,start_time,end_time,total_latency_s,tokens_per_second,max_rss_kb,output_chars,success,error_message,raw_output_path
+run0001,A001,short_qa,4,2048,256,128,false,2026-06-02T21:04:40,2026-06-02T21:04:53,12.997863,10.6,,864,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\batch_256\run0001_A001.txt
+run0002,A002,os_course,4,2048,256,128,false,2026-06-02T21:04:53,2026-06-02T21:05:09,15.970529,10.3,,912,true,,C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\batch_256\run0002_A002.txt

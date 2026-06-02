@@ -1,0 +1,36 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\threads_1\run0001_A001_prompt.txt -n 128 --threads 1 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请用三句话解释什么是虚拟内存。
+
+虚拟内存，又称虚拟内存技术或虚拟地址空间，是一种在计算机内存中为用户提供的一种虚拟扩展。通过在内存中建立一个与物理内存空间不同的虚拟空间，可以在不改变内存实际物理布局的情况下，提供比实际物理内存更多的物理内存给用户程序使用。虚拟内存的主要作用是提高程序运行速度，使用户程序能够更好地利用物理内存，从而达到优化内存使用和提高程序运行性能的目的。
+
+[ Prompt: 4.9 t/s | Generation: 4.5 t/s ]
+
+Exiting...

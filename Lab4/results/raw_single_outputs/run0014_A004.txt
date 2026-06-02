@@ -1,0 +1,36 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\raw_single_outputs\run0014_A004_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请将下面这段内容总结成 5 个要点：虚拟内存让每个进程看到连续的地址空间，操作系统通过页表把虚拟地址映射到物理地址。TLB 缓存最近使用的页表项以加速地址转换。缺页中断发生时，操作系统需要把页面从磁盘调入内存。
+
+虚拟内存是通过进程看到连续的地址空间来实现的，操作系统通过页表将虚拟地址映射到物理地址。TLB缓存最近使用的页表项来加速地址转换。缺页中断发生时，操作系统需要将页面从磁盘调入内存。
+
+[ Prompt: 15.9 t/s | Generation: 10.2 t/s ]
+
+Exiting...

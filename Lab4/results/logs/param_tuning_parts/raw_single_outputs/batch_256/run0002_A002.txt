@@ -1,0 +1,38 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\batch_256\run0002_A002_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+页表和TLB是操作系统中重要的两个概念，缺页中断和页面替换是它们之间的关系。
+
+1. 页表：在操作系统中，页表是一个用于存储物理地址和逻辑地址映射关系的表。它位于内存中，用于查找和映射物理地址到逻辑地址。页表是操作系统中的一种数据结构，它包含了操作系统中所有的逻辑地址到物理地址的映射关系。当一个进程访问了逻辑地址所在的页时，操作系统会查找对应的物理地址。如果找到对应物理地址，操作系统会将访问的逻辑地址的地址空间中的物理地址映射
+
+[ Prompt: 16.6 t/s | Generation: 10.3 t/s ]
+
+Exiting...

@@ -1,0 +1,36 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\threads_8\run0002_A002_prompt.txt -n 128 --threads 8 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请解释页表、TLB 和缺页中断之间的关系。
+
+在计算机体系结构中，页表是内存分配和访问的一个重要组成部分。它负责管理内存分配的内存块。TLB（Translation Lookaside Buffer）是一个用于在内存访问时缓存翻译单位（translation unit, TU）的缓存，用于减少内存访问的开销。缺页中断（Page Fault Interrupt）是当计算机尝试访问内存而无法找到对应内存块时触发的中断，通常在内存访问失败时发生。缺页中断是页表和TLB的共同作用点，它们共同维持着内存访问的正确性。缺页中断可以防止未命中内存块
+
+[ Prompt: 23.3 t/s | Generation: 10.1 t/s ]
+
+Exiting...

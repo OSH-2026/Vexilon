@@ -1,0 +1,36 @@
+COMMAND:
+C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe -m C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\results\logs\param_tuning_parts\raw_single_outputs\batch_512\run0001_A001_prompt.txt -n 128 --threads 4 --ctx-size 2048 --batch-size 512 --single-turn --simple-io
+
+TIME_WRAPPER: NOT_AVAILABLE
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9478-60130d18f
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请用三句话解释什么是虚拟内存。
+
+虚拟内存是一种内存管理技术，它允许在物理内存的有限空间内分配更多的内存。当系统运行在物理内存的有限空间内时，虚拟内存允许在其中执行更多的程序。这是因为虚拟内存把系统总内存的逻辑空间分为不同的虚拟空间，每个虚拟空间可以独立地被分配和回收，从而提高系统的性能和吞吐量。在虚拟内存中，每一块物理内存都有一个对应的空间，而每个虚拟空间都有独立的地址空间。每个虚拟空间都是独立的，不会受到其他虚拟空间的限制。这样，系统可以有效地利用物理内存，同时避免了内存
+
+[ Prompt: 15.5 t/s | Generation: 10.1 t/s ]
+
+Exiting...
