@@ -1,0 +1,28 @@
+# Large model files
+models/
+*.gguf
+*.bin
+*.safetensors
+
+# llama.cpp source and build artifacts
+llama.cpp/
+build/
+build-*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Temporary logs
+*.tmp
+*.bak
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

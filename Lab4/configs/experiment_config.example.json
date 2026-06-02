@@ -1,0 +1,27 @@
+{
+  "role": "A",
+  "project": "OSH 2026 Lab4",
+  "local_project_dir": "~/Desktop/OSH2026_Lab4_Local",
+  "lab4_dir": "~/Desktop/OSH2026_Lab4_Local/Lab4",
+  "llama_cpp_dir": "~/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp",
+  "llama_build_dir": "~/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build/bin",
+  "llama_cli": "~/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build/bin/llama-cli",
+  "llama_bench": "~/Desktop/OSH2026_Lab4_Local/Lab4/llama.cpp/build/bin/llama-bench",
+  "model_path": "~/Desktop/OSH2026_Lab4_Local/Lab4/models/your-model.gguf",
+  "model_name": "TODO",
+  "quantization": "TODO, for example Q4_K_M",
+  "default_n_predict": 128,
+  "default_threads": 4,
+  "default_ctx_size": 2048,
+  "default_batch_size": 256,
+  "handoff_to_B": {
+    "model_path": "same MODEL_PATH",
+    "llama_cli": "same LLAMA_CLI",
+    "single_benchmark_csv": "Lab4/results/single_benchmark.csv",
+    "param_tuning_csv": "Lab4/results/param_tuning.csv"
+  },
+  "handoff_to_C": {
+    "prompt_file": "Lab4/prompts/role_a_benchmark_prompts.jsonl",
+    "baseline_summary": "Lab4/results/single_benchmark_summary.md"
+  }
+}

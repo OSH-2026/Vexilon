@@ -1,0 +1,2 @@
+{"id":"A001","category":"short_qa","prompt":"请用三句话解释什么是虚拟内存。"}
+{"id":"A002","category":"os_course","prompt":"请解释页表、TLB 和缺页中断之间的关系。"}

@@ -1,0 +1,5 @@
+{"id":"A001","category":"short_qa","prompt":"请用三句话解释什么是虚拟内存。"}
+{"id":"A002","category":"os_course","prompt":"请解释页表、TLB 和缺页中断之间的关系。"}
+{"id":"A003","category":"code_explanation","prompt":"请解释下面这段 C 代码的功能：int sum(int *a, int n){int s=0; for(int i=0;i<n;i++){s+=a[i];} return s;}"}
+{"id":"A004","category":"summary","prompt":"请将下面这段内容总结成 5 个要点：虚拟内存让每个进程看到连续的地址空间，操作系统通过页表把虚拟地址映射到物理地址。TLB 缓存最近使用的页表项以加速地址转换。缺页中断发生时，操作系统需要把页面从磁盘调入内存。"}
+{"id":"A005","category":"reasoning","prompt":"有三个盒子，标签分别是苹果、橙子、混合，但三个标签都贴错了。你只能从一个盒子里拿出一个水果，如何确定三个盒子的真实内容？"}
