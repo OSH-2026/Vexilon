@@ -1,0 +1,30 @@
+{"id":"R001","category":"os","prompt":"请解释什么是缺页中断，以及操作系统如何处理缺页中断。"}
+{"id":"R002","category":"os","prompt":"请解释虚拟内存的工作原理，并说明页表和 TLB 在其中的作用。"}
+{"id":"R003","category":"os","prompt":"什么是进程调度？请简要比较先来先服务(FCFS)和轮转调度(Round Robin)的优缺点。"}
+{"id":"R004","category":"os","prompt":"请解释死锁的四个必要条件，以及银行家算法如何避免死锁。"}
+{"id":"R005","category":"os","prompt":"请解释用户态和内核态的区别，以及系统调用如何在这两者之间切换。"}
+{"id":"R006","category":"code","prompt":"请解释下面这段 Python 代码的功能：\ndef fibonacci(n):\n    if n <= 1:\n        return n\n    a, b = 0, 1\n    for _ in range(2, n+1):\n        a, b = b, a + b\n    return b"}
+{"id":"R007","category":"code","prompt":"请用三句话解释这段 C 代码在做什么：\nvoid reverse(char *str) {\n    int n = strlen(str);\n    for (int i = 0; i < n/2; i++) {\n        char tmp = str[i];\n        str[i] = str[n-1-i];\n        str[n-1-i] = tmp;\n    }\n}"}
+{"id":"R008","category":"code","prompt":"请用三句话解释下面 Python 代码中的 yield 关键字有什么作用：\ndef countdown(n):\n    while n > 0:\n        yield n\n        n -= 1"}
+{"id":"R009","category":"summary","prompt":"请用三个要点总结以下段落：操作系统是管理计算机硬件和软件资源的系统软件。它提供进程管理、内存管理、文件系统和设备驱动等核心功能。现代操作系统还支持多用户、多任务、网络通信和安全机制。"}
+{"id":"R010","category":"summary","prompt":"请用五个要点总结以下技术文档片段：容器技术利用 Linux 命名空间和控制组(namespaces 和 cgroups)实现进程隔离和资源限制。Docker 将应用及其依赖打包成镜像，可在任何支持容器运行时的环境中运行。与虚拟机不同，容器共享宿主机内核，启动速度快、资源开销小。"}
+{"id":"R011","category":"reasoning","prompt":"一个池塘里的睡莲每天面积翻一倍。如果睡莲用 48 天覆盖整个池塘，那么覆盖一半池塘需要多少天？请逐步推理。"}
+{"id":"R012","category":"reasoning","prompt":"有三盏灯在房间里，门外有三个开关分别控制这三盏灯。你只能进房间一次，如何确定每个开关控制哪盏灯？请详细说明你的推理过程。"}
+{"id":"R013","category":"reasoning","prompt":"假设你有一个 5 升的桶和一个 3 升的桶，需要量出恰好 4 升水。请描述你的步骤。"}
+{"id":"R014","category":"llm_deploy","prompt":"请解释什么是 GGUF 格式，以及它在 llama.cpp 中的作用。为什么量化对于本地部署大模型很重要？"}
+{"id":"R015","category":"llm_deploy","prompt":"请比较 llama.cpp 与 vLLM 在大模型推理部署上的主要区别。什么场景下该选择 llama.cpp？"}
+{"id":"R016","category":"llm_deploy","prompt":"请解释大模型部署中 KV Cache 的作用，以及它对显存/内存占用的影响。"}
+{"id":"R017","category":"llm_deploy","prompt":"在大模型推理中，batch size 和并发请求数有什么关系？增大 batch size 对吞吐和延迟各有什么影响？"}
+{"id":"R018","category":"ray","prompt":"请用三句话解释什么是 Ray，以及它在分布式计算中的主要用途。"}
+{"id":"R019","category":"ray","prompt":"请解释 Ray Actor 模式和 Ray Task 模式的区别。什么场景下应该使用 Actor 而不是 Task？"}
+{"id":"R020","category":"ray","prompt":"在 Ray 中，ray.get() 和 ray.wait() 有什么区别？在批量推理任务中，如何利用它们管理并发？"}
+{"id":"R021","category":"ray","prompt":"请解释 Ray 的分布式调度器如何决定将任务分配到哪个节点。负载均衡在 Ray 中是如何实现的？"}
+{"id":"R022","category":"os","prompt":"请解释操作系统中并发与并行的区别，并举例说明。"}
+{"id":"R023","category":"code","prompt":"请解释 Python 中多线程与多进程的区别，以及 GIL（全局解释器锁）对它们的影响。"}
+{"id":"R024","category":"summary","prompt":"请用三个要点总结以下内容：分布式系统是由多台计算机通过网络连接组成的系统，各节点协同工作，对外呈现为单一系统。它需要解决一致性、可用性和分区容错性(CAP 定理)之间的权衡。"}
+{"id":"R025","category":"reasoning","prompt":"如果昨天是明天的话就好了，那样今天就是星期五了。请问：句子中的「今天」实际上是星期几？请逐步推理。"}
+{"id":"R026","category":"llm_deploy","prompt":"请解释什么是推测解码(Speculative Decoding)，它如何加速大语言模型的推理？"}
+{"id":"R027","category":"llm_deploy","prompt":"在 llama-server 中，/v1/chat/completions 和 /completion 两个接口有什么区别？各适用于什么场景？"}
+{"id":"R028","category":"ray","prompt":"在使用 Ray 进行大模型批量推理时，如何实现请求级别的容错？如果一个 worker 崩溃了会发生什么？"}
+{"id":"R029","category":"os","prompt":"什么是 CPU 亲和性(Affinity)？在部署推理服务时，绑定 CPU 核心有什么好处？"}
+{"id":"R030","category":"code","prompt":"请用三句话解释下面 Bash 脚本的功能：\nfor i in $(seq 1 10); do\n  curl -s http://localhost:8080/completion -d \"{\"prompt\":\"Hello\"}\" &\ndone\nwait"}
