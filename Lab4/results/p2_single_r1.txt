@@ -1,0 +1,35 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请阅读以下技术材料，并总结出 5 个核心要点。要求每个要点用一句话概括，并确保覆盖虚拟内存、页表、TLB 和缺页中断的关系。
+
+材料：现代操作系统使用虚拟内存技术为每个进程提供独立的地址空间。虚拟内存将进程的虚拟地址空间映射到物理内存，使得进程看到的是一段连续的地址空间，而实际物理内存可能是碎片化的。这一映射关系由页表（Page Table）来实现，页表将� ... (truncated)
+
+1. 虚拟内存技术为每个进程提供独立的地址空间，并将进程的虚拟地址映射到物理内存，使得进程看到的是连续的地址空间，而实际物理内存可能是碎片化的。
+2. 虚页表（Page Table）是实现虚拟内存映射关系的硬件缓存，记录了虚拟页号映射到物理页帧号以及访问权限、修改状态等信息。
+3. TLB（Translation Lookaside Buffer）是用于加速地址转换的硬件缓存，存储最近使用过的页表项，当CPU需要转换一个虚拟地址时，首先查找
+
+[ Prompt: 197.7 t/s | Generation: 41.6 t/s ]
+
+Exiting...

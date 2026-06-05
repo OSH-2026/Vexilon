@@ -1,0 +1,60 @@
+COMMAND:
+C:\Code\rust\Lab4\llama.cpp\build\bin\llama-cli.exe -m C:\Code\rust\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Code\rust\Lab4\results\raw_quality_outputs\_tmp_configB_P4.txt -n 256 --threads 2 --ctx-size 2048 --temp 0.2 --top-p 0.8 --repeat-penalty 1.1 --no-display-prompt --single-turn --simple-io
+
+ELAPSED: 9.49s
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 这是一道经典逻辑推理题，请逐步推理并给出最终答案：
+
+桌上有三个盒子，每个盒子里都装着水果。三个盒子外面分别贴着"苹果"、"橙子"和"苹果和橙子混合"的标签。但是，这三个标签全都贴错了——也就是说，每个盒子上的标签都不反映盒子的真实内容。
+
+规则：你只能从一个盒子里拿出一个水果，观察它是什么，然后根据这个信息推断出所有三个盒子的真实内容。
+
+问题� ... (truncated)
+
+为了找出正确的答案，我们需要仔细分析每个盒子的标签和实际情况，并通过逻辑推理来确定应该从哪个盒子拿水果。
+
+首先，我们明确一下题目中的信息：
+
+1. 桌上有三个盒子。
+2. 每个盒子里都装着水果。
+3. 三个盒子外面分别贴着"苹果"、"橙子"和"苹果和橙子混合"的标签。
+4. 这些标签全都贴错了，意味着每个盒子上的标签都不反映盒子的真实内容。
+
+接下来，我们分析每个盒子的情况：
+
+1. 第一个盒子：标签是“苹果”。
+   - 由于标签错了，我们可以推断出这个盒子上应该是“橙子”，因为橙子和苹果混合的标签应该出现在第二个盒子上。因此，我们应该从第一个盒子拿水果。
+
+2. 第二个盒子：标签是“橙子”。
+   - 这个盒子上的标签与实际情况不符，所以它不可能是第三个盒子。我们已经确定了第一个盒子应该是“橙子”，那么剩下的两个盒子（第一个和第二个）应该都是“苹果”。
+
+3. 第三个盒子：标签是“苹果和橙子混合”。
+   - 这个标签也与实际情况不符，因此
+
+[ Prompt: 158.2 t/s | Generation: 35.2 t/s ]
+
+Exiting...

@@ -1,0 +1,44 @@
+REQUEST_ID: c1_r006
+PROMPT_ID: P1
+CONCURRENCY: 1
+LATENCY_S: 3.201
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "进程和线程是操作系统中两个重要的概念，它们在资源拥有、调度方式以及进程间通信等方面有着显著的区别。\n\n1. 资源拥有方面：\n\n进程是操作系统中的基本单位，它拥有自己的资源，这些资源包括CPU、内存、外设等。进程可以通过调用操作系统提供的API来访问这些资源。进程之间通过通信机制进行通信，如消息队列、消息队列、事件驱动等。\n\n线程是进程中的一个细粒度单位，它没有自己的资源，而是由一个线程执行。线程之间通过互斥、信号、锁等机制进行"
+      }
+    }
+  ],
+  "created": 1780629148,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 94,
+    "total_tokens": 222,
+    "prompt_tokens_details": {
+      "cached_tokens": 93
+    }
+  },
+  "id": "chatcmpl-16bxjIaLdJ1pVmzqc70mq6mUTh6L0nu0",
+  "timings": {
+    "cache_n": 93,
+    "prompt_n": 1,
+    "prompt_ms": 32.672,
+    "prompt_per_token_ms": 32.672,
+    "prompt_per_second": 30.607247796278163,
+    "predicted_n": 128,
+    "predicted_ms": 3143.164,
+    "predicted_per_token_ms": 24.55596875,
+    "predicted_per_second": 40.723296652672275
+  }
+}

@@ -1,0 +1,44 @@
+REQUEST_ID: c2_r001
+PROMPT_ID: P1
+CONCURRENCY: 2
+LATENCY_S: 4.48
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "在操作系统中，进程和线程都是实现计算机系统功能的基本单位，但它们在资源拥有和调度方式、以及进程间通信（IPC）和线程间通信（IPC）上的特性有所不同。\n\n（1）资源拥有方面的差异：\n\n在操作系统中，进程和线程都是为了处理大量并发的系统任务而设计的。然而，进程和线程的资源拥有方式各有不同。\n\n1. 进程：进程是一种基本的、独立的、独立的程序（程序，由用户编制，经过编译和链接，由操作系统管理）。进程是操作系统处理任务的最小单位，"
+      }
+    }
+  ],
+  "created": 1780629166,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 94,
+    "total_tokens": 222,
+    "prompt_tokens_details": {
+      "cached_tokens": 93
+    }
+  },
+  "id": "chatcmpl-EcaCm4ATBMaUB33bPBCljmesHPJjV7Aj",
+  "timings": {
+    "cache_n": 93,
+    "prompt_n": 1,
+    "prompt_ms": 26.929,
+    "prompt_per_token_ms": 26.929,
+    "prompt_per_second": 37.13468751160459,
+    "predicted_n": 128,
+    "predicted_ms": 4441.235,
+    "predicted_per_token_ms": 34.6971484375,
+    "predicted_per_second": 28.820812229030892
+  }
+}

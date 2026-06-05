@@ -1,0 +1,50 @@
+COMMAND:
+C:\Code\rust\Lab4\llama.cpp\build\bin\llama-cli.exe -m C:\Code\rust\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Code\rust\Lab4\results\raw_quality_outputs\_tmp_configB_P5.txt -n 256 --threads 2 --ctx-size 2048 --temp 0.2 --top-p 0.8 --repeat-penalty 1.1 --no-display-prompt --single-turn --simple-io
+
+ELAPSED: 9.00s
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请结合操作系统课程知识，详细阐述以下三个概念的关联与区别：(1) mmap 内存映射；(2) 共享库的加载机制；(3) Copy-on-Write（写时复制）技术。
+
+要求：
+- 解释各自的基本原理和用途
+- 说明它们如何协同工作在操作系统中
+- 描述缺页中断（page fault）在这三个机制中扮演的角色
+- 请用中文回答，条理清晰，适当举例说明
+
+1. **mmap 内存映射**：这是Linux内核提供的一个功能，用于将内存映射到磁盘上。它允许用户空间程序访问和修改操作系统上的内存。这种机制在多线程编程中非常有用，因为可以在多个线程之间共享同一块内存。
+
+2. **共享库的加载机制**：这是一个进程间通信（IPC）机制，用于实现不同进程之间的数据交换。当一个进程需要从另一个进程中获取数据时，它会调用`mmap`来映射该进程的内存到磁盘上。这样，其他进程就可以通过`mmap`访问和修改共享库中的数据。
+
+3. **Copy-on-Write（写时复制）技术**：这是一种并发编程模型，用于在多线程环境下实现数据的一致性。当一个进程需要从另一个进程中获取数据时，它会调用`mmap`来映射该进程的内存到磁盘上。这样，其他进程就可以通过`mmap`访问和修改共享库中的数据。
+
+**协同工作原理：**
+
+- **mmap 内存映射**：当一个进程需要从另一个进程中获取数据时，它会调用`mmap
+
+[ Prompt: 160.7 t/s | Generation: 36.9 t/s ]
+
+Exiting...

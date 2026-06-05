@@ -1,0 +1,44 @@
+REQUEST_ID: c4_r010
+PROMPT_ID: P5
+CONCURRENCY: 4
+LATENCY_S: 3.983
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. **mmap 内存映射**：mmap是一种操作系统内核提供的技术，它允许将用户空间的文件和程序空间的内存映射到同一进程的内存空间中。mmap的主要特点是它不会复制程序空间中的内存，而是复制到同一个文件中。这种映射的方式有助于提高内存访问的效率，因为用户空间和进程空间的内存是分开的，不会互相干扰。mmap的应用场景之一是用于在内存中分配动态的文件或程序空间中的内存。例如，一个应用程序需要在内存中分配一些动态的文件，而这些文件的文件"
+      }
+    }
+  ],
+  "created": 1780629204,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 133,
+    "total_tokens": 261,
+    "prompt_tokens_details": {
+      "cached_tokens": 132
+    }
+  },
+  "id": "chatcmpl-JxQRt7p7w6HG0YvMDtpmM0bgykYY1htE",
+  "timings": {
+    "cache_n": 132,
+    "prompt_n": 1,
+    "prompt_ms": 37.073,
+    "prompt_per_token_ms": 37.073,
+    "prompt_per_second": 26.973808432012515,
+    "predicted_n": 128,
+    "predicted_ms": 3912.63,
+    "predicted_per_token_ms": 30.567421875,
+    "predicted_per_second": 32.71456795045788
+  }
+}

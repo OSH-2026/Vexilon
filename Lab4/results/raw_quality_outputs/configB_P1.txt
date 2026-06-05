@@ -1,0 +1,42 @@
+COMMAND:
+C:\Code\rust\Lab4\llama.cpp\build\bin\llama-cli.exe -m C:\Code\rust\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Code\rust\Lab4\results\raw_quality_outputs\_tmp_configB_P1.txt -n 256 --threads 2 --ctx-size 2048 --temp 0.2 --top-p 0.8 --repeat-penalty 1.1 --no-display-prompt --single-turn --simple-io
+
+ELAPSED: 8.63s
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请详细解释操作系统中进程和线程的区别，包括：(1) 它们在资源拥有方面的差异；(2) 它们在调度方面的差异；(3) 进程间通信（IPC）和线程间通信的常见方式。请用中文回答，条理清晰。
+
+操作系统中进程和线程是两个重要的概念，它们在资源拥有、调度以及进程间的通信等方面有着显著的区别。
+
+1. **进程**：进程是一种动态的概念，它是一个独立运行的程序集合，每个进程都有自己的地址空间、内存分配、文件系统访问权限等。进程有自己的状态（如运行、就绪、阻塞）和优先级，可以创建、终止、继承或者切换到其他进程。进程是操作系统中的基本单位，它们在资源拥有方面是完全独立的。
+
+2. **线程**：线程是一种更细粒度的概念，它是一个执行单元，包含一个或多个程序代码段（称为线程块）和一个或多个数据结构（称为线程变量）。每个线程都有自己的地址空间、内存分配、文件系统访问权限等。线程有自己的状态（如运行、就绪、阻塞），可以创建、终止、继承或者切换到其他线程。线程是进程中的基本单位，它们在资源拥有方面是完全独立的。
+
+3. **进程间通信**：进程之间可以通过消息传递机制进行通信，例如，通过信号量、管道（如Unix系统中使用）或共享内存来实现。这些机制允许进程
+
+[ Prompt: 141.7 t/s | Generation: 36.6 t/s ]
+
+Exiting...

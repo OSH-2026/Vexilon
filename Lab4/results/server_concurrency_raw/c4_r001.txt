@@ -1,0 +1,44 @@
+REQUEST_ID: c4_r001
+PROMPT_ID: P1
+CONCURRENCY: 4
+LATENCY_S: 7.871
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "在操作系统中，进程和线程是两种重要的概念，它们在资源拥有、调度和通信方式上有显著的区别。\n\n1. 从资源拥有方面看，进程和线程的主要区别是：\n\n进程：\n- 是操作系统的一个基本单位，可以是一个应用，也可以是一个服务。它包含一个或多个线程。\n- 进程是操作系统创建的一个集合，可以由多个进程组成。\n- 进程有自己的内存地址空间、独立的程序、独立的程序集、独立的文件系统和独立的命名空间。\n\n线程：\n- 是进程中的一个基本单位，可以是一段代码，"
+      }
+    }
+  ],
+  "created": 1780629192,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 94,
+    "total_tokens": 222,
+    "prompt_tokens_details": {
+      "cached_tokens": 93
+    }
+  },
+  "id": "chatcmpl-UQME8WEQQjLhVbkTfW7FQ25KHxuyizS7",
+  "timings": {
+    "cache_n": 93,
+    "prompt_n": 1,
+    "prompt_ms": 68.299,
+    "prompt_per_token_ms": 68.299,
+    "prompt_per_second": 14.641502803847786,
+    "predicted_n": 128,
+    "predicted_ms": 7776.093,
+    "predicted_per_token_ms": 60.7507265625,
+    "predicted_per_second": 16.460708481752985
+  }
+}

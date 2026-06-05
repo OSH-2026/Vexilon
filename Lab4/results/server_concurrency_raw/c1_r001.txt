@@ -1,0 +1,44 @@
+REQUEST_ID: c1_r001
+PROMPT_ID: P1
+CONCURRENCY: 1
+LATENCY_S: 4.013
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "操作系统中，进程和线程是两个重要的概念，它们在资源拥有、调度和通信方面都有显著的区别。以下是每个方面的详细解释：\n\n1. **进程的资源拥有方面：**\n\n   - **线程的资源拥有方面：**\n   - **线程的资源拥有方面与进程的资源拥有方面存在明显的区别。** \n   - **进程拥有的是具体的线程。** \n   - **线程拥有的是整个线程的资源，包括线程的执行空间、线程的生命周期等。**\n\n2. **进程的调度方面的差异：**\n\n   - **线程的"
+      }
+    }
+  ],
+  "created": 1780629124,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 94,
+    "total_tokens": 222,
+    "prompt_tokens_details": {
+      "cached_tokens": 24
+    }
+  },
+  "id": "chatcmpl-RQIq0F1zFsi5xC9YppTxfYa7ho8IuytO",
+  "timings": {
+    "cache_n": 24,
+    "prompt_n": 70,
+    "prompt_ms": 710.769,
+    "prompt_per_token_ms": 10.153842857142857,
+    "prompt_per_second": 98.48488046045902,
+    "predicted_n": 128,
+    "predicted_ms": 3294.102,
+    "predicted_per_token_ms": 25.735171875,
+    "predicted_per_second": 38.85732742944815
+  }
+}

@@ -1,0 +1,31 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请用三句话解释什么是虚拟内存，并说明页表和 TLB 的关系。
+
+虚拟内存是一种计算机内存管理技术，它允许系统在物理内存不足时增加额外的内存空间。虚拟内存的实现原理是将主内存的物理地址映射到虚拟地址空间，实现一个无页限制的内存环境。页表是一个虚拟内存的映射表，用于存储虚拟地址与物理地址之间的映射关系，用于管理页表的页表项和页表项之间的关系。TLB（Translation Lookaside Buffer）是虚拟内存的内存页面映射和查找功能，它用来帮助虚拟内存系统查找和映射页面。在虚拟内存系统中，页面映射
+
+[ Prompt: 80.2 t/s | Generation: 9.1 t/s ]
+
+Exiting...

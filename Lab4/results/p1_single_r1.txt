@@ -1,0 +1,35 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请详细解释操作系统中进程和线程的区别，包括：(1) 它们在资源拥有方面的差异；(2) 它们在调度方面的差异；(3) 进程间通信（IPC）和线程间通信的常见方式。请用中文回答，条理清晰。
+
+操作系统中的进程和线程是两种重要的概念，它们在资源拥有、调度、以及进程间通信的方面有所不同。
+
+(1) 资源拥有方面的差异：进程和线程是操作系统中的两种基本数据结构，它们在资源拥有方面的差异主要体现在以下几个方面：
+
+- 进程：进程是操作系统的一个基本单位，它是具有生命周期的一系列执行指令的程序集合。进程的生命周期包括启动、运行、结束等阶段，每个进程都有自己的独立的地址空间和系统资源。进程之间可以进行通信，如共享内存、通信消息等，但进程之间不能直接进行数据
+
+[ Prompt: 218.6 t/s | Generation: 44.7 t/s ]
+
+Exiting...

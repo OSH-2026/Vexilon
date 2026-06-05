@@ -1,0 +1,44 @@
+REQUEST_ID: c1_r010
+PROMPT_ID: P5
+CONCURRENCY: 1
+LATENCY_S: 3.237
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. **mmap 内存映射**\n\n   mmap是一个由Linux操作系统提供的机制，用于在内存中打开一个链接，以便将数据存入内存并以共享方式加载到程序中。这个机制主要用于在内存中动态地加载数据，使得程序在不重新分配内存的情况下可以继续运行。mmap的主要优点包括：\n\n   - 无需预先分配内存，可以在运行时动态分配内存。\n   - 增强了程序的灵活性，可以灵活地访问和修改内存中的数据。\n\n   每个程序都有自己的mmap映射，它们各自存储在不同的内存"
+      }
+    }
+  ],
+  "created": 1780629161,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 133,
+    "total_tokens": 261,
+    "prompt_tokens_details": {
+      "cached_tokens": 132
+    }
+  },
+  "id": "chatcmpl-pgjO0Cr2EvmJVNIXDrII9lG3UqBDe6GM",
+  "timings": {
+    "cache_n": 132,
+    "prompt_n": 1,
+    "prompt_ms": 30.304,
+    "prompt_per_token_ms": 30.304,
+    "prompt_per_second": 32.99894403379092,
+    "predicted_n": 128,
+    "predicted_ms": 3184.182,
+    "predicted_per_token_ms": 24.876421875,
+    "predicted_per_second": 40.198707234699526
+  }
+}

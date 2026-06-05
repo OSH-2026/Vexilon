@@ -1,0 +1,44 @@
+REQUEST_ID: c4_r002
+PROMPT_ID: P2
+CONCURRENCY: 4
+LATENCY_S: 7.872
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. 网络虚拟内存（NVM）是将虚拟内存技术与网络通信技术相结合的一种新内存技术，它允许在计算机上同时运行多个网络应用程序，每个应用程序都可以独立地使用虚拟内存资源。\n\n2. TLB（Translation Lookaside Buffer）是一个硬件缓存，用于存储最近访问的页表项。当CPU访问虚拟内存时，首先查找TLB，如果TLB命中（TLB hit），就能在极短的时间内完成地址转换；如果TLB未命中（TLB miss），则需要进一步访问内存中的页表。\n\n3. 虚拟"
+      }
+    }
+  ],
+  "created": 1780629192,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 669,
+    "total_tokens": 797,
+    "prompt_tokens_details": {
+      "cached_tokens": 668
+    }
+  },
+  "id": "chatcmpl-3E9QCCiFWvqfKwHJy4MphdR3sGiyzIZb",
+  "timings": {
+    "cache_n": 668,
+    "prompt_n": 1,
+    "prompt_ms": 69.751,
+    "prompt_per_token_ms": 69.751,
+    "prompt_per_second": 14.336712018465684,
+    "predicted_n": 128,
+    "predicted_ms": 7775.394,
+    "predicted_per_token_ms": 60.745265625,
+    "predicted_per_second": 16.462188282677378
+  }
+}

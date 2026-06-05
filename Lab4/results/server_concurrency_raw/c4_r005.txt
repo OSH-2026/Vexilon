@@ -1,0 +1,44 @@
+REQUEST_ID: c4_r005
+PROMPT_ID: P5
+CONCURRENCY: 4
+LATENCY_S: 7.727
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. 内存映射：内存映射是一种在操作系统中通过某种技术将物理内存转换为虚拟内存的机制。在操作系统中，用户空间和内核空间是分离的，操作系统使用内存映射技术来实现用户空间和内核空间之间的通信。\n\n   (1) 基本原理：\n   内存映射是一种动态内存管理技术，它通过将一个进程的物理内存转换为一个虚拟内存区域来实现。这个虚拟内存区域被操作系统创建，用于处理用户空间的请求，然后将虚拟内存中的数据加载到内存映射区域。这种方式使得"
+      }
+    }
+  ],
+  "created": 1780629200,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 133,
+    "total_tokens": 261,
+    "prompt_tokens_details": {
+      "cached_tokens": 132
+    }
+  },
+  "id": "chatcmpl-AvBIUR4zhR4VWdBLndfRqWduD1ZD3GjQ",
+  "timings": {
+    "cache_n": 132,
+    "prompt_n": 1,
+    "prompt_ms": 60.236,
+    "prompt_per_token_ms": 60.236,
+    "prompt_per_second": 16.601367952719304,
+    "predicted_n": 128,
+    "predicted_ms": 7637.337,
+    "predicted_per_token_ms": 59.6666953125,
+    "predicted_per_second": 16.759768489985447
+  }
+}

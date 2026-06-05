@@ -1,0 +1,42 @@
+COMMAND:
+C:\Code\rust\Lab4\llama.cpp\build\bin\llama-cli.exe -m C:\Code\rust\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Code\rust\Lab4\results\raw_quality_outputs\_tmp_configB_P2.txt -n 256 --threads 2 --ctx-size 2048 --temp 0.2 --top-p 0.8 --repeat-penalty 1.1 --no-display-prompt --single-turn --simple-io
+
+ELAPSED: 8.20s
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请阅读以下技术材料，并总结出 5 个核心要点。要求每个要点用一句话概括，并确保覆盖虚拟内存、页表、TLB 和缺页中断的关系。
+
+材料：现代操作系统使用虚拟内存技术为每个进程提供独立的地址空间。虚拟内存将进程的虚拟地址空间映射到物理内存，使得进程看到的是一段连续的地址空间，而实际物理内存可能是碎片化的。这一映射关系由页表（Page Table）来实现，页表将� ... (truncated)
+
+1. 虚拟内存技术为每个进程提供独立的虚拟地址空间。
+2. 虚拟页表（Page Table）实现虚拟内存与物理内存之间的映射关系。
+3. TLB（Translation Lookaside Buffer）是硬件缓存，存储最近使用的页表项。
+4. 当访问一个当前不在物理内存中的页面时，CPU 会触发缺页中断。
+5. 虚拟内存系统支持写时复制和内存映射文件等优化技术。
+
+[ Prompt: 163.1 t/s | Generation: 36.6 t/s ]
+
+Exiting...

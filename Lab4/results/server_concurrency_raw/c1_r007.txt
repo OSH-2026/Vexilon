@@ -1,0 +1,44 @@
+REQUEST_ID: c1_r007
+PROMPT_ID: P2
+CONCURRENCY: 1
+LATENCY_S: 3.454
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. 虚拟内存技术为每个进程提供独立的地址空间，使得进程看到的是一段连续的地址空间，而实际物理内存可能是碎片化的。\n2. 虚页表（Page Table）将虚拟页号（VPN）映射到物理页帧号（PFN），同时记录了该页的访问权限、是否被修改（dirty bit）、是否在内存中（present bit）等信息。\n3. 页表通常存储在内存中，每次内存访问都可能导致多次额外的页表访问，严重影响性能。CPU 中引入了转译后备缓冲器（TL"
+      }
+    }
+  ],
+  "created": 1780629152,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 669,
+    "total_tokens": 797,
+    "prompt_tokens_details": {
+      "cached_tokens": 668
+    }
+  },
+  "id": "chatcmpl-ZTDJiDlva2W0iW60k4hMTMCqu9y0ratC",
+  "timings": {
+    "cache_n": 668,
+    "prompt_n": 1,
+    "prompt_ms": 28.247,
+    "prompt_per_token_ms": 28.247,
+    "prompt_per_second": 35.40198959181506,
+    "predicted_n": 128,
+    "predicted_ms": 3413.172,
+    "predicted_per_token_ms": 26.66540625,
+    "predicted_per_second": 37.50177254471793
+  }
+}

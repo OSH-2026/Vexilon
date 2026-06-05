@@ -1,0 +1,44 @@
+REQUEST_ID: c2_r010
+PROMPT_ID: P5
+CONCURRENCY: 2
+LATENCY_S: 4.489
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. **mmap 内存映射**：mmap 是 Linux 内核中的一种技术，用于映射一个文件到内存中，而不需要为这个文件创建一个独立的文件。mmap 在处理虚拟内存时非常有用，因为它可以在不需要创建虚拟内存的情况下，将一个文件映射到内存中。它具有很高的灵活性和效率，因为它可以将文件映射到内存，而不需要创建一个独立的虚拟内存文件。mmap 在操作系统中主要用于在内存中进行文件的读写操作。\n\n2. **共享库的加载机制**：在操作系统中，共享库"
+      }
+    }
+  ],
+  "created": 1780629184,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 133,
+    "total_tokens": 261,
+    "prompt_tokens_details": {
+      "cached_tokens": 132
+    }
+  },
+  "id": "chatcmpl-6v6U7qxwfqu9ogneyg0Df09npYRudHU5",
+  "timings": {
+    "cache_n": 132,
+    "prompt_n": 1,
+    "prompt_ms": 33.099,
+    "prompt_per_token_ms": 33.099,
+    "prompt_per_second": 30.21239312365933,
+    "predicted_n": 128,
+    "predicted_ms": 4417.293,
+    "predicted_per_token_ms": 34.5101015625,
+    "predicted_per_second": 28.9770228055961
+  }
+}

@@ -1,0 +1,11 @@
+prompt_id,category,config_name,threads,ctx_size,temp,top_p,repeat_penalty,n_predict,output_path,output_chars,success,error_message,correctness_score,completeness_score,clarity_score,hallucination_level,notes
+P1,中文问答,configA,2,2048,0.7,0.9,1.1,256,results\raw_quality_outputs\configA_P1.txt,1221,true,,2,3,2,中,
+P2,摘要,configA,2,2048,0.7,0.9,1.1,256,results\raw_quality_outputs\configA_P2.txt,1068,true,,3,4,4,低,
+P3,代码解释,configA,2,2048,0.7,0.9,1.1,256,results\raw_quality_outputs\configA_P3.txt,1719,true,,3,3,4,高,
+P4,推理题,configA,2,2048,0.7,0.9,1.1,256,results\raw_quality_outputs\configA_P4.txt,1270,true,,1,1,1,低,
+P5,课程相关,configA,2,2048,0.7,0.9,1.1,256,results\raw_quality_outputs\configA_P5.txt,1306,true,,2,2,3,中,
+P1,中文问答,configB,2,2048,0.2,0.8,1.1,256,results\raw_quality_outputs\configB_P1.txt,1200,true,,2,3,4,中,
+P2,摘要,configB,2,2048,0.2,0.8,1.1,256,results\raw_quality_outputs\configB_P2.txt,1056,true,,4,4,4,低,
+P3,代码解释,configB,2,2048,0.2,0.8,1.1,256,results\raw_quality_outputs\configB_P3.txt,1656,true,,4,4,4,低,
+P4,推理题,configB,2,2048,0.2,0.8,1.1,256,results\raw_quality_outputs\configB_P4.txt,1297,true,,1,2,2,低,
+P5,课程相关,configB,2,2048,0.2,0.8,1.1,256,results\raw_quality_outputs\configB_P5.txt,1277,true,,2,2,3,高,

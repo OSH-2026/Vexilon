@@ -1,0 +1,52 @@
+COMMAND:
+C:\Code\rust\Lab4\llama.cpp\build\bin\llama-cli.exe -m C:\Code\rust\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf -f C:\Code\rust\Lab4\results\raw_quality_outputs\_tmp_configA_P5.txt -n 256 --threads 2 --ctx-size 2048 --temp 0.7 --top-p 0.9 --repeat-penalty 1.1 --no-display-prompt --single-turn --simple-io
+
+ELAPSED: 9.38s
+
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9502-6ddc9430b
+model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> 请结合操作系统课程知识，详细阐述以下三个概念的关联与区别：(1) mmap 内存映射；(2) 共享库的加载机制；(3) Copy-on-Write（写时复制）技术。
+
+要求：
+- 解释各自的基本原理和用途
+- 说明它们如何协同工作在操作系统中
+- 描述缺页中断（page fault）在这三个机制中扮演的角色
+- 请用中文回答，条理清晰，适当举例说明
+
+1. mmap 内存映射：mmap 是一个重要的内存映射工具。它允许程序员直接访问系统中的特定内存区域，而不需要先进行进程间的通信和数据的共享。
+
+   基本原理：通过将内存分配给特定进程，然后在该进程中读写该内存。这种方式使得程序可以在不创建新文件的情况下访问已有的内存块。
+
+   用途：mmap 的主要用途是实现多任务并发。程序员可以使用 mmap 将自己的代码片段共享到多个独立的线程或进程，从而提升系统的并发性能和响应速度。
+
+2. 共享库的加载机制：在操作系统中，共享库是一种特殊的内存映射工具。它允许用户直接访问并使用其他应用程序开发的代码。
+
+   基本原理：当一个程序需要使用某个已有的模块时，操作系统将该模块作为一个进程的一部分来处理，而不是将其单独分配到物理内存中。这种方式可以提高系统的并发性能和响应速度。
+
+   用途：共享库的加载机制主要用于实现多任务并发。程序员可以直接调用共享库中的函数，而不需创建新文件或者等待新的线程或进程的到来。这种方式使得程序可以在不创建新文件的情况下
+
+[ Prompt: 123.9 t/s | Generation: 34.3 t/s ]
+
+Exiting...

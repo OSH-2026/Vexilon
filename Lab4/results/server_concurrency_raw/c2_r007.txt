@@ -1,0 +1,44 @@
+REQUEST_ID: c2_r007
+PROMPT_ID: P2
+CONCURRENCY: 2
+LATENCY_S: 4.724
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "5个核心要点：\n\n1. **虚拟内存技术**：现代操作系统为每个进程提供独立的虚拟地址空间，通过页表实现虚拟内存映射到物理内存，使得进程看到的是连续的地址空间。\n\n2. **TLB和缺页中断**：页表存储在内存中，每次内存访问都可能导致额外的页表访问，TLB通过硬件缓存来加速地址转换，缺页中断处理CPU需要转换一个虚拟地址的情况。\n\n3. **转译后备缓冲器**：CPU通过转译后备缓冲器查找最近使用过的页表项，加速地址转换过程。\n\n"
+      }
+    }
+  ],
+  "created": 1780629180,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 669,
+    "total_tokens": 797,
+    "prompt_tokens_details": {
+      "cached_tokens": 668
+    }
+  },
+  "id": "chatcmpl-E7dfmb4SkyRsYD7Vm8lRBIWK8uHhkuAg",
+  "timings": {
+    "cache_n": 668,
+    "prompt_n": 1,
+    "prompt_ms": 29.222,
+    "prompt_per_token_ms": 29.222,
+    "prompt_per_second": 34.22079255355554,
+    "predicted_n": 128,
+    "predicted_ms": 4661.163,
+    "predicted_per_token_ms": 36.4153359375,
+    "predicted_per_second": 27.460957705190747
+  }
+}

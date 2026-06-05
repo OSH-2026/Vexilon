@@ -1,0 +1,44 @@
+REQUEST_ID: c4_r007
+PROMPT_ID: P2
+CONCURRENCY: 4
+LATENCY_S: 3.596
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. 虚拟内存映射到物理内存\n2. 页表和TLB的关系\n3. 缓存和转译技术\n4. 虚拟内存中的缺页中断\n5. 写时复制和内存映射文件的实现"
+      }
+    }
+  ],
+  "created": 1780629196,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 59,
+    "prompt_tokens": 669,
+    "total_tokens": 728,
+    "prompt_tokens_details": {
+      "cached_tokens": 668
+    }
+  },
+  "id": "chatcmpl-fLd9528fnt046043RAR9G582xpgui2sK",
+  "timings": {
+    "cache_n": 668,
+    "prompt_n": 1,
+    "prompt_ms": 61.524,
+    "prompt_per_token_ms": 61.524,
+    "prompt_per_second": 16.25381964761719,
+    "predicted_n": 59,
+    "predicted_ms": 3505.724,
+    "predicted_per_token_ms": 59.41905084745763,
+    "predicted_per_second": 16.829619217029062
+  }
+}

@@ -1,0 +1,44 @@
+REQUEST_ID: c4_r006
+PROMPT_ID: P1
+CONCURRENCY: 4
+LATENCY_S: 7.728
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "在操作系统中，进程和线程是两个重要概念，它们在资源拥有、调度方式以及进程间的通信方式上都存在显著区别。下面将详细解释这些概念。\n\n1. 资源拥有方面的差异：\n   - 进程：进程是操作系统中运行的最小单位，它包含了一个进程标识符（PID），以及一个指向进程数据的指针。进程是操作系统的一个基本单位，它没有独立的资源分配，只能执行程序，并且无法独立创建和删除。进程是一个动态的、独立的实体，它的执行状态是可变的，可以在任何时间执行，"
+      }
+    }
+  ],
+  "created": 1780629200,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 94,
+    "total_tokens": 222,
+    "prompt_tokens_details": {
+      "cached_tokens": 93
+    }
+  },
+  "id": "chatcmpl-Mhs5mARd4fqsRXQCOTGIkLD5VeUBKoTt",
+  "timings": {
+    "cache_n": 93,
+    "prompt_n": 1,
+    "prompt_ms": 61.977,
+    "prompt_per_token_ms": 61.977,
+    "prompt_per_second": 16.1350178291947,
+    "predicted_n": 128,
+    "predicted_ms": 7636.938,
+    "predicted_per_token_ms": 59.663578125,
+    "predicted_per_second": 16.760644122029014
+  }
+}

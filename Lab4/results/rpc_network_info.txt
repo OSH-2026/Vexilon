@@ -1,0 +1,41 @@
+RPC Network Information
+=======================
+Recorded: 2026-06-05
+
+Host (Master)
+-------------
+Hostname: LAPTOP-CNRQSONN
+IP: 192.168.137.1
+OS: Windows 11 Home China (10.0.26200)
+CPU: Intel(R) Core(TM) Ultra 7 255HX (20 cores / 20 logical processors)
+Memory: 16 GB
+GPU: NVIDIA GeForce RTX 5060 Laptop GPU
+Role: Runs llama-cli (RPC client), holds model file
+Note: CPU 散热有限，--threads 限制为 2
+
+Worker (Slave)
+--------------
+Hostname: ljyUSTC
+IP: 192.168.137.70
+CPU: Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+Memory: 32GB
+Role: Runs rpc-server, provides compute resources
+
+Network
+-------
+Connection type: Mobile hotspot (host creates hotspot, worker connects)
+Subnet: 192.168.137.0/24
+Ping latency (host -> worker):
+  - Min: 7ms (previously recorded)
+  - Max: 80ms (previously recorded)
+  - Average: 46ms (previously recorded)
+  - Note: latency fluctuates; latest test showed 1ms-538ms range
+Port 50052 connectivity: OK (confirmed via Python socket connection)
+Note: Hotspot network has high latency variance, less stable than wired LAN.
+
+Model
+-----
+File: models/qwen2.5-0.5b-instruct-q4_k_m.gguf
+Model: Qwen2.5-0.5B-Instruct
+Quantization: Q4_K_M
+Size: ~469 MB

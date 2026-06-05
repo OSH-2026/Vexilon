@@ -1,0 +1,44 @@
+REQUEST_ID: c2_r006
+PROMPT_ID: P1
+CONCURRENCY: 2
+LATENCY_S: 4.563
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "（1）资源拥有方面的差异\n\n在操作系统中，进程和线程是两个不同的概念，它们在资源拥有方面有很大的区别：\n\n1. 进程与线程的关系：进程是计算机系统中的一个基本单位，它可以包含多个线程。一个进程在执行时，会同时运行多个线程，每个线程都是一个独立的执行单元。进程的状态可以是运行、阻塞、等待、就绪、等待就绪等。\n\n2. 线程与进程的关系：线程是进程的一部分，而进程是线程的集合。线程在执行时，会同时"
+      }
+    }
+  ],
+  "created": 1780629175,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 94,
+    "total_tokens": 222,
+    "prompt_tokens_details": {
+      "cached_tokens": 93
+    }
+  },
+  "id": "chatcmpl-O9vgS8tLUriJaX9OSxoTYIMyrUTAgPCU",
+  "timings": {
+    "cache_n": 93,
+    "prompt_n": 1,
+    "prompt_ms": 39.545,
+    "prompt_per_token_ms": 39.545,
+    "prompt_per_second": 25.287646984448095,
+    "predicted_n": 128,
+    "predicted_ms": 4491.953,
+    "predicted_per_token_ms": 35.0933828125,
+    "predicted_per_second": 28.49540055294434
+  }
+}

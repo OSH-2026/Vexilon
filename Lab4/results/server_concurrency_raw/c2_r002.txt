@@ -1,0 +1,44 @@
+REQUEST_ID: c2_r002
+PROMPT_ID: P2
+CONCURRENCY: 2
+LATENCY_S: 4.508
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "length",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. 虚拟内存技术为每个进程提供独立的地址空间，使得地址转换过程得以加速。\n2. 虚页表（Page Table）将虚拟页号映射到物理页帧号，同时记录访问权限、修改和内存状态信息。\n3. 转译后备缓冲器（TLB）通过缓存最近访问的页表项，加速了地址转换。\n4. 当一个进程试图访问一个不在物理内存中的页面时，CPU 会触发缺页中断，操作系统处理缺页中断的流程包括：查找 TLB 命中（TLB"
+      }
+    }
+  ],
+  "created": 1780629166,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 128,
+    "prompt_tokens": 669,
+    "total_tokens": 797,
+    "prompt_tokens_details": {
+      "cached_tokens": 668
+    }
+  },
+  "id": "chatcmpl-985PevuzMBYtGQcktulGPcPSsVmXog9J",
+  "timings": {
+    "cache_n": 668,
+    "prompt_n": 1,
+    "prompt_ms": 41.666,
+    "prompt_per_token_ms": 41.666,
+    "prompt_per_second": 24.0003840061441,
+    "predicted_n": 128,
+    "predicted_ms": 4426.056,
+    "predicted_per_token_ms": 34.5785625,
+    "predicted_per_second": 28.91965216888354
+  }
+}

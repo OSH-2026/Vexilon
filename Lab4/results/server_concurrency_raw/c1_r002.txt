@@ -1,0 +1,44 @@
+REQUEST_ID: c1_r002
+PROMPT_ID: P2
+CONCURRENCY: 1
+LATENCY_S: 7.686
+SUCCESS: True
+STATUS_CODE: 200
+ERROR: 
+
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "1. 虚拟内存映射到物理内存，实现进程独立的地址空间。\n2. 页表管理页表映射虚拟地址，记录访问权限、是否修改、是否在内存等信息。\n3. CPU通过 TLB 检查页面转换，转译后备缓冲器加速地址转换。\n4. 缺页中断处理页面访问，操作系统通过 TLB 选择新的页面。"
+      }
+    }
+  ],
+  "created": 1780629132,
+  "model": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "system_fingerprint": "b9502-6ddc9430b",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 88,
+    "prompt_tokens": 669,
+    "total_tokens": 757,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "id": "chatcmpl-spuqvnyxIb7j20XVHJV9igiJlSAASQ1N",
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 669,
+    "prompt_ms": 5390.053,
+    "prompt_per_token_ms": 8.056880418535126,
+    "prompt_per_second": 124.1175179539051,
+    "predicted_n": 88,
+    "predicted_ms": 2286.196,
+    "predicted_per_token_ms": 25.979499999999998,
+    "predicted_per_second": 38.49188783463885
+  }
+}
