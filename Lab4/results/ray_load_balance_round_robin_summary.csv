@@ -1,0 +1,4 @@
+strategy,worker_id,server_url,request_count,success_count,failure_count,avg_latency_s,p95_latency_s,total_latency_s,throughput_req_per_s
+round_robin,worker_0,http://127.0.0.1:8080,15,15,0,8.334,10.3346,125.0105,0.0886
+round_robin,worker_1,http://127.0.0.1:8081,15,15,0,11.2888,18.1843,169.3323,0.0886
+round_robin,overall,all,30,30,0,9.8114,18.1171,294.3428,0.1771

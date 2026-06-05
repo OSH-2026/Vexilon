@@ -1,0 +1,94 @@
+# Ray Failure-Retry Log
+# Started: 2026-06-05T12:33:41.775519+00:00
+# Format: TIMESTAMP | LEVEL | prompt_id | event | worker | server_url | detail
+# Fields: timestamp, level, prompt_id, event_type, worker_id, server_url, detail
+---
+2026-06-05T12:33:44.285285+00:00 | INFO  | SYSTEM | init                 | -          | -                              | 2 servers: ['http://127.0.0.1:8080', 'http://127.0.0.1:8081']
+2026-06-05T12:33:44.285337+00:00 | INFO  | R001   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=0, round_robin
+2026-06-05T12:33:49.268266+00:00 | OK    | R001   | first_try_ok         | worker_0   | http://127.0.0.1:8080          | latency=4.94s
+2026-06-05T12:33:49.268333+00:00 | INFO  | R002   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=1, round_robin
+2026-06-05T12:33:54.405993+00:00 | OK    | R002   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=5.13s
+2026-06-05T12:33:54.406037+00:00 | INFO  | R003   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=2, round_robin
+2026-06-05T12:34:00.307710+00:00 | OK    | R003   | first_try_ok         | worker_0   | http://127.0.0.1:8080          | latency=5.90s
+2026-06-05T12:34:00.307760+00:00 | INFO  | R004   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=3, round_robin
+2026-06-05T12:34:06.674535+00:00 | OK    | R004   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=6.37s
+2026-06-05T12:34:06.674575+00:00 | INFO  | R005   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=4, round_robin
+2026-06-05T12:34:11.301034+00:00 | OK    | R005   | first_try_ok         | worker_0   | http://127.0.0.1:8080          | latency=4.63s
+2026-06-05T12:34:11.301086+00:00 | INFO  | R006   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=5, round_robin
+2026-06-05T12:34:18.906786+00:00 | OK    | R006   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=7.60s
+2026-06-05T12:34:18.906839+00:00 | INFO  | R007   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=6, round_robin
+2026-06-05T12:34:18.908544+00:00 | WARN  | R007   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:34:18.908577+00:00 | INFO  | R007   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:34:22.609852+00:00 | OK    | R007   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=3.70s
+2026-06-05T12:34:22.609898+00:00 | INFO  | R008   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=7, round_robin
+2026-06-05T12:34:27.285723+00:00 | OK    | R008   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=4.67s
+2026-06-05T12:34:27.285772+00:00 | INFO  | R009   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=8, round_robin
+2026-06-05T12:34:27.287948+00:00 | WARN  | R009   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:34:27.287976+00:00 | INFO  | R009   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:34:28.715927+00:00 | OK    | R009   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=1.43s
+2026-06-05T12:34:28.716014+00:00 | INFO  | R010   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=9, round_robin
+2026-06-05T12:34:30.740499+00:00 | OK    | R010   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=2.02s
+2026-06-05T12:34:30.740550+00:00 | INFO  | R011   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=10, round_robin
+2026-06-05T12:34:30.742452+00:00 | WARN  | R011   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:34:30.742487+00:00 | INFO  | R011   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:34:36.973049+00:00 | OK    | R011   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=6.23s
+2026-06-05T12:34:36.973090+00:00 | INFO  | R012   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=11, round_robin
+2026-06-05T12:34:41.942192+00:00 | OK    | R012   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=4.97s
+2026-06-05T12:34:41.942235+00:00 | INFO  | R013   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=12, round_robin
+2026-06-05T12:34:41.943762+00:00 | WARN  | R013   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:34:41.943788+00:00 | INFO  | R013   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:34:48.093147+00:00 | OK    | R013   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=6.15s
+2026-06-05T12:34:48.093254+00:00 | INFO  | R014   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=13, round_robin
+2026-06-05T12:34:50.643547+00:00 | OK    | R014   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=2.55s
+2026-06-05T12:34:50.643591+00:00 | INFO  | R015   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=14, round_robin
+2026-06-05T12:34:50.645214+00:00 | WARN  | R015   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:34:50.645242+00:00 | INFO  | R015   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:34:55.386114+00:00 | OK    | R015   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=4.74s
+2026-06-05T12:34:55.386154+00:00 | INFO  | R016   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=15, round_robin
+2026-06-05T12:35:02.183244+00:00 | OK    | R016   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=6.80s
+2026-06-05T12:35:02.183347+00:00 | INFO  | R017   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=16, round_robin
+2026-06-05T12:35:02.185251+00:00 | WARN  | R017   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:02.185308+00:00 | INFO  | R017   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:35:08.437621+00:00 | OK    | R017   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=6.25s
+2026-06-05T12:35:08.437670+00:00 | INFO  | R018   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=17, round_robin
+2026-06-05T12:35:10.532795+00:00 | OK    | R018   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=2.09s
+2026-06-05T12:35:10.532842+00:00 | INFO  | R019   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=18, round_robin
+2026-06-05T12:35:10.534490+00:00 | WARN  | R019   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:10.534515+00:00 | INFO  | R019   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:35:17.488520+00:00 | OK    | R019   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=6.95s
+2026-06-05T12:35:17.488592+00:00 | INFO  | R020   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=19, round_robin
+2026-06-05T12:35:22.844875+00:00 | OK    | R020   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=5.35s
+2026-06-05T12:35:22.844922+00:00 | INFO  | R021   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=20, round_robin
+2026-06-05T12:35:22.846537+00:00 | WARN  | R021   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:22.846563+00:00 | INFO  | R021   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:35:27.542454+00:00 | OK    | R021   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=4.69s
+2026-06-05T12:35:27.542494+00:00 | INFO  | R022   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=21, round_robin
+2026-06-05T12:35:35.124652+00:00 | OK    | R022   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=7.58s
+2026-06-05T12:35:35.124707+00:00 | INFO  | R023   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=22, round_robin
+2026-06-05T12:35:35.126759+00:00 | WARN  | R023   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:35.126785+00:00 | INFO  | R023   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:35:39.829170+00:00 | OK    | R023   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=4.70s
+2026-06-05T12:35:39.829214+00:00 | INFO  | R024   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=23, round_robin
+2026-06-05T12:35:40.621431+00:00 | OK    | R024   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=0.79s
+2026-06-05T12:35:40.621474+00:00 | INFO  | R025   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=24, round_robin
+2026-06-05T12:35:40.622985+00:00 | WARN  | R025   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:40.623020+00:00 | INFO  | R025   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:35:42.355178+00:00 | OK    | R025   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=1.73s
+2026-06-05T12:35:42.355223+00:00 | INFO  | R026   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=25, round_robin
+2026-06-05T12:35:49.943539+00:00 | OK    | R026   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=7.59s
+2026-06-05T12:35:49.943585+00:00 | INFO  | R027   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=26, round_robin
+2026-06-05T12:35:49.945116+00:00 | WARN  | R027   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:49.945143+00:00 | INFO  | R027   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:35:53.811924+00:00 | OK    | R027   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=3.87s
+2026-06-05T12:35:53.811975+00:00 | INFO  | R028   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=27, round_robin
+2026-06-05T12:35:59.174787+00:00 | OK    | R028   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=5.36s
+2026-06-05T12:35:59.174842+00:00 | INFO  | R029   | initial_assign       | worker_0   | http://127.0.0.1:8080          | idx=28, round_robin
+2026-06-05T12:35:59.182747+00:00 | WARN  | R029   | fail_connection_refused | worker_0   | http://127.0.0.1:8080          | Connection refused on http://127.0.0.1:8080: HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError("HTTPConnection(host='12
+2026-06-05T12:35:59.182808+00:00 | INFO  | R029   | retry_switch         | worker_1   | http://127.0.0.1:8081          | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:36:06.181010+00:00 | OK    | R029   | retry_ok             | worker_1   | http://127.0.0.1:8081          | retry=1, latency=7.00s
+2026-06-05T12:36:06.181053+00:00 | INFO  | R030   | initial_assign       | worker_1   | http://127.0.0.1:8081          | idx=29, round_robin
+2026-06-05T12:36:08.144687+00:00 | OK    | R030   | first_try_ok         | worker_1   | http://127.0.0.1:8081          | latency=1.96s
+2026-06-05T12:36:08.144767+00:00 | INFO  | SYSTEM | summary              | -          | -                              | {"total": 30, "first_try_success": 18, "retry_success": 12, "final_failure": 0}
+2026-06-05T12:36:08.144782+00:00 | INFO  | SYSTEM | done                 | -          | -                              | elapsed=143.9s, success_rate=100.0%
+
+# Finished: 2026-06-05T12:36:09.280625+00:00

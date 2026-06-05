@@ -179,3 +179,98 @@ python3 Lab4/scripts/summarize_csv.py \
 ```bash
 ray stop
 ```
+
+## 7. Load-Balance Bonus Experiments
+
+### 7.1 Heterogeneous server setup
+
+Server 8080 (fast): 4 threads
+Server 8081 (slow): 2 threads
+
+```bash
+# Server 8080 (fast, 4 threads)
+./llama-server -m Lab4/models/qwen2.5-0.5b-instruct-q4_k_m.gguf \
+  --host 0.0.0.0 --port 8080 --ctx-size 2048 --batch-size 256 \
+  --threads 4 --n-gpu-layers 0 &
+
+# Server 8081 (slow, 2 threads)
+./llama-server -m Lab4/models/qwen2.5-0.5b-instruct-q4_k_m.gguf \
+  --host 0.0.0.0 --port 8081 --ctx-size 2048 --batch-size 256 \
+  --threads 2 --n-gpu-layers 0 &
+```
+
+### 7.2 Round-Robin with 30 prompts
+
+```bash
+python3 Lab4/scripts/ray_load_balance.py \
+  --prompts Lab4/prompts/ray_prompts_30.jsonl \
+  --server-urls http://127.0.0.1:8080,http://127.0.0.1:8081 \
+  --strategy round_robin \
+  --output Lab4/results/ray_load_balance_round_robin.csv \
+  --summary-output Lab4/results/ray_load_balance_round_robin_summary.csv \
+  --timeout 120
+```
+
+### 7.3 Latency-Aware with 30 prompts
+
+```bash
+python3 Lab4/scripts/ray_load_balance.py \
+  --prompts Lab4/prompts/ray_prompts_30.jsonl \
+  --server-urls http://127.0.0.1:8080,http://127.0.0.1:8081 \
+  --strategy latency_aware \
+  --output Lab4/results/ray_load_balance_latency_aware.csv \
+  --summary-output Lab4/results/ray_load_balance_latency_aware_summary.csv \
+  --timeout 120
+```
+
+## 8. Failure-Retry Bonus Experiments
+
+### 8.1 Server setup (both equal, 4 threads)
+
+```bash
+# Server A (8080)
+./llama-server -m Lab4/models/qwen2.5-0.5b-instruct-q4_k_m.gguf \
+  --host 0.0.0.0 --port 8080 --ctx-size 2048 --batch-size 256 \
+  --threads 4 --n-gpu-layers 0 &
+
+# Server B (8081)
+./llama-server -m Lab4/models/qwen2.5-0.5b-instruct-q4_k_m.gguf \
+  --host 0.0.0.0 --port 8081 --ctx-size 2048 --batch-size 256 \
+  --threads 4 --n-gpu-layers 0 &
+```
+
+### 8.2 Failure injection procedure
+
+1. Start both servers, verify with `curl /health`
+2. Start `ray_failure_retry.py` (30 prompts, max-retries=2)
+3. After ~35 seconds (~6-7 prompts done), kill Server A:
+   ```bash
+   kill -9 $(ss -tlnp | grep 8080 | grep -oP 'pid=\K[0-9]+')
+   ```
+4. Observe: all subsequent requests to worker_0 fail with
+   `connection_refused`, then automatically retry on worker_1 (8081).
+
+### 8.3 Run failure retry experiment
+
+```bash
+python3 Lab4/scripts/ray_failure_retry.py \
+  --prompts Lab4/prompts/ray_prompts_30.jsonl \
+  --server-urls http://127.0.0.1:8080,http://127.0.0.1:8081 \
+  --output Lab4/results/ray_failure_retry.csv \
+  --log Lab4/results/ray_failure_retry.log \
+  --timeout 60 \
+  --max-retries 2
+```
+
+### 8.4 Results (2026-06-05)
+
+| Metric | Value |
+|---|---|
+| Total requests | 30 |
+| First-try success | 18 |
+| Retry success | 12 |
+| Final failure | 0 |
+| **Final success rate** | **100.0%** |
+| Total wall time | 143.9s |
+| Failure type | All `connection_refused` |
+| Retry target | All `worker_1` (8081) |

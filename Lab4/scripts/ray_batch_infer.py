@@ -334,7 +334,18 @@ def _start_ray_local() -> None:
         )
         sys.exit(1)
     if not ray.is_initialized():
-        ray.init(ignore_reinit_error=True)
+        # Monkey-patch Ray's IP detection to force 127.0.0.1.
+        # The default logic uses node_ip_address_from_perspective() which
+        # connects to a public server and picks the external-facing interface
+        # (e.g. WiFi with CGNAT IP 100.64.191.165).  On machines where that
+        # IP is not reachable for local TCP connections, the GCS will fail.
+        # Must patch ray.util.get_node_ip_address (NOT
+        # ray._private.services.get_node_ip_address — they are different objects).
+        import ray.util as _ray_util
+
+        _ray_util.get_node_ip_address = lambda address=None: "127.0.0.1"
+
+        ray.init(address="local", ignore_reinit_error=True)
         print("[Ray] Initialised (local mode)")
     else:
         print("[Ray] Already initialised")

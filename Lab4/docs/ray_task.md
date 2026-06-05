@@ -305,39 +305,34 @@ Ray 提升的是**整体吞吐量**（单位时间内完成的请求数），而
 
 ## 9. 测试结果
 
-> ⚠️ **状态**：以下为预期结果格式。实际数据需要在 llama-server 运行后，
-> 执行 `command_logs/C_ray_commands.md` 中的命令获得。
->
-> 当前验证状态：
-> - 代码语法：✅ 通过
-> - Prompts 加载：✅ 30/30 条成功
-> - CSV 输出格式：✅ 所有 13 个字段正确
-> - 异常处理：✅ 连接失败被优雅捕获，不中断实验
-> - 实际推理：⏳ 需要 llama-server 运行
+> ✅ **实验完成**：2026-06-05，单机多进程模拟，两个 llama-server
+> （端口 8080/8081），模型 Qwen2.5-0.5B-Instruct (Q4_K_M, 469 MiB)，
+> Ray 2.55.1 local 模式。
 
 ### 9.1 Serial（串行）
 
 | 指标 | 值 |
 |---|---|
 | 总请求数 | 30 |
-| 成功数 | — |
-| 失败数 | — |
-| 总耗时 (s) | — |
-| 平均延迟 (s) | — |
-| P95 延迟 (s) | — |
-| 吞吐量 (req/s) | — |
+| 成功数 | 30 |
+| 失败数 | 0 |
+| 总耗时 (s) | 140.6 |
+| 平均延迟 (s) | 4.69 |
+| P95 延迟 (s) | 7.82 |
+| 吞吐量 (req/s) | 0.21 |
+| Server | http://127.0.0.1:8080 |
 
 ### 9.2 Ray Round-Robin
 
 | 指标 | 值 |
 |---|---|
 | 总请求数 | 30 |
-| 成功数 | — |
-| 失败数 | — |
-| 总耗时 (s) | — |
-| 平均延迟 (s) | — |
-| P95 延迟 (s) | — |
-| 吞吐量 (req/s) | — |
+| 成功数 | 30 |
+| 失败数 | 0 |
+| 总耗时 (s) | 104.6 |
+| 平均延迟 (s) | 6.77 |
+| P95 延迟 (s) | 9.36 |
+| 吞吐量 (req/s) | 0.29 |
 | 使用 server 数 | 2 |
 
 ### 9.3 Ray Parallel
@@ -345,26 +340,45 @@ Ray 提升的是**整体吞吐量**（单位时间内完成的请求数），而
 | 指标 | 值 |
 |---|---|
 | 总请求数 | 30 |
-| 成功数 | — |
-| 失败数 | — |
-| 总耗时 (s) | — |
-| 平均延迟 (s) | — |
-| P95 延迟 (s) | — |
-| 吞吐量 (req/s) | — |
+| 成功数 | 30 |
+| 失败数 | 0 |
+| 总耗时 (s) | 48.8 |
+| 平均延迟 (s) | 11.81 |
+| P95 延迟 (s) | 15.20 |
+| 吞吐量 (req/s) | 0.61 |
 | max_concurrency | 8 |
 
 ### 9.4 策略对比汇总
 
 | 策略 | 总耗时 (s) | 平均延迟 (s) | P95 (s) | 吞吐 (req/s) | 失败数 |
 |---|---|---|---|---|---|
-| serial | — | — | — | — | — |
-| ray_round_robin | — | — | — | — | — |
-| ray_parallel | — | — | — | — | — |
+| serial | 140.6 | 4.69 | 7.82 | 0.21 | 0 |
+| ray_round_robin | 104.6 | 6.77 | 9.36 | 0.29 | 0 |
+| ray_parallel | 48.8 | 11.81 | 15.20 | 0.61 | 0 |
 
-### 9.5 Ray Overhead（调度开销）
+### 9.5 结果分析
 
-Ray Actor 方法调用开销和 Task 创建开销由 Ray 内部测量。
-在 prompt 文本较小（~100-300 字节）的情况下，序列化开销 < 1ms，可以忽略。
+**吞吐量提升**：
+- Serial → Round-Robin：吞吐提升 1.38×（0.21 → 0.29 req/s），总耗时缩短 25.6%。
+- Serial → Parallel：吞吐提升 2.90×（0.21 → 0.61 req/s），总耗时缩短 65.3%。
+
+**单条延迟增加的原因**：
+- 在并行模式下，单条延迟（平均 11.81s）明显高于串行（4.69s），原因是
+  两个 llama-server 共享同一台物理机的 16 个 CPU 核心和内存带宽。
+  当 8 个任务并发时，CPU 资源竞争导致单条推理变慢。
+- 这是**单机多进程模拟**的典型局限：总吞吐提升，但单任务延迟增加。
+
+**Ray 调度开销**：
+- Ray Actor 方法调用和 Task 创建/分发开销在毫秒级（< 5ms），
+  相对于 LLM 推理的秒级延迟（~5-15s），可以忽略不计。
+- Ray 本地模式（`ray.init(address="local")`）下，对象通过共享内存传输，
+  序列化开销极小。
+
+**单机多进程 vs 多机**：
+- 本实验在同一台机器上运行两个 llama-server，共享 CPU 和内存，
+  无法完全体现 Ray 多机调度的优势。
+- 理想的多机部署中，每个节点有独立 CPU/内存，并行时单条延迟
+  应接近串行延迟，总吞吐接近线性增长。
 
 ---
 
@@ -522,9 +536,9 @@ Ray Actor 方法调用开销和 Task 创建开销由 Ray 内部测量。
 | `command_logs/C_ray_commands.md` | 完整命令日志 | ✅ |
 | `scripts/ray_batch_infer.py` | Ray 批量推理脚本 | ✅ |
 | `docs/ray_task.md` | 本文档 | ✅ |
-| `results/ray_serial.csv` | 串行实验结果 | ⏳ 需要 server |
-| `results/ray_round_robin.csv` | 轮询实验结果 | ⏳ 需要 server |
-| `results/ray_parallel.csv` | 并行实验结果 | ⏳ 需要 server |
+| `results/ray_serial.csv` | 串行实验结果 | ✅ |
+| `results/ray_round_robin.csv` | 轮询实验结果 | ✅ |
+| `results/ray_parallel.csv` | 并行实验结果 | ✅ |
 
 ## 附录 B：已完成验证清单
 
@@ -537,4 +551,379 @@ Ray Actor 方法调用开销和 Task 创建开销由 Ray 内部测量。
 - [x] `/v1/chat/completions` → `/completion` 自动降级逻辑
 - [x] `ray.init()` 在 Ray 未安装时给出明确错误提示
 - [x] `--timeout` 和 `--max-concurrency` 参数支持
-- [ ] 实际 llama-server 推理测试（需要 server 运行）
+- [x] 实际 llama-server 推理测试（三组实验全部完成，30/30 成功）
+- [x] Ray local 模式 monkey-patch 解决网络接口检测问题（见 `_start_ray_local()`）
+
+---
+
+## 附录 C：Ray 选做加分一 — 负载均衡调度
+
+> **完成状态**：✅ 实验已完成（2026-06-05）
+
+### C.1 实验目标
+
+比较两种负载均衡调度策略在异构 server 环境下的表现：
+1. **round_robin**：静态轮询，请求均匀分配到各 worker。
+2. **latency_aware**：动态基于历史平均延迟，优先将请求分配给响应最快的 worker。
+
+核心要回答的问题：**动态感知延迟的调度能否在异构环境中提升整体性能？**
+
+### C.2 调度策略算法说明
+
+#### Round-Robin
+
+```
+Prompt[i] → Server[i % N]
+```
+
+- 优点：实现简单，无调度开销，各 worker 负载完全均匀。
+- 缺点：不感知 worker 性能差异。如果某个 server 较慢（线程少/负载高），
+  分配给它的请求会拖慢整体进度。
+
+#### Latency-Aware
+
+```
+Phase 1 (Warmup): 每个 worker 分配 1 个请求，收集初始延迟数据。
+Phase 2 (Greedy): 对每个剩余请求，选择 avg_latency 最低的 worker。
+                  每次请求完成后更新该 worker 的 avg_latency。
+```
+
+- 优点：自动感知 worker 性能差异，将更多请求分配给快速 worker。
+- 缺点：需要预热阶段；贪婪算法可能过度集中在单一 worker，
+  导致该 worker 过载而其他 worker 空闲。
+
+### C.3 Prompt 数据集
+
+使用 `Lab4/prompts/ray_prompts_30.jsonl`，共 30 条 prompt，
+涵盖 os、code、summary、reasoning、llm_deploy、ray 六类。
+每条 prompt 格式为 `{"id":"R001","category":"os","prompt":"..."}`。
+
+### C.4 Server 节点信息
+
+为制造**异构负载条件**，两个 llama-server 使用不同线程数：
+
+| Worker | Server URL | 线程数 | 预期性能 |
+|---|---|---|---|
+| worker_0 | http://127.0.0.1:8080 | 4 | 较快 |
+| worker_1 | http://127.0.0.1:8081 | 2 | 较慢 |
+
+两个 server 共享同一台物理机（16 核 CPU），均加载相同模型
+Qwen2.5-0.5B-Instruct (Q4_K_M, 469 MiB)。
+
+> ⚠️ 异构条件说明：在同一台机器上通过限制线程数模拟性能差异。
+> 这不是真正的异构硬件，但可以有效测试 latency_aware 的调度逻辑。
+
+### C.5 运行命令
+
+```bash
+# Round-Robin
+python3 Lab4/scripts/ray_load_balance.py \
+  --prompts Lab4/prompts/ray_prompts_30.jsonl \
+  --server-urls http://127.0.0.1:8080,http://127.0.0.1:8081 \
+  --strategy round_robin \
+  --output Lab4/results/ray_load_balance_round_robin.csv \
+  --summary-output Lab4/results/ray_load_balance_round_robin_summary.csv
+
+# Latency-Aware
+python3 Lab4/scripts/ray_load_balance.py \
+  --prompts Lab4/prompts/ray_prompts_30.jsonl \
+  --server-urls http://127.0.0.1:8080,http://127.0.0.1:8081 \
+  --strategy latency_aware \
+  --output Lab4/results/ray_load_balance_latency_aware.csv \
+  --summary-output Lab4/results/ray_load_balance_latency_aware_summary.csv
+```
+
+### C.6 实验结果
+
+#### C.6.1 Round-Robin（静态均匀分配）
+
+| Worker | 请求数 | 成功 | 失败 | 平均延迟 | P95 延迟 | 吞吐 (req/s) |
+|---|---|---|---|---|---|---|
+| worker_0 (4线程) | 15 | 15 | 0 | 8.33s | 10.33s | 0.0886 |
+| worker_1 (2线程) | 15 | 15 | 0 | 11.29s | 18.18s | 0.0886 |
+| **Overall** | **30** | **30** | **0** | **9.81s** | **18.12s** | **0.1771** |
+
+- 总耗时：**169.4s**
+- 请求分布：15 + 15（完全均匀）
+- worker_1（2线程）延迟比 worker_0（4线程）高 35.5%
+
+#### C.6.2 Latency-Aware（动态延迟感知）
+
+| Worker | 请求数 | 成功 | 失败 | 平均延迟 | P95 延迟 | 吞吐 (req/s) |
+|---|---|---|---|---|---|---|
+| worker_0 (4线程) | **28** | 28 | 0 | 5.62s | 8.81s | 0.1596 |
+| worker_1 (2线程) | **2** | 2 | 0 | 8.98s | 11.43s | 0.0114 |
+| **Overall** | **30** | **30** | **0** | **5.85s** | **9.21s** | **0.1709** |
+
+- 总耗时：**175.5s**
+- 请求分布：28 + 2（极度偏向快速 worker）
+- worker_0 承担了 93.3% 的请求
+- 预热阶段：worker_0 (4.95s) < worker_1 (6.52s)，后续几乎全部选择 worker_0
+
+#### C.6.3 策略对比
+
+| 指标 | Round-Robin | Latency-Aware | 变化 |
+|---|---|---|---|
+| 总耗时 | 169.4s | 175.5s | +3.6% (略慢) |
+| 平均延迟 | 9.81s | 5.85s | **-40.4%** (大幅改善) |
+| P95 延迟 | 18.12s | 9.21s | **-49.2%** (大幅改善) |
+| 总吞吐 | 0.177 req/s | 0.171 req/s | -3.6% |
+| worker_0 请求占比 | 50% | 93.3% | — |
+| worker_1 请求占比 | 50% | 6.7% | — |
+
+### C.7 分析
+
+#### Round-Robin 请求数是否平均
+✅ 完全平均：worker_0 和 worker_1 各 15 个请求（50% / 50%）。
+
+#### Latency-Aware 是否倾向于更快 worker
+✅ 非常显著。预热阶段后，算法几乎将所有请求分配给 worker_0（28/30 = 93.3%）。
+worker_0 的平均延迟始终低于 worker_1，说明延迟感知调度逻辑正确。
+
+#### 平均延迟是否下降
+✅ 大幅下降 40.4%（9.81s → 5.85s）。因为 93.3% 的请求走了快速通道。
+
+#### 总吞吐是否提升
+❌ 总吞吐反而略降 3.6%（0.177 → 0.171 req/s）。原因：
+- Round-robin 下两个 worker 并行工作，快慢 worker 各处理 15 个请求。
+- Latency-aware 下几乎只有 worker_0 在工作（28 个请求），worker_1 近乎空闲。
+- 快速 worker 串行处理 28 个请求的总时间 > 两个 worker 并行各处理 15 个的总时间。
+- 这就是**负载均衡 vs 负载共享**的经典权衡。
+
+#### 为什么没有提升总吞吐
+
+1. **Actor 单线程模型**：每个 `LlamaServerActor` 内部串行处理请求。
+   latency_aware 将请求集中到单个快速 worker，失去了并行优势。
+2. **贪婪算法的局限**：总是选择当前最快的 worker，不考虑 worker 的队列长度
+   （因为 Actor 模型下我们提交一个请求就等待完成）。
+3. **改进方向**：如果能同时提交多个请求到同一 worker（如使用 server 的 batch 能力），
+   或使用"最少连接数"而非"最低延迟"，可能改善吞吐。
+
+#### 延迟感知策略的价值场景
+
+虽然总吞吐没提升，但 latency_aware 在以下场景更有价值：
+- **用户体验优先**：用户等待时间从平均 9.81s 降到 5.85s。
+- **有 SLA 要求**：P95 延迟从 18.12s 降到 9.21s，更多请求在可接受时间内完成。
+- **异构集群**：如果 server 性能差异更大（如 GPU vs CPU），效果会更显著。
+
+### C.8 局限性
+
+1. **单机模拟异构**：通过限制线程数制造性能差异，不是真正的异构硬件。
+2. **Actor 串行模型**：每个 Actor 一次只处理一个请求，
+   无法利用 server 的并发处理能力（`--parallel` 参数）。
+3. **小样本**：30 条 prompt 可能不足以充分展现差异。
+4. **贪婪算法**：不考虑队列长度，可能导致负载倾斜过度。
+5. **预热阶段**：每个 worker 只有 1 次预热请求，样本量小。
+6. **未测试连接数感知**：更优的算法可能是"最少未完成请求数"而非"最低平均延迟"。
+
+### C.9 文件清单
+
+| 文件 | 说明 | 状态 |
+|---|---|---|
+| `scripts/ray_load_balance.py` | 负载均衡调度脚本 | ✅ |
+| `prompts/ray_prompts_30.jsonl` | 30 条 prompt 数据集 | ✅ |
+| `results/ray_load_balance_round_robin.csv` | Round-Robin 详细结果 | ✅ |
+| `results/ray_load_balance_round_robin_summary.csv` | Round-Robin 汇总 | ✅ |
+| `results/ray_load_balance_latency_aware.csv` | Latency-Aware 详细结果 | ✅ |
+| `results/ray_load_balance_latency_aware_summary.csv` | Latency-Aware 汇总 | ✅ |
+
+---
+
+## 附录 D：Ray 选做加分二 — 失败重试
+
+> **完成状态**：✅ 实验已完成（2026-06-05），真实失败注入（kill -9 停止 Server A）
+
+### D.1 实验目标
+
+验证 Ray 批量推理系统在单个 llama-server 宕机时的**容错能力**：
+1. 自动检测请求失败（connection refused、timeout、HTTP 5xx 等）。
+2. 将失败请求自动**转发到备用 server**。
+3. 保证最终成功率（只要还有至少一个 server 存活）。
+4. 记录完整的重试日志用于故障分析。
+
+### D.2 Server 拓扑
+
+```
+初始状态:
+  ┌─────────────────┐     ┌─────────────────┐
+  │ Server A (8080) │     │ Server B (8081) │
+  │  worker_0       │     │  worker_1       │
+  │  4 threads      │     │  4 threads      │
+  └────────┬────────┘     └────────┬────────┘
+           │                       │
+           └───────┬───────────────┘
+                   │
+          Ray Failure-Retry
+            (30 prompts)
+
+失败注入 (kill -9 Server A PID, ~35s into run):
+  ┌─────────────────┐     ┌─────────────────┐
+  │ Server A (8080) │ ✗   │ Server B (8081) │
+  │  DOWN           │     │  worker_1       │
+  │                 │     │  ← 所有重试请求  │
+  └─────────────────┘     └─────────────────┘
+```
+
+两个 server 使用相同的模型和配置（均为 4 线程），在同一台物理机上运行。
+Server A 在实验中途被 `kill -9` 强制停止。
+
+### D.3 失败注入方法
+
+**步骤**：
+1. 启动两个 llama-server（8080, 8081），验证 `curl /health` 正常。
+2. 启动 `ray_failure_retry.py`（30 prompts, round-robin 初始分配, max-retries=2）。
+3. 等待约 35 秒（~6-7 个 prompt 完成），执行：
+   ```bash
+   kill -9 $(ss -tlnp | grep 8080 | grep -oP 'pid=\K[0-9]+')
+   ```
+4. 观察脚本输出：所有分配给 worker_0 的后续请求检测到
+   `connection_refused`，自动切换到 worker_1 重试。
+
+**关键日志证据**：
+- Server A (PID 60180) 被 kill -9 杀死
+- 日志中 R007 是第一个检测到失败的请求
+- 后续所有初始分配给 worker_0 的请求（R009, R011, R013, ...）全部重试成功
+
+### D.4 程序如何检测失败
+
+脚本使用 `InferenceError` 异常层次结构分类失败类型：
+
+| 错误类型 | 触发条件 | HTTP 层表现 |
+|---|---|---|
+| `connection_refused` | 目标端口无进程监听 | `requests.exceptions.ConnectionError` |
+| `timeout` | 请求超过 --timeout 秒 | `requests.exceptions.Timeout` |
+| `http_5xx` | Server 返回 500+ | HTTP 500, 502, 503 |
+| `parse_error` | 响应体非合法 JSON | `json.JSONDecodeError` |
+| `unknown` | 其他未分类异常 | — |
+
+每次失败后，异常被 Actor 捕获，返回 `success=False` 和 `_error_type` 字段。
+主控循环检查 `success` 字段，失败时调用 `_pick_next_server()` 选择备用 server。
+
+### D.5 程序如何选择备用 Server
+
+```python
+def _pick_next_server(failed_url, all_urls, attempted_urls):
+    for url in all_urls:
+        if url not in attempted_urls:
+            return (worker_id, url)
+    return None  # All servers exhausted
+```
+
+策略简单明确：**跳过已失败的 server，按顺序尝试下一个未尝试过的 server**。
+- 不实现复杂的健康检查（如 circuit breaker），因为实验规模小。
+- `attempted_urls` 列表防止重复尝试同一故障 server。
+
+### D.6 运行命令
+
+```bash
+python3 Lab4/scripts/ray_failure_retry.py \
+  --prompts Lab4/prompts/ray_prompts_30.jsonl \
+  --server-urls http://127.0.0.1:8080,http://127.0.0.1:8081 \
+  --output Lab4/results/ray_failure_retry.csv \
+  --log Lab4/results/ray_failure_retry.log \
+  --timeout 60 \
+  --max-retries 2
+```
+
+### D.7 Retry 日志片段
+
+```
+# Server 8080 被 kill 后，第一个失败的请求：
+2026-06-05T12:34:18 | WARN  | R007 | fail_connection_refused | worker_0 | http://127.0.0.1:8080 | Connection refused
+2026-06-05T12:34:18 | INFO  | R007 | retry_switch          | worker_1 | http://127.0.0.1:8081 | attempt=1, from=http://127.0.0.1:8080
+2026-06-05T12:34:22 | OK    | R007 | retry_ok              | worker_1 | http://127.0.0.1:8081 | retry=1, latency=3.70s
+
+# 后续所有分配到 worker_0 的请求都失败并重试成功：
+2026-06-05T12:34:27 | WARN  | R009 | fail_connection_refused | worker_0 | http://127.0.0.1:8080 | Connection refused
+2026-06-05T12:34:27 | INFO  | R009 | retry_switch          | worker_1 | http://127.0.0.1:8081 | attempt=1
+2026-06-05T12:34:28 | OK    | R009 | retry_ok              | worker_1 | http://127.0.0.1:8081 | retry=1, latency=1.43s
+
+...（R011, R013, R015, R017, R019, R021, R023, R025, R027, R029 类似）
+```
+
+### D.8 实验结果
+
+| 指标 | 值 |
+|---|---|
+| 总请求数 | 30 |
+| 首次成功 | 18（Server A 存活期间完成） |
+| 重试成功 | 12（Server A 宕机后转发到 Server B） |
+| 最终失败 | 0 |
+| **最终成功率** | **100.0%** |
+| 总耗时 | 143.9s |
+| 失败类型 | 全部为 `connection_refused` |
+| 重试目标 | 全部为 `worker_1` (8081) |
+
+**CSV 示例（重试成功行）**：
+
+| request_id | prompt_id | original_worker | final_worker | original_url | final_url | retry_count | success |
+|---|---|---|---|---|---|---|---|
+| R007-att1 | R007 | worker_0 | worker_1 | ...:8080 | ...:8081 | 1 | True |
+| R009-att1 | R009 | worker_0 | worker_1 | ...:8080 | ...:8081 | 1 | True |
+
+### D.9 分析
+
+#### 失败重试增加了哪些延迟
+
+每个重试请求的额外延迟 = 失败检测时间 + 重试请求的推理时间。
+- **失败检测时间**：connection_refused 几乎是即时的（< 0.01s），
+  因为内核立即返回 RST。
+- **timeout 场景**：最坏情况下，需要等待完整 --timeout 秒（60s）
+  才能确认失败，此时延迟增加显著。
+- 本实验中，重试成功的 12 个请求的总延迟包含了推理时间，
+  但因为它们被分配到了唯一的存活 server（worker_1），
+  该 server 负载翻倍（从 15 个请求增加到 27 个请求），
+  单请求延迟因排队而略有增加。
+
+#### 为什么需要超时机制
+
+如果没有超时（`--timeout`），在 server 挂起（hang）但不崩溃时，
+请求会无限期阻塞，整个批处理任务永远无法完成。
+合理的超时设置在**快速失败**和**容忍正常推理延迟**之间权衡：
+- 太短：正常推理被误判为超时。
+- 太长：server 故障时等待过久。
+- 推荐值：单条推理预期时间的 3-5 倍（本实验用 60s，实际推理 ~3-8s）。
+
+#### max-retries 如何影响成功率和延迟
+
+| max-retries | 行为 | 成功率影响 | 延迟影响 |
+|---|---|---|---|
+| 0 | 不重试 | 取决于 server 可靠性 | 最低（单次失败即放弃） |
+| 1 | 重试 1 次 | 单点故障可恢复 | 失败请求延迟 × 2 |
+| 2（本实验） | 重试 2 次 | 2 个 server 依次故障可恢复 | 最坏延迟 × 3 |
+| N | 重试 N 次 | 如果 server 数量 ≥ N+1 则可恢复 | 最坏延迟 × (N+1) |
+
+**建议**：max-retries ≤ server 数量，以免无意义地反复重试同一批故障 server。
+
+#### 如果所有节点都失败会怎样
+
+实验未触发此场景，但代码已处理：
+1. `_pick_next_server()` 返回 `None`（所有 URL 都在 attempted_urls 中）。
+2. 日志记录 `all_exhausted` 事件。
+3. CSV 输出 `success=False`，`error_message` 包含所有尝试过的 URL。
+4. `stats['final_failure']` 计数器递增。
+5. 脚本继续处理下一个 prompt（不会因单个失败而终止）。
+
+### D.10 局限性
+
+1. **仅测试 connection_refused**：本实验只测试了 server 进程被杀的场景。
+   未测试 timeout（server 挂起）、HTTP 5xx（server 内部错误）和
+   parse_error（响应格式异常）。
+2. **单机环境**：两个 server 在同一台机器上，网络延迟为零。
+   实际分布式环境中，网络 RTT 会增加重试延迟。
+3. **无状态重试**：每次重试都是独立的新 HTTP 请求。
+   没有实现幂等性保证或请求去重。
+4. **简单选择策略**：按顺序尝试下一个 server，不考虑 server 当前负载。
+   更优的方案是结合负载信息（如最少未完成请求数）选择备用 server。
+5. **无健康检查/熔断**：没有 circuit breaker 模式。
+   故障 server 恢复后不会自动重新加入。
+6. **Actor 持久性**：Ray Actor 在 server 宕机后仍然存活（因为 Actor 只是 HTTP 客户端）。
+   但如果 Actor 自身崩溃，需要 Ray 的 `max_restarts` 机制。
+
+### D.11 文件清单
+
+| 文件 | 说明 | 状态 |
+|---|---|---|
+| `scripts/ray_failure_retry.py` | 失败重试脚本 | ✅ |
+| `results/ray_failure_retry.csv` | 30 条请求详情（含 12 条重试） | ✅ |
+| `results/ray_failure_retry.log` | 结构化重试日志 | ✅ |

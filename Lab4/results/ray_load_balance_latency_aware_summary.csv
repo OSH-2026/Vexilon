@@ -1,0 +1,4 @@
+strategy,worker_id,server_url,request_count,success_count,failure_count,avg_latency_s,p95_latency_s,total_latency_s,throughput_req_per_s
+latency_aware,worker_0,http://127.0.0.1:8080,28,28,0,5.6231,8.8098,157.4468,0.1596
+latency_aware,worker_1,http://127.0.0.1:8081,2,2,0,8.9774,11.4308,17.9548,0.0114
+latency_aware,overall,all,30,30,0,5.8467,9.2065,175.4016,0.1709
