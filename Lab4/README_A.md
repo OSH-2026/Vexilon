@@ -1,67 +1,67 @@
 # OSH 2026 Lab4 Role A README
 
-## Role A Scope
+## 角色 A 范围
 
-Role A covers:
+角色 A 已完成以下内容：
 
-1. Local llama.cpp deployment;
-2. Performance metrics;
-3. Single-machine benchmark;
-4. Parameter tuning;
-5. Handoff artifacts for Role B and Role C.
+1. 本地 llama.cpp 部署；
+2. 性能指标定义；
+3. 单机 baseline benchmark；
+4. 参数调优；
+5. 供角色 B 和角色 C 继续使用的交接材料。
 
-Role A has completed the local baseline work. Role B and Role C should treat the files in this directory as the shared reference unless they explicitly document a reason to rerun or replace an artifact.
+角色 A 已完成本地单机 baseline。角色 B 和角色 C 后续应以本目录中的模型信息、prompt、CSV 和汇总文档作为共同基准；如需重跑或替换数据，需在各自文档中说明原因。
 
-## Overall Task Split
+## 整体分工
 
-| Module | Goal | Owner | Current status |
+| 模块 | 目标 | 负责人 | 当前状态 |
 |---|---|---|---|
-| llama.cpp main task, local setup | Create local Lab4 directory, collect environment, build llama.cpp | Role A | Completed |
-| Performance metrics | Define at least 5 LLM deployment metrics | Role A | Completed in `docs/performance_metrics.md` |
-| GGUF single-machine deployment | Prepare GGUF model and run `llama-cli` inference | Role A | Completed |
-| Single-machine benchmark | Run benchmark prompts and measure at least 3 metrics | Role A | Completed in `results/single_benchmark.csv` |
-| Parameter tuning | Compare `threads`, `batch-size`, `ctx-size`, `no-mmap` | Role A | Completed in `results/param_tuning.csv` |
-| Output quality evaluation | Evaluate generated quality with shared prompts | Role B | Not part of Role A; use A's model and prompts |
-| RPC distributed inference | Build and test llama.cpp RPC flow | Role B | Not part of Role A; use A's model/build/baseline |
-| Single-machine vs RPC comparison | Compare RPC results against A baseline | Role B | Not part of Role A; use A's CSV summaries |
-| Ray batch inference | Implement Ray batch task scheduling | Role C | Not part of Role A; use A's prompts and baseline |
-| Ray load balancing and retry | Optional Ray extra credit | Role C | Not part of Role A |
+| llama.cpp 主线本地环境 | 创建本地 Lab4 目录、收集环境、构建 llama.cpp | 角色 A | 已完成 |
+| 性能指标 | 定义至少 5 个 LLM 部署性能指标 | 角色 A | 已完成，见 `docs/performance_metrics.md` |
+| GGUF 单机部署 | 准备 GGUF 模型并运行 `llama-cli` 推理 | 角色 A | 已完成 |
+| 单机 benchmark | 使用 benchmark prompts 测量至少 3 个指标 | 角色 A | 已完成，见 `results/single_benchmark.csv` |
+| 参数调优 | 比较 `threads`、`batch-size`、`ctx-size`、`no-mmap` | 角色 A | 已完成，见 `results/param_tuning.csv` |
+| 输出质量评估 | 使用共享 prompt 评估生成质量 | 角色 B | 待角色 B 完成；使用 A 的模型和 prompt |
+| RPC 分布式推理 | 构建并测试 llama.cpp RPC 流程 | 角色 B | 待角色 B 完成；使用 A 的模型、构建和 baseline |
+| 单机与 RPC 对比 | 将 RPC 结果与 A 的 baseline 对比 | 角色 B | 待角色 B 完成；引用 A 的 CSV 汇总 |
+| Ray 批量推理 | 实现 Ray 批量任务调度 | 角色 C | 待角色 C 完成；使用 A 的 prompt 和 baseline |
+| Ray 负载均衡与重试 | 选做加分项 | 角色 C | 待角色 C 按实际完成情况补充 |
 
-## Role A Completed Work
+## 角色 A 已完成工作
 
-Role A produced a reproducible local llama.cpp CPU deployment on Windows using MSYS2 UCRT64 GCC 14.1.0. The final working build is:
+角色 A 已在 Windows 上使用 MSYS2 UCRT64 GCC 14.1.0 完成 llama.cpp CPU backend 构建。可运行构建目录为：
 
 ```text
 C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10
 ```
 
-Role A used this model:
+本次使用模型：
 
 ```text
 C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf
 ```
 
-The baseline benchmark contains 15 real runs: 5 prompts, 3 repeats each, all successful. The parameter tuning benchmark contains 24 real runs, all successful.
+baseline benchmark 共 15 次真实运行：5 条 prompt，每条重复 3 次，全部成功。参数调优 benchmark 共 24 次真实运行，全部成功。
 
-Measured columns include:
+已采集字段：
 
 - `total_latency_s`
 - `tokens_per_second`
 - `output_chars`
 - `success`
-- parameter settings: `threads`, `ctx_size`, `batch_size`, `no_mmap`
+- 参数配置：`threads`、`ctx_size`、`batch_size`、`no_mmap`
 
-`max_rss_kb` is intentionally blank because the current Windows / Git Bash environment did not provide `/usr/bin/time -v`. This is documented in `docs/performance_metrics.md` and `docs/performance_analysis.md`.
+`max_rss_kb` 本次未在 Windows / Git Bash 环境稳定采集；CSV 原始列为空值，汇总文档统一标注 `not measured on Windows`。原因和限制见 `docs/performance_metrics.md` 和 `docs/performance_analysis.md`。
 
-## Local Directory
+## 本地目录
 
 ```text
 C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4
 ```
 
-## Important Files
+## 关键文件
 
-| File | Purpose |
+| 文件 | 用途 |
 |---|---|
 | docs/deploy_llama_single.md | 单机部署说明 |
 | docs/performance_metrics.md | 性能指标说明 |
@@ -73,7 +73,7 @@ C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4
 | results/single_benchmark.csv | 单机 baseline |
 | results/param_tuning.csv | 参数优化结果 |
 
-## Build and Model
+## 构建与模型
 
 | Item | Value |
 |---|---|
@@ -82,26 +82,26 @@ C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4
 | MODEL_PATH | C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\models\qwen2.5-0.5b-instruct-q4_k_m.gguf |
 | LLAMA_CLI | C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-cli.exe |
 | LLAMA_BENCH | C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-bench.exe |
-| Recommended config | `--threads 4 --ctx-size 1024 --batch-size 256` |
-| Baseline config | `--threads 4 --ctx-size 2048 --batch-size 256` |
+| 推荐配置 | `--threads 4 --ctx-size 1024 --batch-size 256` |
+| baseline 配置 | `--threads 4 --ctx-size 2048 --batch-size 256` |
 
-## Validation Summary
+## 完成度检查
 
-| Check | Result |
+| 检查项 | 结果 |
 |---|---|
-| Required files from Role A guide | All present |
-| Environment collection | Completed: `results/env_info.txt` |
-| llama.cpp CPU build | Completed |
-| Single inference | Completed: `results/single_inference_output.txt` |
-| Baseline benchmark | 15 rows, 15 successful |
-| Parameter tuning | 24 rows, 24 successful |
-| tokens/s parsing | Completed for all benchmark rows |
-| max RSS | Not available on this Windows setup; left blank honestly |
-| GPU backend | Skipped; not required for Role A main task |
+| 角色 A 指南要求文件 | 已补齐 |
+| 环境收集 | 已完成：`results/env_info.txt` |
+| llama.cpp CPU build | 已完成 |
+| 单次推理 | 已完成：`results/single_inference_output.txt` |
+| baseline benchmark | 15 行，15 次成功 |
+| 参数调优 | 24 行，24 次成功 |
+| tokens/s 解析 | benchmark 记录均已解析 |
+| max RSS | Windows 环境未稳定采集，CSV 原始列为空值，汇总表标注 `not measured on Windows` |
+| GPU backend | 未构建 CUDA backend，本文只报告 CPU backend 结果 |
 
-## Handoff to Role B
+## 角色 B 对接
 
-Role B should use:
+角色 B 继续工作时优先使用以下文件：
 
 - `configs/model_info.md`
 - `results/single_benchmark.csv`
@@ -109,9 +109,9 @@ Role B should use:
 - `results/single_benchmark_summary.md`
 - `docs/performance_analysis.md`
 
-Role B should not rerun or overwrite A's baseline unless necessary.
+除非确有必要，不要覆盖 A 的 baseline 文件；如需重跑，需在 B 的文档中说明原因。
 
-Role B's main responsibilities are:
+角色 B 后续任务：
 
 1. 使用同一 GGUF 模型进行输出质量评估；
 2. 启动和测试 `llama-server`；
@@ -119,12 +119,12 @@ Role B's main responsibilities are:
 4. 对比单机 baseline 与 RPC 结果；
 5. 如进行 llama-server 并发测试，明确记录并发数、请求数、延迟、吞吐和失败率。
 
-Role B should keep the following rules:
+角色 B 文件和数据约定：
 
-1. Do not replace A's model unless the report explains why.
-2. Do not overwrite `results/single_benchmark.csv` or `results/param_tuning.csv`.
-3. Put B-specific results in separate files, for example `results/rpc_benchmark.csv` or `results/server_concurrency.csv`.
-4. When comparing single-machine and RPC results, cite A's baseline config and prompt file.
+1. 不替换 A 的模型；如替换，必须在报告中说明原因。
+2. 不覆盖 `results/single_benchmark.csv` 或 `results/param_tuning.csv`。
+3. B 的结果单独放文件，例如 `results/rpc_benchmark.csv` 或 `results/server_concurrency.csv`。
+4. 对比单机和 RPC 时，引用 A 的 baseline 配置和 prompt 文件。
 
 ### Paths
 
@@ -138,7 +138,7 @@ Role B should keep the following rules:
 | parameter tuning CSV | Lab4/results/param_tuning.csv |
 | single inference output | Lab4/results/single_inference_output.txt |
 
-### Recommended baseline command
+### baseline 复用命令
 
 ```powershell
 $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH
@@ -148,9 +148,9 @@ $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH
   -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
 ```
 
-### Suggested quality evaluation command
+### 质量评估起始命令
 
-Role B can use the same `llama-cli` and a UTF-8 prompt file. On Windows, prefer `-f` instead of passing Chinese prompt text through `-p`.
+角色 B 可继续使用同一个 `llama-cli` 和 UTF-8 prompt 文件。Windows 下优先使用 `-f`，不要直接通过 `-p` 传中文 prompt。
 
 ```powershell
 $lab4 = 'C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4'
@@ -162,9 +162,9 @@ $promptFile = "$lab4\prompts\quality_prompt_one.txt"
 & $cli -m $model -f $promptFile -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
 ```
 
-### Suggested llama-server starting point
+### llama-server 起始命令
 
-Role B may start from the same build directory. If `llama-server.exe` needs network/RPC-specific options, record the exact command in B's command log.
+角色 B 可从同一构建目录启动 `llama-server.exe`。如增加网络或 RPC 参数，需要在 B 的命令日志中记录完整命令。
 
 ```powershell
 $lab4 = 'C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4'
@@ -176,9 +176,9 @@ $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH
   --batch-size 256
 ```
 
-Suggested B output files:
+B 建议新增文件：
 
-| File | Purpose |
+| 文件 | 用途 |
 |---|---|
 | `docs/quality_evaluation.md` | 输出质量评估说明 |
 | `docs/rpc_deploy.md` | RPC 部署步骤 |
@@ -187,22 +187,22 @@ Suggested B output files:
 | `results/single_vs_rpc_summary.md` | 单机和 RPC 对比 |
 | `command_logs/B_rpc_commands.md` | B 的真实命令记录 |
 
-### What Role B should do next
+### 角色 B 下一步
 
 1. 使用同一模型做输出质量评估；
 2. 使用同一模型启动 llama-server；
 3. 使用 A 的 baseline 作为单机性能参考；
 4. RPC 对比时不要更换模型和 prompt，除非文档说明原因。
 
-## Handoff to Role C
+## 角色 C 对接
 
-Role C should use:
+角色 C 继续工作时优先使用以下文件和配置：
 
 - `prompts/role_a_benchmark_prompts.jsonl`
 - `results/single_benchmark_summary.md`
-- A's recommended single-machine configuration
+- A 的推荐单机配置
 
-Role C's main responsibilities are:
+角色 C 后续任务：
 
 1. 完成 Ray 批量推理任务；
 2. 设计 Ray 任务调度、批量输入、结果收集和错误记录；
@@ -210,23 +210,23 @@ Role C's main responsibilities are:
 4. 如做选做加分，补充负载均衡和失败重试；
 5. 明确区分“单条请求延迟”和“批量任务吞吐”。
 
-Role C should keep the following rules:
+角色 C 文件和数据约定：
 
-1. Reuse `prompts/role_a_benchmark_prompts.jsonl` when possible.
-2. Do not claim Ray speeds up a single prompt unless the data directly measures single-request latency.
-3. For batch tests, report request count, total wall-clock time, throughput, success count, fail count, and retry count.
-4. Put C-specific results in separate files, for example `results/ray_batch_results.csv`.
+1. 尽量复用 `prompts/role_a_benchmark_prompts.jsonl`。
+2. 除非直接测量了单请求延迟，否则不要写 Ray 加速了单条 prompt。
+3. 批量测试需记录请求数、总 wall-clock 时间、吞吐、成功数、失败数和重试次数。
+4. C 的结果单独放文件，例如 `results/ray_batch_results.csv`。
 
-### Shared prompt files
+### 共享 prompt 文件
 
-| File | Purpose |
+| 文件 | 用途 |
 |---|---|
 | prompts/role_a_benchmark_prompts.jsonl | A 的性能测试 prompt，可作为 Ray prompt 基础 |
 | prompts/quality_prompts.jsonl | B 的质量评估 prompt，也可被 C 复用 |
 
-### Baseline for Ray analysis
+### Ray 对比基准
 
-Role C should compare Ray batch inference against A's single-machine baseline carefully.
+Role C 对比 Ray 批量推理和 A 的单机 baseline 时，应区分单请求延迟和批量吞吐。
 
 注意：
 A 的单机 benchmark 测的是单机 llama-cli 一次性推理；
@@ -235,17 +235,17 @@ C 的 Ray 测的是多个请求的任务级调度。
 更准确的说法是：
 Ray 可能提高批量任务吞吐，但单条请求延迟可能由于调度和网络开销变大。
 
-### Suggested Ray input format
+### Ray 输入格式
 
-Role C can read JSONL prompt records directly:
+角色 C 可直接读取 JSONL prompt 记录：
 
 ```jsonl
 {"id":"A001","category":"short_qa","prompt":"请用三句话解释什么是虚拟内存。"}
 ```
 
-Suggested C output files:
+C 建议新增文件：
 
-| File | Purpose |
+| 文件 | 用途 |
 |---|---|
 | `docs/ray_batch_inference.md` | Ray 批量推理说明 |
 | `docs/ray_analysis.md` | Ray 与单机 baseline 分析 |
@@ -253,7 +253,7 @@ Suggested C output files:
 | `results/ray_batch_summary.md` | Ray 汇总结果 |
 | `command_logs/C_ray_commands.md` | C 的真实命令记录 |
 
-### Suggested Ray comparison fields
+### Ray 对比字段
 
 | Field | Meaning |
 |---|---|
@@ -268,21 +268,21 @@ Suggested C output files:
 | `output_chars` | 输出长度 |
 | `error_message` | 失败原因 |
 
-## Integration Notes for Final Report
+## 最终报告整合说明
 
-Final integration should cite Role A artifacts as the single-machine baseline:
+最终报告中，A 的材料应作为单机 baseline 引用：
 
-| Final report section | Role A artifact |
+| 最终报告部分 | 角色 A 材料 |
 |---|---|
 | 单机部署 | `docs/deploy_llama_single.md` |
 | 性能指标 | `docs/performance_metrics.md` |
-| 单机 benchmark | `results/single_benchmark.csv` and `results/single_benchmark_summary.md` |
-| 参数优化 | `results/param_tuning.csv` and `results/param_tuning_summary.md` |
+| 单机 benchmark | `results/single_benchmark.csv` 和 `results/single_benchmark_summary.md` |
+| 参数优化 | `results/param_tuning.csv` 和 `results/param_tuning_summary.md` |
 | 系统分析 | `docs/performance_analysis.md` |
 | 复现命令 | `command_logs/A_single_benchmark_commands.md` |
 
-Do not include large model files, `llama.cpp/`, or build directories in Git submission. `.gitignore` already excludes them.
+Git 提交不包含大模型文件、`llama.cpp/` 源码目录和构建目录；这些内容已由 `.gitignore` 排除。
 
-## Not Included
+## 未纳入 Git 的内容
 
-This local directory does not include model files in Git submission. Models must be downloaded separately or placed manually under `Lab4/models/`.
+Git 提交不包含 GGUF 模型文件、`llama.cpp/` 源码目录和构建产物。后续成员需要将同名模型文件放到 `Lab4/models/`，或在自己的文档中说明替代模型。

@@ -38,7 +38,7 @@
 4. 成功率：`success`；
 5. 参数配置：threads、ctx-size、batch-size、no-mmap。
 
-内存占用 `max_rss_kb` 未测出。原因：当前 Windows / Git Bash 环境没有可用的 `/usr/bin/time -v`，脚本按真实性要求将该列留空。
+内存占用 `max_rss_kb` 本次未在 Windows 环境稳定采集。原因：当前 Windows / Git Bash 环境没有可用的 `/usr/bin/time -v`。CSV 原始列保留为空值，Markdown 汇总表统一标注为 `not measured on Windows`，不填估算值。
 
 ## 5. Baseline 结果
 
@@ -52,11 +52,11 @@ Baseline 配置：
 
 | prompt_id | threads | ctx_size | batch_size | no_mmap | count | success | fail | avg_latency_s | avg_tokens_per_second | avg_max_rss_kb |
 |---|---|---|---|---|---|---|---|---|---|---|
-| A001 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 13.2022 | 10.2000 |  |
-| A002 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 16.5736 | 10.0000 |  |
-| A003 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 17.8684 | 10.2667 |  |
-| A004 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 12.9490 | 10.0333 |  |
-| A005 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 17.9191 | 10.1667 |  |
+| A001 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 13.2022 | 10.2000 | not measured on Windows |
+| A002 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 16.5736 | 10.0000 | not measured on Windows |
+| A003 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 17.8684 | 10.2667 | not measured on Windows |
+| A004 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 12.9490 | 10.0333 | not measured on Windows |
+| A005 | 4 | 2048 | 256 | false | 3 | 3 | 0 | 17.9191 | 10.1667 | not measured on Windows |
 
 Baseline 共 15 次推理，15 次成功，成功率 100%。
 
@@ -66,15 +66,15 @@ Baseline 共 15 次推理，15 次成功，成功率 100%。
 
 | threads | ctx_size | batch_size | no_mmap | count | success | fail | avg_latency_s | avg_tokens_per_second | avg_max_rss_kb |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | 2048 | 256 | false | 2 | 2 | 0 | 34.4305 | 4.5000 |  |
-| 2 | 2048 | 256 | false | 2 | 2 | 0 | 17.4359 | 7.6500 |  |
-| 4 | 1024 | 256 | false | 2 | 2 | 0 | 11.0944 | 10.6000 |  |
-| 4 | 2048 | 128 | false | 2 | 2 | 0 | 13.5222 | 10.3500 |  |
-| 4 | 2048 | 256 | false | 8 | 8 | 0 | 13.6124 | 10.4250 |  |
-| 4 | 2048 | 256 | true | 2 | 2 | 0 | 11.9652 | 10.2500 |  |
-| 4 | 2048 | 512 | false | 2 | 2 | 0 | 16.0380 | 10.2500 |  |
-| 4 | 512 | 256 | false | 2 | 2 | 0 | 12.0538 | 10.1000 |  |
-| 8 | 2048 | 256 | false | 2 | 2 | 0 | 12.0824 | 10.4500 |  |
+| 1 | 2048 | 256 | false | 2 | 2 | 0 | 34.4305 | 4.5000 | not measured on Windows |
+| 2 | 2048 | 256 | false | 2 | 2 | 0 | 17.4359 | 7.6500 | not measured on Windows |
+| 4 | 1024 | 256 | false | 2 | 2 | 0 | 11.0944 | 10.6000 | not measured on Windows |
+| 4 | 2048 | 128 | false | 2 | 2 | 0 | 13.5222 | 10.3500 | not measured on Windows |
+| 4 | 2048 | 256 | false | 8 | 8 | 0 | 13.6124 | 10.4250 | not measured on Windows |
+| 4 | 2048 | 256 | true | 2 | 2 | 0 | 11.9652 | 10.2500 | not measured on Windows |
+| 4 | 2048 | 512 | false | 2 | 2 | 0 | 16.0380 | 10.2500 | not measured on Windows |
+| 4 | 512 | 256 | false | 2 | 2 | 0 | 12.0538 | 10.1000 | not measured on Windows |
+| 8 | 2048 | 256 | false | 2 | 2 | 0 | 12.0824 | 10.4500 | not measured on Windows |
 
 参数优化共 24 次推理，24 次成功，成功率 100%。
 
@@ -98,7 +98,7 @@ ctx-size 为 512、1024、2048 时，平均输出速度分别约为 10.10、10.6
 
 ### 7.5 GPU offload
 
-本机检测到 NVIDIA 驱动，但本次未构建 CUDA backend，也未测试 `--n-gpu-layers`。这不影响角色 A 主线 CPU 单机部署和参数优化要求。
+本机检测到 NVIDIA 驱动，但本次没有构建 CUDA backend，也没有测试 `--n-gpu-layers`。因此本文只给出 CPU backend 结论，不对 GPU offload 做性能判断。
 
 ## 8. 最优配置
 
@@ -149,7 +149,7 @@ $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH
   -n 128 --threads 4 --ctx-size 2048 --batch-size 256 --single-turn --simple-io
 ```
 
-### What Role B should do next
+### 角色 B 下一步
 
 1. 使用同一模型做输出质量评估；
 2. 使用同一模型启动 llama-server；
@@ -167,7 +167,7 @@ $env:PATH = 'C:\msys64\ucrt64\bin;' + $env:PATH
 
 ### Baseline for Ray analysis
 
-Role C should compare Ray batch inference against A's single-machine baseline carefully.
+角色 C 对比 Ray 批量推理和 A 的单机 baseline 时，应区分单请求延迟和批量吞吐。
 
 注意：
 A 的单机 benchmark 测的是单机 llama-cli 一次性推理；
@@ -182,7 +182,7 @@ Ray 可能提高批量任务吞吐，但单条请求延迟可能由于调度和�
 2. 测试 prompt 数量有限；
 3. 参数调优每组重复次数为 1，baseline 每条 prompt 重复 3 次；
 4. tokens/s 解析依赖 llama.cpp 输出格式；
-5. Windows 下未测得 `/usr/bin/time -v` 的 max RSS；
+5. Windows 环境未稳定采集 max RSS，汇总表已标注 `not measured on Windows`；
 6. 未构建 CUDA backend，未评估 GPU offload。
 
 ## 12. 复现命令

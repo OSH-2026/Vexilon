@@ -72,7 +72,7 @@ C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llam
 C:\Users\cad\Desktop\OSH2026_Lab4_Local\Lab4\llama.cpp\build-ucrt-win10\bin\llama-bench.exe
 ```
 
-GPU 后端：未构建。虽然 `nvidia-smi` 检测到 NVIDIA 驱动和 CUDA 12.6，但角色 A 主线以 CPU backend 跑通为优先，GPU offload 不作为必需项。
+GPU 后端：本次未构建 CUDA backend，也未测试 `--n-gpu-layers`。`nvidia-smi` 能检测到 NVIDIA 驱动和 CUDA 12.6，但角色 A 按文档主线完成 CPU backend 单机部署，因此报告中不写 GPU 性能结论。
 
 ## 6. 模型信息
 
@@ -114,11 +114,11 @@ model      : qwen2.5-0.5b-instruct-q4_k_m.gguf
 Prompt: 16.1 t/s | Generation: 10.4 t/s
 ```
 
-模型成功生成了中文回答，说明 GGUF 量化模型已经在单机 llama.cpp 上成功推理。
+进程成功加载 GGUF 模型并完成一次 `llama-cli` 文本生成，说明单机 CPU 推理链路已经跑通。输出质量不在角色 A 本节中评分，后续由角色 B 统一评估。
 
 ## 9. 截图
 
-截图说明见 `screenshots/single_deploy/README.md`。当前没有自动截图，需人工按该 README 放置截图。
+截图已放在 `screenshots/single_deploy/`。该目录 README 逐项说明截图证据：`01_build_success.png`、`02_model_file.png`、`03_single_inference.png`、`04_benchmark_running.png`、`05_results_files.png`。
 
 ## 10. 问题与解决方法
 
@@ -127,7 +127,7 @@ Prompt: 16.1 t/s | Generation: 10.4 t/s
 | PATH 中 MinGW 8.1.0 编译失败 | 改用 MSYS2 UCRT64 GCC 14.1.0 |
 | cpp-httplib 报 Windows 目标版本低于 Windows 10 | 添加 `-D_WIN32_WINNT=0x0A00` |
 | 中文 prompt 通过 `-p` 传参时乱码 | 改为写入 UTF-8 prompt 文件并用 `-f` 读取 |
-| Windows 下 `/usr/bin/time -v` 不可用 | `max_rss_kb` 留空并在文档说明 |
+| Windows 下 `/usr/bin/time -v` 不可用 | Windows / Git Bash 没有可用的 `/usr/bin/time -v`，`max_rss_kb` 原始列保留为空值，汇总文档标注为 `not measured on Windows` |
 
 ## 11. 复现步骤
 
