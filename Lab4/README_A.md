@@ -21,11 +21,11 @@
 | GGUF 单机部署 | 准备 GGUF 模型并运行 `llama-cli` 推理 | 角色 A | 已完成 |
 | 单机 benchmark | 使用 benchmark prompts 测量至少 3 个指标 | 角色 A | 已完成，见 `results/single_benchmark.csv` |
 | 参数调优 | 比较 `threads`、`batch-size`、`ctx-size`、`no-mmap` | 角色 A | 已完成，见 `results/param_tuning.csv` |
-| 输出质量评估 | 使用共享 prompt 评估生成质量 | 角色 B | 待角色 B 完成；使用 A 的模型和 prompt |
-| RPC 分布式推理 | 构建并测试 llama.cpp RPC 流程 | 角色 B | 待角色 B 完成；使用 A 的模型、构建和 baseline |
-| 单机与 RPC 对比 | 将 RPC 结果与 A 的 baseline 对比 | 角色 B | 待角色 B 完成；引用 A 的 CSV 汇总 |
-| Ray 批量推理 | 实现 Ray 批量任务调度 | 角色 C | 待角色 C 完成；使用 A 的 prompt 和 baseline |
-| Ray 负载均衡与重试 | 选做加分项 | 角色 C | 待角色 C 按实际完成情况补充 |
+| 输出质量评估 | 使用共享 prompt 评估生成质量 | 角色 B | 已完成，见 `docs/quality_eval.md` 与 `results/quality_eval.csv` |
+| RPC 分布式推理 | 构建并测试 llama.cpp RPC 流程 | 角色 B | 已完成，见 `docs/rpc_deploy.md` |
+| 单机与 RPC 对比 | 将 RPC 结果与 A 的 baseline 对比 | 角色 B | 已完成，见 `results/single_vs_rpc_summary.md` |
+| Ray 批量推理 | 实现 Ray 批量任务调度 | 角色 C | 已完成，见 `docs/ray_task.md` 与 `results/ray_*.csv` |
+| Ray 负载均衡与重试 | 选做加分项 | 角色 C | 已完成，见 `results/ray_load_balance_*.csv` 与 `results/ray_failure_retry.csv` |
 
 ## 角色 A 已完成工作
 
