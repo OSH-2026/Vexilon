@@ -105,7 +105,7 @@ export PATH="/c/Program Files/MinGW/mingw64/bin:$PATH"
 
 ## 7. Thermal Management
 
-**⚠️ Critical**: The host CPU (Ultra 7 255HX) has limited cooling capacity. Running inference with more than `--threads 2` risks thermal shutdown.
+**Critical**: The host CPU (Ultra 7 255HX) has limited cooling capacity. Running inference with more than `--threads 2` risks thermal shutdown.
 
 Rules:
 1. **Always `--threads 2`** — never increase
