@@ -1300,13 +1300,31 @@ pub unsafe extern "C" fn OsSchedSetIdleTaskSchedParam(idle_task: *mut LosTaskCB)
 
 #[no_mangle]
 pub unsafe extern "C" fn OsSchedSwtmrScanRegister(func: SchedScan) -> UINT32 {
-    if func.is_none() {
-        return LOS_NOK;
+    // Contract (identical to the C original `los_sched.c:400-408`):
+    //
+    //     if (func == NULL) { return LOS_NOK; }
+    //     g_swtmrScan = func;
+    //     return LOS_OK;
+    //
+    // `SchedScan` is `Option<unsafe extern "C" fn() -> BOOL>`.  Rust's
+    // null-pointer optimisation *guarantees* that a NULL function pointer
+    // passed from C arrives here as `None`, so the `match` below is an
+    // exact, optimisation-proof translation of the C null check — it can
+    // never be elided, because `None` is a legal value of the parameter
+    // type.  A NULL argument therefore MUST yield `LOS_NOK` (1) and MUST
+    // leave the previously registered scan callback untouched.
+    match func {
+        None => LOS_NOK,
+        Some(f) => {
+            // Volatile write: the tick ISR (`LOS_SchedTickHandler`) reads
+            // this slot; keep the store visible/ordered like the file's
+            // other ISR-shared globals.
+            unsafe {
+                ptr::write_volatile(&raw mut G_SWTMR_SCAN, Some(f));
+            }
+            LOS_OK
+        }
     }
-    unsafe {
-        ptr::write(&raw mut G_SWTMR_SCAN, func);
-    }
-    LOS_OK
 }
 
 // ---------------------------------------------------------------------------
@@ -1661,7 +1679,7 @@ pub unsafe extern "C" fn LOS_SchedTickHandler() {
             let lock = ptr::read_volatile(&raw const G_TICK_INT_LOCK);
             ptr::write_volatile(&raw mut G_TICK_INT_LOCK, lock.wrapping_add(1));
 
-            let swtmr = ptr::read(&raw const G_SWTMR_SCAN);
+            let swtmr = ptr::read_volatile(&raw const G_SWTMR_SCAN);
             if let Some(f) = swtmr {
                 let _ = f();
             }
