@@ -1,8 +1,8 @@
 # Ray 批量推理调度实验 (Role C)
 
-> **OSH 2026 Lab4 — 成员 C：Ray 调度 Agent**
+> **OSH 2026 Lab4 — 成员 C：Ray 调度**
 >
-> 状态：✅ 实验已完成，Ray 串行、轮询、并行调度、负载均衡和失败重试均有结果文件
+> 状态：实验已完成，Ray 串行、轮询、并行调度、负载均衡和失败重试均有结果文件
 
 ---
 
@@ -28,7 +28,7 @@
 | **Actor 模型** | `LlamaServerActor` 每个实例绑定一个 llama-server，保持长连接状态 |
 | **自动容错** | Task 失败可自动重试；Actor 崩溃可重建 |
 | **弹性伸缩** | 支持动态增减 worker 节点 |
-| **零序列化负担** | 与手动 RPC（Role B）相比，Ray 自动处理对象序列化和传输 |
+| **对象传输封装** | 与手动 RPC（Role B）相比，Ray 负责对象序列化和传输 |
 | **统一调度** | 单机 `ray.init()` 与多机集群使用相同 API，代码无需修改 |
 
 **为什么本实验使用 Ray 而不是手动 RPC**：
@@ -305,7 +305,7 @@ Ray 提升的是**整体吞吐量**（单位时间内完成的请求数），而
 
 ## 9. 测试结果
 
-> ✅ **实验完成**：2026-06-05，单机多进程模拟，两个 llama-server
+> **实验完成**：2026-06-05，单机多进程模拟，两个 llama-server
 > （端口 8080/8081），模型 Qwen2.5-0.5B-Instruct (Q4_K_M, 469 MiB)，
 > Ray 2.55.1 local 模式。
 
@@ -530,15 +530,15 @@ Ray 提升的是**整体吞吐量**（单位时间内完成的请求数），而
 
 | 文件 | 说明 | 状态 |
 |---|---|---|
-| `prompts/ray_prompts_20.jsonl` | 30 条 prompt（主数据集） | ✅ |
-| `prompts/ray_prompts_30.jsonl` | 30 条 prompt（备用） | ✅ |
-| `configs/server_ports.md` | Server 地址记录 | ✅ |
-| `command_logs/C_ray_commands.md` | 完整命令日志 | ✅ |
-| `scripts/ray_batch_infer.py` | Ray 批量推理脚本 | ✅ |
-| `docs/ray_task.md` | 本文档 | ✅ |
-| `results/ray_serial.csv` | 串行实验结果 | ✅ |
-| `results/ray_round_robin.csv` | 轮询实验结果 | ✅ |
-| `results/ray_parallel.csv` | 并行实验结果 | ✅ |
+| `prompts/ray_prompts_20.jsonl` | 30 条 prompt（主数据集） | 已提交 |
+| `prompts/ray_prompts_30.jsonl` | 30 条 prompt（备用） | 已提交 |
+| `configs/server_ports.md` | Server 地址记录 | 已提交 |
+| `command_logs/C_ray_commands.md` | 完整命令日志 | 已提交 |
+| `scripts/ray_batch_infer.py` | Ray 批量推理脚本 | 已提交 |
+| `docs/ray_task.md` | 本文档 | 已提交 |
+| `results/ray_serial.csv` | 串行实验结果 | 已提交 |
+| `results/ray_round_robin.csv` | 轮询实验结果 | 已提交 |
+| `results/ray_parallel.csv` | 并行实验结果 | 已提交 |
 
 ## 附录 B：已完成验证清单
 
@@ -558,7 +558,7 @@ Ray 提升的是**整体吞吐量**（单位时间内完成的请求数），而
 
 ## 附录 C：Ray 选做加分一 — 负载均衡调度
 
-> **完成状态**：✅ 实验已完成（2026-06-05）
+> **完成状态**：实验已完成（2026-06-05）
 
 ### C.1 实验目标
 
@@ -674,17 +674,17 @@ python3 Lab4/scripts/ray_load_balance.py \
 ### C.7 分析
 
 #### Round-Robin 请求数是否平均
-✅ 完全平均：worker_0 和 worker_1 各 15 个请求（50% / 50%）。
+完全平均：worker_0 和 worker_1 各 15 个请求（50% / 50%）。
 
 #### Latency-Aware 是否倾向于更快 worker
-✅ 非常显著。预热阶段后，算法几乎将所有请求分配给 worker_0（28/30 = 93.3%）。
+是。预热阶段后，算法将 28/30 个请求分配给 worker_0（93.3%）。
 worker_0 的平均延迟始终低于 worker_1，说明延迟感知调度逻辑正确。
 
 #### 平均延迟是否下降
-✅ 大幅下降 40.4%（9.81s → 5.85s）。因为 93.3% 的请求走了快速通道。
+下降 40.4%（9.81s → 5.85s）。主要原因是 93.3% 的请求走了快速通道。
 
 #### 总吞吐是否提升
-❌ 总吞吐反而略降 3.6%（0.177 → 0.171 req/s）。原因：
+总吞吐下降 3.6%（0.177 → 0.171 req/s）。原因：
 - Round-robin 下两个 worker 并行工作，快慢 worker 各处理 15 个请求。
 - Latency-aware 下几乎只有 worker_0 在工作（28 个请求），worker_1 近乎空闲。
 - 快速 worker 串行处理 28 个请求的总时间 > 两个 worker 并行各处理 15 个的总时间。
@@ -695,7 +695,7 @@ worker_0 的平均延迟始终低于 worker_1，说明延迟感知调度逻辑�
 1. **Actor 单线程模型**：每个 `LlamaServerActor` 内部串行处理请求。
    latency_aware 将请求集中到单个快速 worker，失去了并行优势。
 2. **贪婪算法的局限**：总是选择当前最快的 worker，不考虑 worker 的队列长度
-   （因为 Actor 模型下我们提交一个请求就等待完成）。
+   （因为 Actor 模型下脚本提交一个请求后会等待该请求返回）。
 3. **改进方向**：如果能同时提交多个请求到同一 worker（如使用 server 的 batch 能力），
    或使用"最少连接数"而非"最低延迟"，可能改善吞吐。
 
@@ -714,24 +714,24 @@ worker_0 的平均延迟始终低于 worker_1，说明延迟感知调度逻辑�
 3. **小样本**：30 条 prompt 可能不足以充分展现差异。
 4. **贪婪算法**：不考虑队列长度，可能导致负载倾斜过度。
 5. **预热阶段**：每个 worker 只有 1 次预热请求，样本量小。
-6. **未测试连接数感知**：更优的算法可能是"最少未完成请求数"而非"最低平均延迟"。
+6. **未测试连接数感知**：更合适的算法可以是"最少进行中请求数"而非"最低平均延迟"。
 
 ### C.9 文件清单
 
 | 文件 | 说明 | 状态 |
 |---|---|---|
-| `scripts/ray_load_balance.py` | 负载均衡调度脚本 | ✅ |
-| `prompts/ray_prompts_30.jsonl` | 30 条 prompt 数据集 | ✅ |
-| `results/ray_load_balance_round_robin.csv` | Round-Robin 详细结果 | ✅ |
-| `results/ray_load_balance_round_robin_summary.csv` | Round-Robin 汇总 | ✅ |
-| `results/ray_load_balance_latency_aware.csv` | Latency-Aware 详细结果 | ✅ |
-| `results/ray_load_balance_latency_aware_summary.csv` | Latency-Aware 汇总 | ✅ |
+| `scripts/ray_load_balance.py` | 负载均衡调度脚本 | 已提交 |
+| `prompts/ray_prompts_30.jsonl` | 30 条 prompt 数据集 | 已提交 |
+| `results/ray_load_balance_round_robin.csv` | Round-Robin 详细结果 | 已提交 |
+| `results/ray_load_balance_round_robin_summary.csv` | Round-Robin 汇总 | 已提交 |
+| `results/ray_load_balance_latency_aware.csv` | Latency-Aware 详细结果 | 已提交 |
+| `results/ray_load_balance_latency_aware_summary.csv` | Latency-Aware 汇总 | 已提交 |
 
 ---
 
 ## 附录 D：Ray 选做加分二 — 失败重试
 
-> **完成状态**：✅ 实验已完成（2026-06-05），真实失败注入（kill -9 停止 Server A）
+> **完成状态**：实验已完成（2026-06-05），真实失败注入（kill -9 停止 Server A）
 
 ### D.1 实验目标
 
@@ -914,7 +914,7 @@ python3 Lab4/scripts/ray_failure_retry.py \
 3. **无状态重试**：每次重试都是独立的新 HTTP 请求。
    没有实现幂等性保证或请求去重。
 4. **简单选择策略**：按顺序尝试下一个 server，不考虑 server 当前负载。
-   更优的方案是结合负载信息（如最少未完成请求数）选择备用 server。
+   更稳妥的方案是结合负载信息（如最少进行中请求数）选择备用 server。
 5. **无健康检查/熔断**：没有 circuit breaker 模式。
    故障 server 恢复后不会自动重新加入。
 6. **Actor 持久性**：Ray Actor 在 server 宕机后仍然存活（因为 Actor 只是 HTTP 客户端）。
@@ -924,6 +924,6 @@ python3 Lab4/scripts/ray_failure_retry.py \
 
 | 文件 | 说明 | 状态 |
 |---|---|---|
-| `scripts/ray_failure_retry.py` | 失败重试脚本 | ✅ |
-| `results/ray_failure_retry.csv` | 30 条请求详情（含 12 条重试） | ✅ |
-| `results/ray_failure_retry.log` | 结构化重试日志 | ✅ |
+| `scripts/ray_failure_retry.py` | 失败重试脚本 | 已提交 |
+| `results/ray_failure_retry.csv` | 30 条请求详情（含 12 条重试） | 已提交 |
+| `results/ray_failure_retry.log` | 结构化重试日志 | 已提交 |

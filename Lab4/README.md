@@ -1,6 +1,6 @@
 # OSH 2026 Lab4 — LLM 部署、性能测试与分布式推理
 
-> **最终整合版本** | 整合时间：2026-06-06
+> 整合时间：2026-06-06
 >
 > 本项目完成 llama.cpp 单机部署、性能测试、参数优化、输出质量评估、RPC 分布式推理、
 > llama-server 并发测试，以及基于 Ray 的批量推理调度、负载均衡与失败重试。
@@ -55,9 +55,9 @@
 
 ---
 
-## 2. 为什么选择 Ray
+## 2. Ray 方案说明
 
-Ray 选型理由详见 [`docs/ray_task.md`](docs/ray_task.md) 第 2 节。核心原因：
+Ray 选型理由详见 [`docs/ray_task.md`](docs/ray_task.md) 第 2 节。本实验使用 Ray 的原因如下：
 
 | 特性 | 说明 |
 |---|---|
@@ -65,7 +65,7 @@ Ray 选型理由详见 [`docs/ray_task.md`](docs/ray_task.md) 第 2 节。核心
 | **Actor 模型** | 每个 `LlamaServerActor` 绑定一个 llama-server，保持长连接 |
 | **自动容错** | Task 失败可自动重试；Actor 崩溃可重建 |
 | **统一调度** | 单机 `ray.init()` 与多机集群使用相同 API |
-| **零序列化负担** | Ray 自动处理对象序列化和传输 |
+| **对象传输封装** | Ray 负责对象序列化和传输，实验代码无需手写传输层 |
 | **vs 手动 RPC** | Role B 的 gRPC 适合直连场景；Ray 更适合多 worker 协调、负载均衡、状态管理 |
 
 ---
@@ -137,11 +137,11 @@ Lab4/
 │   └── C_ray_commands.md               ← C 的真实命令记录
 └── screenshots/
     ├── single_deploy/                  ← A 的单机部署截图（5 张）
-    ├── rpc_deploy/                     ← 待补充
-    ├── llama_server_concurrency/       ← 待补充
-    ├── ray_task/                       ← 待补充
-    ├── ray_load_balance/               ← 待补充
-    └── ray_failure_retry/              ← 待补充
+    ├── rpc_deploy/                     ← B 的 RPC 部署截图
+    ├── llama_server_concurrency/       ← B 的 llama-server 并发截图
+    ├── ray_task/                       ← C 的 Ray 批量推理截图
+    ├── ray_load_balance/               ← C 的 Ray 负载均衡截图
+    └── ray_failure_retry/              ← C 的 Ray 失败重试截图
 ```
 
 ---
@@ -521,7 +521,7 @@ python3 Lab4/scripts/ray_batch_infer.py \
 | ray_round_robin | Ray Actor 轮询分发到 2 个 server | 接近基准 | 约 2× serial |
 | ray_parallel | Ray Task 并发调用，max_concurrency=8 | 因排队略高 | 最高 |
 
-> **重要区分**：Ray 可以提高批量吞吐（通过并发），但**不能加速单条 prompt 的推理**。
+> Ray 通过并发调度提高批量吞吐；单条 prompt 的推理速度仍由 llama-server 和硬件决定。
 > 单条请求延迟受限于 llama-server 的推理速度，Ray 调度本身还会引入少量调度开销。
 
 ---
@@ -727,9 +727,9 @@ A、B、C 使用了三台不同的物理机器：
 2. **线程数限制**：B 的机器因 CPU 散热限制必须使用 `--threads 2`，会影响绝对性能数字。
 3. **RPC 网络不稳定**：B 的 RPC 实验通过移动热点连接，延迟方差大（1ms–538ms）。
 
-### 16.8 复现路径建议
+### 16.8 复现顺序
 
-推荐按以下顺序复现：
+按以下顺序复现即可覆盖本项目的必做和选做实验：
 
 1. **准备环境**：下载模型 → 编译 llama.cpp（CPU + RPC）
 2. **单机验证**：`docs/deploy_llama_single.md` → 单次推理
