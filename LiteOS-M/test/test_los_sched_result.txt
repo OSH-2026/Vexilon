@@ -1,9 +1,9 @@
 entering kernel init...
-LiteOS heap memory address:0x565a0320, size:0x10000
+LiteOS heap memory address:0x565ee320, size:0x10000
 === Sched Test Start ===
 
 --- OsSchedSwtmrScanRegister ---
-  FAIL  NULL func -> LOS_NOK
+  PASS  NULL func -> LOS_NOK
   PASS  valid func -> LOS_OK
 
 --- OsSchedResetSchedResponseTime ---
@@ -39,7 +39,7 @@ LiteOS heap memory address:0x565a0320, size:0x10000
 
 --- OsSchedGetNextExpireTime ---
   PASS  NextExpireTime >= startTime
-       startTime  = 282481337
+       startTime  = 783501844
        expireTime = 18446744073709550865
 
 --- LOS_SchedTickTimeoutNsGet ---

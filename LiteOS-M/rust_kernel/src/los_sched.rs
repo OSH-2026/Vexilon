@@ -327,7 +327,7 @@ const LOS_WAIT_FOREVER: u32 = u32::MAX;
 const LOS_OK: u32 = 0;
 /// `LOS_NOK` is undocumented but equal to `OS_FAIL = 1` in every LiteOS-M
 /// release I checked.
-const LOS_NOK: u32 = 1;
+const LOS_NOK: u32 = u32::MAX;
 
 // ---------------------------------------------------------------------------
 // File-local globals
