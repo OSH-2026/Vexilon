@@ -90,8 +90,7 @@ Lab4/
 │   ├── quality_eval.md                ← 输出质量评估（B）
 │   ├── rpc_deploy.md                  ← RPC 分布式推理部署（B）
 │   ├── llama_server_concurrency.md    ← llama-server 并发测试（B）
-│   ├── ray_task.md                    ← Ray 批量推理调度实验（C）
-│   └── final_checklist.md             ← 提交前最终检查清单
+│   └── ray_task.md                    ← Ray 批量推理调度实验（C）
 ├── scripts/
 │   ├── bench_single.py                ← 单机 benchmark 脚本（A）
 │   ├── run_quality_eval.py            ← 质量评估脚本（B）
