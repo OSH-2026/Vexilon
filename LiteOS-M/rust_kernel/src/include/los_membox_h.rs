@@ -133,8 +133,8 @@ pub struct tagMEMBOX_NODE {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagMEMBOX_NODE"][::std::mem::size_of::<tagMEMBOX_NODE>() - 8usize];
-    ["Alignment of tagMEMBOX_NODE"][::std::mem::align_of::<tagMEMBOX_NODE>() - 8usize];
+    ["Size of tagMEMBOX_NODE"][::std::mem::size_of::<tagMEMBOX_NODE>() - 4usize];
+    ["Alignment of tagMEMBOX_NODE"][::std::mem::align_of::<tagMEMBOX_NODE>() - 4usize];
     ["Offset of field: tagMEMBOX_NODE::pstNext"]
         [::std::mem::offset_of!(tagMEMBOX_NODE, pstNext) - 0usize];
 };
@@ -155,8 +155,8 @@ pub struct LOS_MEMBOX_INFO {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_MEMBOX_INFO"][::std::mem::size_of::<LOS_MEMBOX_INFO>() - 24usize];
-    ["Alignment of LOS_MEMBOX_INFO"][::std::mem::align_of::<LOS_MEMBOX_INFO>() - 8usize];
+    ["Size of LOS_MEMBOX_INFO"][::std::mem::size_of::<LOS_MEMBOX_INFO>() - 16usize];
+    ["Alignment of LOS_MEMBOX_INFO"][::std::mem::align_of::<LOS_MEMBOX_INFO>() - 4usize];
     ["Offset of field: LOS_MEMBOX_INFO::uwBlkSize"]
         [::std::mem::offset_of!(LOS_MEMBOX_INFO, uwBlkSize) - 0usize];
     ["Offset of field: LOS_MEMBOX_INFO::uwBlkNum"]
@@ -164,7 +164,7 @@ const _: () = {
     ["Offset of field: LOS_MEMBOX_INFO::uwBlkCnt"]
         [::std::mem::offset_of!(LOS_MEMBOX_INFO, uwBlkCnt) - 8usize];
     ["Offset of field: LOS_MEMBOX_INFO::stFreeList"]
-        [::std::mem::offset_of!(LOS_MEMBOX_INFO, stFreeList) - 16usize];
+        [::std::mem::offset_of!(LOS_MEMBOX_INFO, stFreeList) - 12usize];
 };
 #[doc = " @ingroup los_membox\n Memory pool information structure"]
 pub type OS_MEMBOX_S = LOS_MEMBOX_INFO;

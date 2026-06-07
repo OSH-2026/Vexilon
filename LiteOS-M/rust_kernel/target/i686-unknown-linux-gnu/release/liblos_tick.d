@@ -1,0 +1,1 @@
+/home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/target/i686-unknown-linux-gnu/release/liblos_tick.a: /home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/src/include/los_tick_h.rs /home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/src/los_tick.rs

@@ -119,11 +119,11 @@ pub struct tagIrqParam {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagIrqParam"][::std::mem::size_of::<tagIrqParam>() - 24usize];
-    ["Alignment of tagIrqParam"][::std::mem::align_of::<tagIrqParam>() - 8usize];
+    ["Size of tagIrqParam"][::std::mem::size_of::<tagIrqParam>() - 12usize];
+    ["Alignment of tagIrqParam"][::std::mem::align_of::<tagIrqParam>() - 4usize];
     ["Offset of field: tagIrqParam::swIrq"][::std::mem::offset_of!(tagIrqParam, swIrq) - 0usize];
-    ["Offset of field: tagIrqParam::pDevId"][::std::mem::offset_of!(tagIrqParam, pDevId) - 8usize];
-    ["Offset of field: tagIrqParam::pName"][::std::mem::offset_of!(tagIrqParam, pName) - 16usize];
+    ["Offset of field: tagIrqParam::pDevId"][::std::mem::offset_of!(tagIrqParam, pDevId) - 4usize];
+    ["Offset of field: tagIrqParam::pName"][::std::mem::offset_of!(tagIrqParam, pName) - 8usize];
 };
 pub type HwiIrqParam = tagIrqParam;
 #[repr(C)]
@@ -143,22 +143,22 @@ pub struct HwiControllerOps {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of HwiControllerOps"][::std::mem::size_of::<HwiControllerOps>() - 56usize];
-    ["Alignment of HwiControllerOps"][::std::mem::align_of::<HwiControllerOps>() - 8usize];
+    ["Size of HwiControllerOps"][::std::mem::size_of::<HwiControllerOps>() - 28usize];
+    ["Alignment of HwiControllerOps"][::std::mem::align_of::<HwiControllerOps>() - 4usize];
     ["Offset of field: HwiControllerOps::triggerIrq"]
         [::std::mem::offset_of!(HwiControllerOps, triggerIrq) - 0usize];
     ["Offset of field: HwiControllerOps::clearIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, clearIrq) - 8usize];
+        [::std::mem::offset_of!(HwiControllerOps, clearIrq) - 4usize];
     ["Offset of field: HwiControllerOps::enableIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, enableIrq) - 16usize];
+        [::std::mem::offset_of!(HwiControllerOps, enableIrq) - 8usize];
     ["Offset of field: HwiControllerOps::disableIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, disableIrq) - 24usize];
+        [::std::mem::offset_of!(HwiControllerOps, disableIrq) - 12usize];
     ["Offset of field: HwiControllerOps::setIrqPriority"]
-        [::std::mem::offset_of!(HwiControllerOps, setIrqPriority) - 32usize];
+        [::std::mem::offset_of!(HwiControllerOps, setIrqPriority) - 16usize];
     ["Offset of field: HwiControllerOps::getCurIrqNum"]
-        [::std::mem::offset_of!(HwiControllerOps, getCurIrqNum) - 40usize];
+        [::std::mem::offset_of!(HwiControllerOps, getCurIrqNum) - 20usize];
     ["Offset of field: HwiControllerOps::createIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, createIrq) - 48usize];
+        [::std::mem::offset_of!(HwiControllerOps, createIrq) - 24usize];
 };
 unsafe extern "C" {
     pub static mut __stack_chk_guard: UINT32;
@@ -242,8 +242,8 @@ pub struct tagUserErrFunc {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 8usize];
-    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 8usize];
+    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 4usize];
+    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 4usize];
     ["Offset of field: tagUserErrFunc::pfnHook"]
         [::std::mem::offset_of!(tagUserErrFunc, pfnHook) - 0usize];
 };
@@ -380,8 +380,8 @@ pub struct TagExcInfo {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of TagExcInfo"][::std::mem::size_of::<TagExcInfo>() - 24usize];
-    ["Alignment of TagExcInfo"][::std::mem::align_of::<TagExcInfo>() - 8usize];
+    ["Size of TagExcInfo"][::std::mem::size_of::<TagExcInfo>() - 20usize];
+    ["Alignment of TagExcInfo"][::std::mem::align_of::<TagExcInfo>() - 4usize];
     ["Offset of field: TagExcInfo::phase"][::std::mem::offset_of!(TagExcInfo, phase) - 0usize];
     ["Offset of field: TagExcInfo::type_"][::std::mem::offset_of!(TagExcInfo, type_) - 2usize];
     ["Offset of field: TagExcInfo::faultAddr"]

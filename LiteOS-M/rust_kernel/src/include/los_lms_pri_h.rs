@@ -57,12 +57,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -76,20 +76,20 @@ pub struct LmsMemListNode {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LmsMemListNode"][::std::mem::size_of::<LmsMemListNode>() - 40usize];
-    ["Alignment of LmsMemListNode"][::std::mem::align_of::<LmsMemListNode>() - 8usize];
+    ["Size of LmsMemListNode"][::std::mem::size_of::<LmsMemListNode>() - 28usize];
+    ["Alignment of LmsMemListNode"][::std::mem::align_of::<LmsMemListNode>() - 4usize];
     ["Offset of field: LmsMemListNode::node"]
         [::std::mem::offset_of!(LmsMemListNode, node) - 0usize];
     ["Offset of field: LmsMemListNode::used"]
-        [::std::mem::offset_of!(LmsMemListNode, used) - 16usize];
+        [::std::mem::offset_of!(LmsMemListNode, used) - 8usize];
     ["Offset of field: LmsMemListNode::poolAddr"]
-        [::std::mem::offset_of!(LmsMemListNode, poolAddr) - 20usize];
+        [::std::mem::offset_of!(LmsMemListNode, poolAddr) - 12usize];
     ["Offset of field: LmsMemListNode::poolSize"]
-        [::std::mem::offset_of!(LmsMemListNode, poolSize) - 24usize];
+        [::std::mem::offset_of!(LmsMemListNode, poolSize) - 16usize];
     ["Offset of field: LmsMemListNode::shadowStart"]
-        [::std::mem::offset_of!(LmsMemListNode, shadowStart) - 28usize];
+        [::std::mem::offset_of!(LmsMemListNode, shadowStart) - 20usize];
     ["Offset of field: LmsMemListNode::shadowSize"]
-        [::std::mem::offset_of!(LmsMemListNode, shadowSize) - 32usize];
+        [::std::mem::offset_of!(LmsMemListNode, shadowSize) - 24usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -140,14 +140,14 @@ pub struct LmsHook {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LmsHook"][::std::mem::size_of::<LmsHook>() - 48usize];
-    ["Alignment of LmsHook"][::std::mem::align_of::<LmsHook>() - 8usize];
+    ["Size of LmsHook"][::std::mem::size_of::<LmsHook>() - 24usize];
+    ["Alignment of LmsHook"][::std::mem::align_of::<LmsHook>() - 4usize];
     ["Offset of field: LmsHook::init"][::std::mem::offset_of!(LmsHook, init) - 0usize];
-    ["Offset of field: LmsHook::deInit"][::std::mem::offset_of!(LmsHook, deInit) - 8usize];
-    ["Offset of field: LmsHook::mallocMark"][::std::mem::offset_of!(LmsHook, mallocMark) - 16usize];
-    ["Offset of field: LmsHook::freeMark"][::std::mem::offset_of!(LmsHook, freeMark) - 24usize];
-    ["Offset of field: LmsHook::simpleMark"][::std::mem::offset_of!(LmsHook, simpleMark) - 32usize];
-    ["Offset of field: LmsHook::check"][::std::mem::offset_of!(LmsHook, check) - 40usize];
+    ["Offset of field: LmsHook::deInit"][::std::mem::offset_of!(LmsHook, deInit) - 4usize];
+    ["Offset of field: LmsHook::mallocMark"][::std::mem::offset_of!(LmsHook, mallocMark) - 8usize];
+    ["Offset of field: LmsHook::freeMark"][::std::mem::offset_of!(LmsHook, freeMark) - 12usize];
+    ["Offset of field: LmsHook::simpleMark"][::std::mem::offset_of!(LmsHook, simpleMark) - 16usize];
+    ["Offset of field: LmsHook::check"][::std::mem::offset_of!(LmsHook, check) - 20usize];
 };
 unsafe extern "C" {
     pub static mut g_lms: *mut LmsHook;

@@ -34,12 +34,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 pub const SortLinkType_OS_SORT_LINK_TASK: SortLinkType = 1;
 pub const SortLinkType_OS_SORT_LINK_SWTMR: SortLinkType = 2;
@@ -52,12 +52,12 @@ pub struct SortLinkList {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 24usize];
-    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 8usize];
+    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 16usize];
+    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 4usize];
     ["Offset of field: SortLinkList::sortLinkNode"]
         [::std::mem::offset_of!(SortLinkList, sortLinkNode) - 0usize];
     ["Offset of field: SortLinkList::responseTime"]
-        [::std::mem::offset_of!(SortLinkList, responseTime) - 16usize];
+        [::std::mem::offset_of!(SortLinkList, responseTime) - 8usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -66,8 +66,8 @@ pub struct SortLinkAttribute {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 16usize];
-    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 8usize];
+    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 8usize];
+    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 4usize];
     ["Offset of field: SortLinkAttribute::sortLink"]
         [::std::mem::offset_of!(SortLinkAttribute, sortLink) - 0usize];
 };

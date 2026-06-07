@@ -53,8 +53,8 @@ pub struct tagUserErrFunc {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 8usize];
-    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 8usize];
+    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 4usize];
+    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 4usize];
     ["Offset of field: tagUserErrFunc::pfnHook"]
         [::std::mem::offset_of!(tagUserErrFunc, pfnHook) - 0usize];
 };

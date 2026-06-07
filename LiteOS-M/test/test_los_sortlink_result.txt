@@ -1,0 +1,51 @@
+entering kernel init...
+LiteOS heap memory address:0x565ca780, size:0x10000
+=== SortLink Test Start ===
+
+--- OsSortLinkInit ---
+  PASS  OsSortLinkInit returns LOS_OK
+  PASS  sortLink is empty after init
+
+--- OsGetSortLinkAttribute ---
+  PASS  OS_SORT_LINK_TASK -> non-NULL
+  PASS  OS_SORT_LINK_TASK -> &g_taskSortLink
+Invalid sort link type!
+  PASS  invalid type -> NULL
+
+--- OsAdd2SortLink / OsDeleteSortLink ---
+  PASS  g_taskSortLink empty before test
+  PASS  after 3 inserts, list not empty
+  PASS  first node is earliest (node2, waitTicks=10)
+  PASS  second node is node3 (waitTicks=20)
+  PASS  third node is node1 (waitTicks=30)
+  PASS  responseTime order: node2 <= node3 <= node1
+       node2.responseTime = 744569444
+       node3.responseTime = 744669444
+       node1.responseTime = 744769444
+  PASS  after delete node3: responseTime set to INVALID
+  PASS  double delete node3: no crash
+  PASS  after all deletes, list empty
+
+--- OsSortLinkGetNextExpireTime ---
+  PASS  empty list -> 0
+  PASS  non-empty list -> expire > 0
+       next expire time = 1000000 cycles
+
+--- OsSortLinkGetTargetExpireTime ---
+  PASS  future node: remain == responseTime - currTime
+  PASS  expired node: remain == 0
+       future remain  = 100000 cycles
+
+--- OsGetNextExpireTime (inline) ---
+  PASS  empty sortlink -> MAX - precision
+  PASS  with node beyond precision -> node.responseTime
+       expireTime = 746469520
+
+--- OsSortLinkGetRemainTime (inline) ---
+  PASS  future node: remain == 5000
+  PASS  expired node: remain == 0
+
+--- SET_SORTLIST_VALUE / GET_SORTLIST_VALUE ---
+  PASS  SET then GET returns same value
+
+=== SortLink Test End ===

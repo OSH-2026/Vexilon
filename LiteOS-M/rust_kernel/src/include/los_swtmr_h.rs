@@ -95,12 +95,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 pub const SortLinkType_OS_SORT_LINK_TASK: SortLinkType = 1;
 pub const SortLinkType_OS_SORT_LINK_SWTMR: SortLinkType = 2;
@@ -113,12 +113,12 @@ pub struct SortLinkList {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 24usize];
-    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 8usize];
+    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 16usize];
+    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 4usize];
     ["Offset of field: SortLinkList::sortLinkNode"]
         [::std::mem::offset_of!(SortLinkList, sortLinkNode) - 0usize];
     ["Offset of field: SortLinkList::responseTime"]
-        [::std::mem::offset_of!(SortLinkList, responseTime) - 16usize];
+        [::std::mem::offset_of!(SortLinkList, responseTime) - 8usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -127,8 +127,8 @@ pub struct SortLinkAttribute {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 16usize];
-    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 8usize];
+    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 8usize];
+    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 4usize];
     ["Offset of field: SortLinkAttribute::sortLink"]
         [::std::mem::offset_of!(SortLinkAttribute, sortLink) - 0usize];
 };
@@ -192,27 +192,27 @@ pub struct tagSwTmrCtrl {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagSwTmrCtrl"][::std::mem::size_of::<tagSwTmrCtrl>() - 64usize];
-    ["Alignment of tagSwTmrCtrl"][::std::mem::align_of::<tagSwTmrCtrl>() - 8usize];
+    ["Size of tagSwTmrCtrl"][::std::mem::size_of::<tagSwTmrCtrl>() - 48usize];
+    ["Alignment of tagSwTmrCtrl"][::std::mem::align_of::<tagSwTmrCtrl>() - 4usize];
     ["Offset of field: tagSwTmrCtrl::pstNext"]
         [::std::mem::offset_of!(tagSwTmrCtrl, pstNext) - 0usize];
     ["Offset of field: tagSwTmrCtrl::ucState"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, ucState) - 8usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, ucState) - 4usize];
     ["Offset of field: tagSwTmrCtrl::ucMode"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, ucMode) - 9usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, ucMode) - 5usize];
     ["Offset of field: tagSwTmrCtrl::ucOverrun"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, ucOverrun) - 10usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, ucOverrun) - 6usize];
     ["Offset of field: tagSwTmrCtrl::usTimerID"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, usTimerID) - 12usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, usTimerID) - 8usize];
     ["Offset of field: tagSwTmrCtrl::uwInterval"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, uwInterval) - 16usize];
-    ["Offset of field: tagSwTmrCtrl::uwArg"][::std::mem::offset_of!(tagSwTmrCtrl, uwArg) - 20usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, uwInterval) - 12usize];
+    ["Offset of field: tagSwTmrCtrl::uwArg"][::std::mem::offset_of!(tagSwTmrCtrl, uwArg) - 16usize];
     ["Offset of field: tagSwTmrCtrl::pfnHandler"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, pfnHandler) - 24usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, pfnHandler) - 20usize];
     ["Offset of field: tagSwTmrCtrl::stSortList"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, stSortList) - 32usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, stSortList) - 24usize];
     ["Offset of field: tagSwTmrCtrl::startTime"]
-        [::std::mem::offset_of!(tagSwTmrCtrl, startTime) - 56usize];
+        [::std::mem::offset_of!(tagSwTmrCtrl, startTime) - 40usize];
 };
 #[doc = " @ingroup los_swtmr\n Software timer control structure"]
 pub type SWTMR_CTRL_S = tagSwTmrCtrl;
@@ -262,14 +262,14 @@ pub struct SwtmrHandlerItem {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SwtmrHandlerItem"][::std::mem::size_of::<SwtmrHandlerItem>() - 16usize];
-    ["Alignment of SwtmrHandlerItem"][::std::mem::align_of::<SwtmrHandlerItem>() - 8usize];
+    ["Size of SwtmrHandlerItem"][::std::mem::size_of::<SwtmrHandlerItem>() - 12usize];
+    ["Alignment of SwtmrHandlerItem"][::std::mem::align_of::<SwtmrHandlerItem>() - 4usize];
     ["Offset of field: SwtmrHandlerItem::handler"]
         [::std::mem::offset_of!(SwtmrHandlerItem, handler) - 0usize];
     ["Offset of field: SwtmrHandlerItem::arg"]
-        [::std::mem::offset_of!(SwtmrHandlerItem, arg) - 8usize];
+        [::std::mem::offset_of!(SwtmrHandlerItem, arg) - 4usize];
     ["Offset of field: SwtmrHandlerItem::swtmrID"]
-        [::std::mem::offset_of!(SwtmrHandlerItem, swtmrID) - 12usize];
+        [::std::mem::offset_of!(SwtmrHandlerItem, swtmrID) - 8usize];
 };
 unsafe extern "C" {
     pub static mut g_swtmrCBArray: *mut SWTMR_CTRL_S;

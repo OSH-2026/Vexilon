@@ -37,12 +37,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 #[doc = " @ingroup los_event\n Event control structure"]
 #[repr(C)]
@@ -55,11 +55,11 @@ pub struct tagEvent {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagEvent"][::std::mem::size_of::<tagEvent>() - 24usize];
-    ["Alignment of tagEvent"][::std::mem::align_of::<tagEvent>() - 8usize];
+    ["Size of tagEvent"][::std::mem::size_of::<tagEvent>() - 12usize];
+    ["Alignment of tagEvent"][::std::mem::align_of::<tagEvent>() - 4usize];
     ["Offset of field: tagEvent::uwEventID"][::std::mem::offset_of!(tagEvent, uwEventID) - 0usize];
     ["Offset of field: tagEvent::stEventList"]
-        [::std::mem::offset_of!(tagEvent, stEventList) - 8usize];
+        [::std::mem::offset_of!(tagEvent, stEventList) - 4usize];
 };
 #[doc = " @ingroup los_event\n Event control structure"]
 pub type EVENT_CB_S = tagEvent;

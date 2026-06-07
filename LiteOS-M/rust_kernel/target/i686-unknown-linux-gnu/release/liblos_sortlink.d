@@ -1,0 +1,1 @@
+/home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/target/i686-unknown-linux-gnu/release/liblos_sortlink.a: /home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/src/include/los_config_h.rs /home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/src/include/los_sortlink_h.rs /home/lenovo/Desktop/Vexilon/LiteOS-M/rust_kernel/src/los_sortlink.rs

@@ -1,0 +1,25 @@
+=== Membox Test Start ===
+LOS_MemboxInit() = 0
+Statistics: maxBlk=8  blkCnt=0  blkSize=36
+
+Allocating blocks:
+  block[0] = 0x5664f114
+  block[1] = 0x5664f138
+  block[2] = 0x5664f15c
+  block[3] = 0x5664f180
+  block[4] = 0x5664f1a4
+  block[5] = 0x5664f1c8
+  block[6] = 0x5664f1ec
+  block[7] = 0x5664f210
+
+Extra allocation = (nil) (expect NULL)
+After full allocation: blkCnt=8
+
+LOS_MemboxClr() = PASS
+
+Free block[0] = 0
+Realloc after free = 0x5664f114
+
+Final Statistics: maxBlk=8  blkCnt=0  blkSize=36
+
+=== Membox Test End ===

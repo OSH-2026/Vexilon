@@ -52,19 +52,19 @@ pub struct MPU_CFG_PARA {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of MPU_CFG_PARA"][::std::mem::size_of::<MPU_CFG_PARA>() - 32usize];
-    ["Alignment of MPU_CFG_PARA"][::std::mem::align_of::<MPU_CFG_PARA>() - 8usize];
+    ["Size of MPU_CFG_PARA"][::std::mem::size_of::<MPU_CFG_PARA>() - 28usize];
+    ["Alignment of MPU_CFG_PARA"][::std::mem::align_of::<MPU_CFG_PARA>() - 4usize];
     ["Offset of field: MPU_CFG_PARA::baseAddr"]
         [::std::mem::offset_of!(MPU_CFG_PARA, baseAddr) - 0usize];
-    ["Offset of field: MPU_CFG_PARA::size"][::std::mem::offset_of!(MPU_CFG_PARA, size) - 8usize];
+    ["Offset of field: MPU_CFG_PARA::size"][::std::mem::offset_of!(MPU_CFG_PARA, size) - 4usize];
     ["Offset of field: MPU_CFG_PARA::permission"]
-        [::std::mem::offset_of!(MPU_CFG_PARA, permission) - 16usize];
+        [::std::mem::offset_of!(MPU_CFG_PARA, permission) - 12usize];
     ["Offset of field: MPU_CFG_PARA::executable"]
-        [::std::mem::offset_of!(MPU_CFG_PARA, executable) - 20usize];
+        [::std::mem::offset_of!(MPU_CFG_PARA, executable) - 16usize];
     ["Offset of field: MPU_CFG_PARA::shareability"]
-        [::std::mem::offset_of!(MPU_CFG_PARA, shareability) - 24usize];
+        [::std::mem::offset_of!(MPU_CFG_PARA, shareability) - 20usize];
     ["Offset of field: MPU_CFG_PARA::memType"]
-        [::std::mem::offset_of!(MPU_CFG_PARA, memType) - 28usize];
+        [::std::mem::offset_of!(MPU_CFG_PARA, memType) - 24usize];
 };
 unsafe extern "C" {
     pub fn ArchMpuEnable(defaultRegionEnable: UINT32);

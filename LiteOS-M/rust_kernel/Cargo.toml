@@ -4,33 +4,49 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "los_sched_lib"
+name = "los_sched"
 crate-type = ["staticlib"]
 path = "src/los_sched.rs"
 
-# ---------------------------------------------------------------------------
-# Feature flags that mirror the LOSCFG_* flags in los_config.h.  For the
-# configuration in your uploaded los_config_h.rs:
-#   LOSCFG_BASE_CORE_SWTMR        = 1  -> "swtmr"
-#   LOSCFG_KERNEL_PM              = 0  -> off
-#   LOSCFG_DEBUG_TOOLS            = 0  -> off
-#   LOSCFG_BASE_CORE_TSK_MONITOR  = 0  -> off
-# `default_hook_shims` keeps the build linkable until you supply
-# los_sched_hooks.c (the five-line C trampoline file).  Turn it off in
-# production.
-# ---------------------------------------------------------------------------
-[features]
-default = ["swtmr", "default_hook_shims"]
-swtmr              = []
-kernel_pm          = []
-debug_tools        = []
-tsk_monitor        = []
-default_hook_shims = []
+[dependencies]
+libc = "0.2"
 
-# `panic = "abort"` is required for no_std crates; without it rustc will
-# complain "unwinding panics are not supported without std".  Set on BOTH
-# dev and release so plain `cargo build` and `cargo build --release` both
-# work.
+[features]
+default = [
+    # --- memory ---
+    "LOSCFG_MEM_WATERLINE",
+    "LOSCFG_MEM_MUL_POOL",
+    "OS_MEM_EXPAND_ENABLE",
+    "LOSCFG_KERNEL_PRINTF",
+    "LOSCFG_MEM_LEAKCHECK",
+    # --- sched ---
+    "swtmr",
+    "default_hook_shims",
+]
+
+# memory flags
+LOSCFG_KERNEL_LMS                    = []   # 0
+LOSCFG_KERNEL_LMK                    = []   # 0
+LOSCFG_SYS_EXTERNAL_HEAP             = []   # 0
+LOSCFG_MEM_MUL_POOL                  = []   # 1
+LOSCFG_TASK_MEM_USED                 = []   # 0
+LOSCFG_MEM_FREE_BY_TASKID            = []   # 0
+LOSCFG_BASE_CORE_TSK_LIMIT           = []   # 0
+OS_MEM_EXPAND_ENABLE                 = []   # 1
+LOSCFG_MEM_MUL_REGIONS               = []   # 0
+LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK = []   # 0
+LOSCFG_KERNEL_PRINTF                 = []   # 1
+LOSCFG_MEM_WATERLINE                 = []   # 1
+LOSCFG_MEM_LEAKCHECK                 = []   # 1
+
+# sched flags
+swtmr              = []
+kernel_pm          = []   # LOSCFG_KERNEL_PM = 0
+debug_tools        = []   # LOSCFG_DEBUG_TOOLS = 0
+tsk_monitor        = []   # LOSCFG_BASE_CORE_TSK_MONITOR = 0
+default_hook_shims = []   
+
+
 [profile.dev]
 panic = "abort"
 

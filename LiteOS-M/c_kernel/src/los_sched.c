@@ -45,9 +45,12 @@
 #define OS_PRIORITY_QUEUE_NUM      32
 #define PRIQUEUE_PRIOR0_BIT        0x80000000U
 #define OS_TICK_RESPONSE_TIME_MAX  LOSCFG_BASE_CORE_TICK_RESPONSE_MAX
+//the following 3 lines are deleted by Vexilon.
+/*
 #if (LOSCFG_BASE_CORE_TICK_RESPONSE_MAX == 0)
 #error "Must specify the maximum value that tick timer counter supports!"
 #endif
+*/
 
 #define OS_TASK_BLOCKED_STATUS (OS_TASK_STATUS_PEND | OS_TASK_STATUS_SUSPEND | \
                                 OS_TASK_STATUS_EXIT | OS_TASK_STATUS_UNUSED)

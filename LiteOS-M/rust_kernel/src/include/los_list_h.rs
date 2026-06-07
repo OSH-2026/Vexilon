@@ -34,10 +34,10 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };

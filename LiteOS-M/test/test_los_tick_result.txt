@@ -1,0 +1,66 @@
+entering kernel init...
+LiteOS heap memory address:0x566387a0, size:0x10000
+=== Tick Test Start ===
+
+--- LOS_SysCycleGet ---
+  PASS  returns non-zero
+  PASS  second call >= first call
+  PASS  cycle increases over time
+       c1=21105586856  c3=21105588121  delta=1265
+
+--- LOS_CyclePerTickGet ---
+  PASS  returns non-zero
+  PASS  value == g_sysClock / TICK_PER_SECOND
+       cyclesPerTick = 10000  (expected 10000)
+
+--- LOS_TickCountGet ---
+  PASS  tick count is non-negative
+  PASS  tick count increases over ~20ms
+       t1=2110558  t2=2110560  delta=2
+
+--- LOS_MS2Tick ---
+  PASS  10ms -> 1 tick
+  PASS  100ms -> 10 ticks
+  PASS  1000ms -> 100 ticks
+  PASS  0ms -> 0 ticks
+  PASS  0xFFFFFFFF ms -> 0xFFFFFFFF
+
+--- LOS_Tick2MS ---
+  PASS  1 tick -> 10ms
+  PASS  10 ticks -> 100ms
+  PASS  100 ticks -> 1000ms
+  PASS  0 ticks -> 0ms
+
+--- LOS_CurrNanosec ---
+  PASS  returns non-zero
+  PASS  increases over ~1ms
+       ns1=21105608380000  ns2=21105609479000  delta=1099000 ns
+
+--- OsCpuTick2MS ---
+  PASS  NULL cpuTick -> LOS_ERRNO_SYS_PTR_NULL
+  PASS  NULL msHi -> LOS_ERRNO_SYS_PTR_NULL
+  PASS  NULL msLo -> LOS_ERRNO_SYS_PTR_NULL
+  PASS  1000000 cycles -> LOS_OK
+  PASS  1000000 cycles -> 1000ms (hi=0)
+  PASS  1000000 cycles -> 1000ms (lo=1000)
+       1000000 cycles = hi:0 lo:1000 ms
+
+--- OsCpuTick2US ---
+  PASS  NULL cpuTick -> LOS_ERRNO_SYS_PTR_NULL
+  PASS  1000000 cycles -> LOS_OK
+  PASS  1000000 cycles -> 1000000us (hi=0)
+  PASS  1000000 cycles -> 1000000us (lo=1000000)
+       1000000 cycles = hi:0 lo:1000000 us
+
+--- Global tick variables ---
+  PASS  g_sysClock == 1000000
+  PASS  g_cyclesPerTick == g_sysClock / TICK_PER_SECOND
+       g_sysClock      = 1000000
+       g_cyclesPerTick = 10000
+
+--- OsCycle2MS / OsCycle2US (inline) ---
+  PASS  OsCycle2MS(1000000) == 1000
+  PASS  OsCycle2US(1000000) == 1000000
+  PASS  OsCycle2MS(0) == 0
+
+=== Tick Test End ===

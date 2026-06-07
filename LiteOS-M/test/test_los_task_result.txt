@@ -1,0 +1,147 @@
+entering kernel init...
+LiteOS heap memory address:0x566771e0, size:0x10000
+=== Task Test Start ===
+
+--- LOS_TaskCreate ---
+  PASS  NULL taskID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  NULL param -> LOS_ERRNO_TSK_PTR_NULL
+  PASS  NULL entry -> LOS_ERRNO_TSK_ENTRY_NULL
+  PASS  NULL name -> LOS_ERRNO_TSK_NAME_EMPTY
+  PASS  priority out of range -> LOS_ERRNO_TSK_PRIOR_ERROR
+  PASS  stack too small -> LOS_ERRNO_TSK_STKSZ_TOO_SMALL
+  PASS  normal create -> LOS_OK
+       taskID = 2
+
+--- LOS_TaskCreateOnly ---
+  PASS  create only -> LOS_OK
+       taskID = 3
+  PASS  task status has SUSPEND bit
+
+--- LOS_TaskDelete ---
+  PASS  invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  normal delete -> LOS_OK
+  PASS  delete again -> LOS_ERRNO_TSK_NOT_CREATED
+
+--- LOS_TaskSuspend / LOS_TaskResume ---
+  PASS  suspend -> LOS_OK
+  PASS  status has SUSPEND bit after suspend
+  PASS  suspend again -> LOS_ERRNO_TSK_ALREADY_SUSPENDED
+  PASS  resume -> LOS_OK
+  PASS  resume non-suspended -> LOS_ERRNO_TSK_NOT_SUSPENDED
+  PASS  suspend invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+
+--- LOS_TaskPriGet / LOS_TaskPriSet ---
+  PASS  PriGet returns initial priority 10
+  PASS  PriSet(5) -> LOS_OK
+  PASS  PriGet returns updated priority 5
+  PASS  PriSet(out of range) -> LOS_ERRNO_TSK_PRIOR_ERROR
+  PASS  PriGet invalid ID -> OS_INVALID (0xFFFF)
+  PASS  PriSet invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+
+--- LOS_TaskStatusGet ---
+  PASS  NULL status ptr -> LOS_ERRNO_TSK_PTR_NULL
+  PASS  invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  normal get -> LOS_OK
+  PASS  status is not UNUSED
+
+--- LOS_TaskInfoGet ---
+  PASS  NULL info ptr -> LOS_ERRNO_TSK_PTR_NULL
+  PASS  invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  normal get -> LOS_OK
+  PASS  info.uwTaskID matches
+  PASS  info.usTaskPrio == 15
+  PASS  info.uwStackSize > 0
+       name=InfoTask  prio=15  stackSize=1024
+
+--- LOS_TaskNameGet ---
+  PASS  name != NULL
+  PASS  name == "NamedTask"
+       name = "NamedTask"
+  PASS  invalid ID -> NULL
+
+--- LOS_TaskLock / LOS_TaskUnlock ---
+  PASS  after Lock, g_losTaskLock == 1
+  PASS  after 2nd Lock, g_losTaskLock == 2
+  PASS  after 1st Unlock, g_losTaskLock == 1
+  PASS  after 2nd Unlock, g_losTaskLock == 0
+
+--- Task limit (LOSCFG_BASE_CORE_TSK_LIMIT=5) ---
+  PASS  extra create beyond limit -> TCB_UNAVAILABLE or NO_MEMORY
+       created 4 tasks before exhaustion
+
+=== Task Test End ===
+lenovo@XY23zmds46:~/Desktop/Vexilon/LiteOS-M/test$ gcc -m32 -w -o test test_los_task.c host_port.c liblos_task.a ../c_kernel/src/*.c ~/Desktop/libboundscheck/src/*.c -I ~/Desktop/
+libboundscheck/include -I ../c_kernel/include
+lenovo@XY23zmds46:~/Desktop/Vexilon/LiteOS-M/test$ ./test
+entering kernel init...
+LiteOS heap memory address:0x566947c0, size:0x10000
+=== Task Test Start ===
+
+--- LOS_TaskCreate ---
+  PASS  NULL taskID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  NULL param -> LOS_ERRNO_TSK_PTR_NULL
+  PASS  NULL entry -> LOS_ERRNO_TSK_ENTRY_NULL
+  PASS  NULL name -> LOS_ERRNO_TSK_NAME_EMPTY
+  PASS  priority out of range -> LOS_ERRNO_TSK_PRIOR_ERROR
+  PASS  stack too small -> LOS_ERRNO_TSK_STKSZ_TOO_SMALL
+  PASS  normal create -> LOS_OK
+       taskID = 2
+
+--- LOS_TaskCreateOnly ---
+  PASS  create only -> LOS_OK
+       taskID = 3
+  PASS  task status has SUSPEND bit
+
+--- LOS_TaskDelete ---
+  PASS  invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  normal delete -> LOS_OK
+  PASS  delete again -> LOS_ERRNO_TSK_NOT_CREATED
+
+--- LOS_TaskSuspend / LOS_TaskResume ---
+  PASS  suspend -> LOS_OK
+  PASS  status has SUSPEND bit after suspend
+  PASS  suspend again -> LOS_ERRNO_TSK_ALREADY_SUSPENDED
+  PASS  resume -> LOS_OK
+  PASS  resume non-suspended -> LOS_ERRNO_TSK_NOT_SUSPENDED
+  PASS  suspend invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+
+--- LOS_TaskPriGet / LOS_TaskPriSet ---
+  PASS  PriGet returns initial priority 10
+  PASS  PriSet(5) -> LOS_OK
+  PASS  PriGet returns updated priority 5
+  PASS  PriSet(out of range) -> LOS_ERRNO_TSK_PRIOR_ERROR
+  PASS  PriGet invalid ID -> OS_INVALID (0xFFFF)
+  PASS  PriSet invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+
+--- LOS_TaskStatusGet ---
+  PASS  NULL status ptr -> LOS_ERRNO_TSK_PTR_NULL
+  PASS  invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  normal get -> LOS_OK
+  PASS  status is not UNUSED
+
+--- LOS_TaskInfoGet ---
+  PASS  NULL info ptr -> LOS_ERRNO_TSK_PTR_NULL
+  PASS  invalid ID -> LOS_ERRNO_TSK_ID_INVALID
+  PASS  normal get -> LOS_OK
+  PASS  info.uwTaskID matches
+  PASS  info.usTaskPrio == 15
+  PASS  info.uwStackSize > 0
+       name=InfoTask  prio=15  stackSize=1024
+
+--- LOS_TaskNameGet ---
+  PASS  name != NULL
+  PASS  name == "NamedTask"
+       name = "NamedTask"
+  PASS  invalid ID -> NULL
+
+--- LOS_TaskLock / LOS_TaskUnlock ---
+  PASS  after Lock, g_losTaskLock == 1
+  PASS  after 2nd Lock, g_losTaskLock == 2
+  PASS  after 1st Unlock, g_losTaskLock == 1
+  PASS  after 2nd Unlock, g_losTaskLock == 0
+
+--- Task limit (LOSCFG_BASE_CORE_TSK_LIMIT=5) ---
+  PASS  extra create beyond limit -> TCB_UNAVAILABLE or NO_MEMORY
+       created 4 tasks before exhaustion
+
+=== Task Test End ===

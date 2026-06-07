@@ -1,0 +1,58 @@
+entering kernel init...
+LiteOS heap memory address:0x565a0320, size:0x10000
+=== Sched Test Start ===
+
+--- OsSchedSwtmrScanRegister ---
+  FAIL  NULL func -> LOS_NOK
+  PASS  valid func -> LOS_OK
+
+--- OsSchedResetSchedResponseTime ---
+  PASS  ResetSchedResponseTime(0) no crash
+  PASS  ResetSchedResponseTime(MAX) no crash
+
+--- OsSchedTaskEnQueue / OsSchedTaskDeQueue ---
+  PASS  after DeQueue: READY bit cleared
+  PASS  after EnQueue: READY bit set
+  PASS  double DeQueue no crash
+
+--- OsSchedSuspend / OsSchedResume ---
+  PASS  after Suspend: SUSPEND bit set
+  PASS  after Suspend: READY bit cleared
+  PASS  Resume returns TRUE
+  PASS  after Resume: SUSPEND bit cleared
+  PASS  after Resume: READY bit set
+
+--- OsSchedModifyTaskSchedParam ---
+  PASS  ModifySchedParam(READY task, prio=5) returns TRUE
+  PASS  priority updated to 5
+  PASS  ModifySchedParam(SUSPEND task, prio=8) returns FALSE
+  PASS  priority updated to 8
+
+--- OsGetTopTask ---
+  PASS  TopTask != NULL
+  PASS  TopTask is idle task (priority == 0)
+       idle task priority = 0
+  PASS  with user tasks, TopTask still has lowest priority number
+       TopTask priority = 0 (idle=0, HiPrio=3, LoPrio=20)
+  PASS  idle task protected: TopTask still priority=0 after DeQueue
+       TopTask priority after idle DeQueue = 0
+
+--- OsSchedGetNextExpireTime ---
+  PASS  NextExpireTime >= startTime
+       startTime  = 282481337
+       expireTime = 18446744073709550865
+
+--- LOS_SchedTickTimeoutNsGet ---
+  PASS  SchedTickTimeoutNsGet no crash
+       timeout = 18446744073709551615 ns
+
+--- LOS_SchedTickHandler ---
+  PASS  SchedTickHandler no crash when scheduler not started
+
+--- LOS_Schedule ---
+  PASS  LOS_Schedule no crash when scheduler not started
+
+--- OsSchedTaskExit ---
+  PASS  after TaskExit: READY bit cleared
+
+=== Sched Test End ===

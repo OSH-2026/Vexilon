@@ -96,12 +96,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 #[doc = " @ingroup los_err\n @brief Define the pointer to the error handling function.\n\n @par Description:\n This API is used to define the pointer to the error handling function.\n @attention\n <ul>\n <li>None.</li>\n </ul>\n\n @param  fileName  [IN] Log file that stores error information.\n @param  lineNo    [IN] Line number of the erroneous line.\n @param  errorNo   [IN] Error code.\n @param  paraLen   [IN] Length of the input parameter pPara.\n @param  para      [IN] User label of the error.\n\n @retval None.\n @par Dependency:\n <ul><li>los_err.h: the header file that contains the API declaration.</li></ul>\n @see None."]
 pub type LOS_ERRORHANDLE_FUNC = ::std::option::Option<
@@ -132,8 +132,8 @@ pub struct tagUserErrFunc {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 8usize];
-    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 8usize];
+    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 4usize];
+    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 4usize];
     ["Offset of field: tagUserErrFunc::pfnHook"]
         [::std::mem::offset_of!(tagUserErrFunc, pfnHook) - 0usize];
 };
@@ -189,11 +189,11 @@ pub struct LosPmDevice {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosPmDevice"][::std::mem::size_of::<LosPmDevice>() - 16usize];
-    ["Alignment of LosPmDevice"][::std::mem::align_of::<LosPmDevice>() - 8usize];
+    ["Size of LosPmDevice"][::std::mem::size_of::<LosPmDevice>() - 8usize];
+    ["Alignment of LosPmDevice"][::std::mem::align_of::<LosPmDevice>() - 4usize];
     ["Offset of field: LosPmDevice::suspend"]
         [::std::mem::offset_of!(LosPmDevice, suspend) - 0usize];
-    ["Offset of field: LosPmDevice::resume"][::std::mem::offset_of!(LosPmDevice, resume) - 8usize];
+    ["Offset of field: LosPmDevice::resume"][::std::mem::offset_of!(LosPmDevice, resume) - 4usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -207,20 +207,20 @@ pub struct LosPmTickTimer {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosPmTickTimer"][::std::mem::size_of::<LosPmTickTimer>() - 48usize];
-    ["Alignment of LosPmTickTimer"][::std::mem::align_of::<LosPmTickTimer>() - 8usize];
+    ["Size of LosPmTickTimer"][::std::mem::size_of::<LosPmTickTimer>() - 24usize];
+    ["Alignment of LosPmTickTimer"][::std::mem::align_of::<LosPmTickTimer>() - 4usize];
     ["Offset of field: LosPmTickTimer::freq"]
         [::std::mem::offset_of!(LosPmTickTimer, freq) - 0usize];
     ["Offset of field: LosPmTickTimer::timerStart"]
-        [::std::mem::offset_of!(LosPmTickTimer, timerStart) - 8usize];
+        [::std::mem::offset_of!(LosPmTickTimer, timerStart) - 4usize];
     ["Offset of field: LosPmTickTimer::timerStop"]
-        [::std::mem::offset_of!(LosPmTickTimer, timerStop) - 16usize];
+        [::std::mem::offset_of!(LosPmTickTimer, timerStop) - 8usize];
     ["Offset of field: LosPmTickTimer::timerCycleGet"]
-        [::std::mem::offset_of!(LosPmTickTimer, timerCycleGet) - 24usize];
+        [::std::mem::offset_of!(LosPmTickTimer, timerCycleGet) - 12usize];
     ["Offset of field: LosPmTickTimer::tickLock"]
-        [::std::mem::offset_of!(LosPmTickTimer, tickLock) - 32usize];
+        [::std::mem::offset_of!(LosPmTickTimer, tickLock) - 16usize];
     ["Offset of field: LosPmTickTimer::tickUnlock"]
-        [::std::mem::offset_of!(LosPmTickTimer, tickUnlock) - 40usize];
+        [::std::mem::offset_of!(LosPmTickTimer, tickUnlock) - 20usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -239,28 +239,28 @@ pub struct LosPmSysctrl {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosPmSysctrl"][::std::mem::size_of::<LosPmSysctrl>() - 88usize];
-    ["Alignment of LosPmSysctrl"][::std::mem::align_of::<LosPmSysctrl>() - 8usize];
+    ["Size of LosPmSysctrl"][::std::mem::size_of::<LosPmSysctrl>() - 44usize];
+    ["Alignment of LosPmSysctrl"][::std::mem::align_of::<LosPmSysctrl>() - 4usize];
     ["Offset of field: LosPmSysctrl::early"][::std::mem::offset_of!(LosPmSysctrl, early) - 0usize];
-    ["Offset of field: LosPmSysctrl::late"][::std::mem::offset_of!(LosPmSysctrl, late) - 8usize];
+    ["Offset of field: LosPmSysctrl::late"][::std::mem::offset_of!(LosPmSysctrl, late) - 4usize];
     ["Offset of field: LosPmSysctrl::suspendCheck"]
-        [::std::mem::offset_of!(LosPmSysctrl, suspendCheck) - 16usize];
+        [::std::mem::offset_of!(LosPmSysctrl, suspendCheck) - 8usize];
     ["Offset of field: LosPmSysctrl::normalSuspend"]
-        [::std::mem::offset_of!(LosPmSysctrl, normalSuspend) - 24usize];
+        [::std::mem::offset_of!(LosPmSysctrl, normalSuspend) - 12usize];
     ["Offset of field: LosPmSysctrl::normalResume"]
-        [::std::mem::offset_of!(LosPmSysctrl, normalResume) - 32usize];
+        [::std::mem::offset_of!(LosPmSysctrl, normalResume) - 16usize];
     ["Offset of field: LosPmSysctrl::lightSuspend"]
-        [::std::mem::offset_of!(LosPmSysctrl, lightSuspend) - 40usize];
+        [::std::mem::offset_of!(LosPmSysctrl, lightSuspend) - 20usize];
     ["Offset of field: LosPmSysctrl::lightResume"]
-        [::std::mem::offset_of!(LosPmSysctrl, lightResume) - 48usize];
+        [::std::mem::offset_of!(LosPmSysctrl, lightResume) - 24usize];
     ["Offset of field: LosPmSysctrl::deepSuspend"]
-        [::std::mem::offset_of!(LosPmSysctrl, deepSuspend) - 56usize];
+        [::std::mem::offset_of!(LosPmSysctrl, deepSuspend) - 28usize];
     ["Offset of field: LosPmSysctrl::deepResume"]
-        [::std::mem::offset_of!(LosPmSysctrl, deepResume) - 64usize];
+        [::std::mem::offset_of!(LosPmSysctrl, deepResume) - 32usize];
     ["Offset of field: LosPmSysctrl::shutdownSuspend"]
-        [::std::mem::offset_of!(LosPmSysctrl, shutdownSuspend) - 72usize];
+        [::std::mem::offset_of!(LosPmSysctrl, shutdownSuspend) - 36usize];
     ["Offset of field: LosPmSysctrl::shutdownResume"]
-        [::std::mem::offset_of!(LosPmSysctrl, shutdownResume) - 80usize];
+        [::std::mem::offset_of!(LosPmSysctrl, shutdownResume) - 40usize];
 };
 unsafe extern "C" {
     #[doc = " @ingroup los_pm\n @brief Initialize system low-power frame.\n\n @par Description:\n This API is used to initialize the system low-power frame.\n\n @attention None.\n\n @param  None.\n\n @retval error code, LOS_OK means success.\n @par Dependency:\n <ul><li>los_pm.h: the header file that contains the API declaration.</li></ul>\n @see"]

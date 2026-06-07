@@ -165,11 +165,11 @@ pub const __USE_XOPEN2K: u32 = 1;
 pub const __USE_XOPEN2K8: u32 = 1;
 pub const _ATFILE_SOURCE: u32 = 1;
 pub const __USE_XOPEN2K24: u32 = 1;
-pub const __WORDSIZE: u32 = 64;
+pub const __WORDSIZE: u32 = 32;
+pub const __WORDSIZE32_SIZE_ULONG: u32 = 0;
+pub const __WORDSIZE32_PTRDIFF_LONG: u32 = 0;
 pub const __WORDSIZE_TIME64_COMPAT32: u32 = 1;
-pub const __SYSCALL_WORDSIZE: u32 = 64;
-pub const __TIMESIZE: u32 = 64;
-pub const __USE_TIME_BITS64: u32 = 1;
+pub const __TIMESIZE: u32 = 32;
 pub const __USE_MISC: u32 = 1;
 pub const __USE_ATFILE: u32 = 1;
 pub const __USE_FORTIFY_LEVEL: u32 = 0;
@@ -198,11 +198,9 @@ pub const __GLIBC_USE_IEC_60559_FUNCS_EXT_C23: u32 = 0;
 pub const __GLIBC_USE_IEC_60559_TYPES_EXT: u32 = 0;
 pub const _BITS_TYPES_H: u32 = 1;
 pub const _BITS_TYPESIZES_H: u32 = 1;
-pub const __OFF_T_MATCHES_OFF64_T: u32 = 1;
-pub const __INO_T_MATCHES_INO64_T: u32 = 1;
-pub const __RLIM_T_MATCHES_RLIM64_T: u32 = 1;
-pub const __STATFS_MATCHES_STATFS64: u32 = 1;
-pub const __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64: u32 = 1;
+pub const __RLIM_T_MATCHES_RLIM64_T: u32 = 0;
+pub const __STATFS_MATCHES_STATFS64: u32 = 0;
+pub const __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64: u32 = 0;
 pub const __FD_SETSIZE: u32 = 1024;
 pub const _BITS_TIME64_H: u32 = 1;
 pub const _____fpos_t_defined: u32 = 1;
@@ -325,12 +323,12 @@ pub const _POSIX_TRACE_EVENT_FILTER: i32 = -1;
 pub const _POSIX_TRACE_INHERIT: i32 = -1;
 pub const _POSIX_TRACE_LOG: i32 = -1;
 pub const _POSIX_TYPED_MEMORY_OBJECTS: i32 = -1;
-pub const _POSIX_V7_LPBIG_OFFBIG: i32 = -1;
-pub const _POSIX_V6_LPBIG_OFFBIG: i32 = -1;
-pub const _XBS5_LPBIG_OFFBIG: i32 = -1;
-pub const _POSIX_V7_LP64_OFF64: u32 = 1;
-pub const _POSIX_V6_LP64_OFF64: u32 = 1;
-pub const _XBS5_LP64_OFF64: u32 = 1;
+pub const _POSIX_V7_ILP32_OFFBIG: u32 = 1;
+pub const _POSIX_V6_ILP32_OFFBIG: u32 = 1;
+pub const _XBS5_ILP32_OFFBIG: u32 = 1;
+pub const _POSIX_V7_ILP32_OFF32: u32 = 1;
+pub const _POSIX_V6_ILP32_OFF32: u32 = 1;
+pub const _XBS5_ILP32_OFF32: u32 = 1;
 pub const __ILP32_OFF32_CFLAGS: &[u8; 5] = b"-m32\0";
 pub const __ILP32_OFF32_LDFLAGS: &[u8; 5] = b"-m32\0";
 pub const __ILP32_OFFBIG_CFLAGS: &[u8; 48] = b"-m32 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64\0";
@@ -496,8 +494,8 @@ pub type __int16_t = ::std::os::raw::c_short;
 pub type __uint16_t = ::std::os::raw::c_ushort;
 pub type __int32_t = ::std::os::raw::c_int;
 pub type __uint32_t = ::std::os::raw::c_uint;
-pub type __int64_t = ::std::os::raw::c_long;
-pub type __uint64_t = ::std::os::raw::c_ulong;
+pub type __int64_t = ::std::os::raw::c_longlong;
+pub type __uint64_t = ::std::os::raw::c_ulonglong;
 pub type __int_least8_t = __int8_t;
 pub type __uint_least8_t = __uint8_t;
 pub type __int_least16_t = __int16_t;
@@ -506,19 +504,19 @@ pub type __int_least32_t = __int32_t;
 pub type __uint_least32_t = __uint32_t;
 pub type __int_least64_t = __int64_t;
 pub type __uint_least64_t = __uint64_t;
-pub type __quad_t = ::std::os::raw::c_long;
-pub type __u_quad_t = ::std::os::raw::c_ulong;
-pub type __intmax_t = ::std::os::raw::c_long;
-pub type __uintmax_t = ::std::os::raw::c_ulong;
-pub type __dev_t = ::std::os::raw::c_ulong;
+pub type __quad_t = ::std::os::raw::c_longlong;
+pub type __u_quad_t = ::std::os::raw::c_ulonglong;
+pub type __intmax_t = ::std::os::raw::c_longlong;
+pub type __uintmax_t = ::std::os::raw::c_ulonglong;
+pub type __dev_t = __uint64_t;
 pub type __uid_t = ::std::os::raw::c_uint;
 pub type __gid_t = ::std::os::raw::c_uint;
 pub type __ino_t = ::std::os::raw::c_ulong;
-pub type __ino64_t = ::std::os::raw::c_ulong;
+pub type __ino64_t = __uint64_t;
 pub type __mode_t = ::std::os::raw::c_uint;
-pub type __nlink_t = ::std::os::raw::c_ulong;
+pub type __nlink_t = ::std::os::raw::c_uint;
 pub type __off_t = ::std::os::raw::c_long;
-pub type __off64_t = ::std::os::raw::c_long;
+pub type __off64_t = __int64_t;
 pub type __pid_t = ::std::os::raw::c_int;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -533,32 +531,33 @@ const _: () = {
 };
 pub type __clock_t = ::std::os::raw::c_long;
 pub type __rlim_t = ::std::os::raw::c_ulong;
-pub type __rlim64_t = ::std::os::raw::c_ulong;
+pub type __rlim64_t = __uint64_t;
 pub type __id_t = ::std::os::raw::c_uint;
 pub type __time_t = ::std::os::raw::c_long;
 pub type __useconds_t = ::std::os::raw::c_uint;
 pub type __suseconds_t = ::std::os::raw::c_long;
-pub type __suseconds64_t = ::std::os::raw::c_long;
+pub type __suseconds64_t = __int64_t;
 pub type __daddr_t = ::std::os::raw::c_int;
 pub type __key_t = ::std::os::raw::c_int;
 pub type __clockid_t = ::std::os::raw::c_int;
 pub type __timer_t = *mut ::std::os::raw::c_void;
 pub type __blksize_t = ::std::os::raw::c_long;
 pub type __blkcnt_t = ::std::os::raw::c_long;
-pub type __blkcnt64_t = ::std::os::raw::c_long;
+pub type __blkcnt64_t = __int64_t;
 pub type __fsblkcnt_t = ::std::os::raw::c_ulong;
-pub type __fsblkcnt64_t = ::std::os::raw::c_ulong;
+pub type __fsblkcnt64_t = __uint64_t;
 pub type __fsfilcnt_t = ::std::os::raw::c_ulong;
-pub type __fsfilcnt64_t = ::std::os::raw::c_ulong;
-pub type __fsword_t = ::std::os::raw::c_long;
-pub type __ssize_t = ::std::os::raw::c_long;
+pub type __fsfilcnt64_t = __uint64_t;
+pub type __fsword_t = ::std::os::raw::c_int;
+pub type __ssize_t = ::std::os::raw::c_int;
 pub type __syscall_slong_t = ::std::os::raw::c_long;
 pub type __syscall_ulong_t = ::std::os::raw::c_ulong;
 pub type __loff_t = __off64_t;
 pub type __caddr_t = *mut ::std::os::raw::c_char;
-pub type __intptr_t = ::std::os::raw::c_long;
+pub type __intptr_t = ::std::os::raw::c_int;
 pub type __socklen_t = ::std::os::raw::c_uint;
 pub type __sig_atomic_t = ::std::os::raw::c_int;
+pub type __time64_t = __int64_t;
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct __mbstate_t {
@@ -599,10 +598,10 @@ pub struct _G_fpos_t {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of _G_fpos_t"][::std::mem::size_of::<_G_fpos_t>() - 16usize];
-    ["Alignment of _G_fpos_t"][::std::mem::align_of::<_G_fpos_t>() - 8usize];
+    ["Size of _G_fpos_t"][::std::mem::size_of::<_G_fpos_t>() - 12usize];
+    ["Alignment of _G_fpos_t"][::std::mem::align_of::<_G_fpos_t>() - 4usize];
     ["Offset of field: _G_fpos_t::__pos"][::std::mem::offset_of!(_G_fpos_t, __pos) - 0usize];
-    ["Offset of field: _G_fpos_t::__state"][::std::mem::offset_of!(_G_fpos_t, __state) - 8usize];
+    ["Offset of field: _G_fpos_t::__state"][::std::mem::offset_of!(_G_fpos_t, __state) - 4usize];
 };
 pub type __fpos_t = _G_fpos_t;
 #[repr(C)]
@@ -614,7 +613,7 @@ pub struct _G_fpos64_t {
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _G_fpos64_t"][::std::mem::size_of::<_G_fpos64_t>() - 16usize];
-    ["Alignment of _G_fpos64_t"][::std::mem::align_of::<_G_fpos64_t>() - 8usize];
+    ["Alignment of _G_fpos64_t"][::std::mem::align_of::<_G_fpos64_t>() - 4usize];
     ["Offset of field: _G_fpos64_t::__pos"][::std::mem::offset_of!(_G_fpos64_t, __pos) - 0usize];
     ["Offset of field: _G_fpos64_t::__state"]
         [::std::mem::offset_of!(_G_fpos64_t, __state) - 8usize];
@@ -671,66 +670,65 @@ pub struct _IO_FILE {
     pub _freeres_buf: *mut ::std::os::raw::c_void,
     pub _prevchain: *mut *mut _IO_FILE,
     pub _mode: ::std::os::raw::c_int,
-    pub _unused3: ::std::os::raw::c_int,
     pub _total_written: __uint64_t,
-    pub _unused2: [::std::os::raw::c_char; 8usize],
+    pub _unused3: ::std::os::raw::c_int,
+    pub _unused2: [::std::os::raw::c_char; 28usize],
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of _IO_FILE"][::std::mem::size_of::<_IO_FILE>() - 216usize];
-    ["Alignment of _IO_FILE"][::std::mem::align_of::<_IO_FILE>() - 8usize];
+    ["Size of _IO_FILE"][::std::mem::size_of::<_IO_FILE>() - 148usize];
+    ["Alignment of _IO_FILE"][::std::mem::align_of::<_IO_FILE>() - 4usize];
     ["Offset of field: _IO_FILE::_flags"][::std::mem::offset_of!(_IO_FILE, _flags) - 0usize];
     ["Offset of field: _IO_FILE::_IO_read_ptr"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_read_ptr) - 8usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_read_ptr) - 4usize];
     ["Offset of field: _IO_FILE::_IO_read_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_read_end) - 16usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_read_end) - 8usize];
     ["Offset of field: _IO_FILE::_IO_read_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_read_base) - 24usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_read_base) - 12usize];
     ["Offset of field: _IO_FILE::_IO_write_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_write_base) - 32usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_write_base) - 16usize];
     ["Offset of field: _IO_FILE::_IO_write_ptr"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_write_ptr) - 40usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_write_ptr) - 20usize];
     ["Offset of field: _IO_FILE::_IO_write_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_write_end) - 48usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_write_end) - 24usize];
     ["Offset of field: _IO_FILE::_IO_buf_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_buf_base) - 56usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_buf_base) - 28usize];
     ["Offset of field: _IO_FILE::_IO_buf_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_buf_end) - 64usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_buf_end) - 32usize];
     ["Offset of field: _IO_FILE::_IO_save_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_save_base) - 72usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_save_base) - 36usize];
     ["Offset of field: _IO_FILE::_IO_backup_base"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_backup_base) - 80usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_backup_base) - 40usize];
     ["Offset of field: _IO_FILE::_IO_save_end"]
-        [::std::mem::offset_of!(_IO_FILE, _IO_save_end) - 88usize];
-    ["Offset of field: _IO_FILE::_markers"][::std::mem::offset_of!(_IO_FILE, _markers) - 96usize];
-    ["Offset of field: _IO_FILE::_chain"][::std::mem::offset_of!(_IO_FILE, _chain) - 104usize];
-    ["Offset of field: _IO_FILE::_fileno"][::std::mem::offset_of!(_IO_FILE, _fileno) - 112usize];
+        [::std::mem::offset_of!(_IO_FILE, _IO_save_end) - 44usize];
+    ["Offset of field: _IO_FILE::_markers"][::std::mem::offset_of!(_IO_FILE, _markers) - 48usize];
+    ["Offset of field: _IO_FILE::_chain"][::std::mem::offset_of!(_IO_FILE, _chain) - 52usize];
+    ["Offset of field: _IO_FILE::_fileno"][::std::mem::offset_of!(_IO_FILE, _fileno) - 56usize];
     ["Offset of field: _IO_FILE::_short_backupbuf"]
-        [::std::mem::offset_of!(_IO_FILE, _short_backupbuf) - 119usize];
+        [::std::mem::offset_of!(_IO_FILE, _short_backupbuf) - 63usize];
     ["Offset of field: _IO_FILE::_old_offset"]
-        [::std::mem::offset_of!(_IO_FILE, _old_offset) - 120usize];
+        [::std::mem::offset_of!(_IO_FILE, _old_offset) - 64usize];
     ["Offset of field: _IO_FILE::_cur_column"]
-        [::std::mem::offset_of!(_IO_FILE, _cur_column) - 128usize];
+        [::std::mem::offset_of!(_IO_FILE, _cur_column) - 68usize];
     ["Offset of field: _IO_FILE::_vtable_offset"]
-        [::std::mem::offset_of!(_IO_FILE, _vtable_offset) - 130usize];
-    ["Offset of field: _IO_FILE::_shortbuf"]
-        [::std::mem::offset_of!(_IO_FILE, _shortbuf) - 131usize];
-    ["Offset of field: _IO_FILE::_lock"][::std::mem::offset_of!(_IO_FILE, _lock) - 136usize];
-    ["Offset of field: _IO_FILE::_offset"][::std::mem::offset_of!(_IO_FILE, _offset) - 144usize];
-    ["Offset of field: _IO_FILE::_codecvt"][::std::mem::offset_of!(_IO_FILE, _codecvt) - 152usize];
+        [::std::mem::offset_of!(_IO_FILE, _vtable_offset) - 70usize];
+    ["Offset of field: _IO_FILE::_shortbuf"][::std::mem::offset_of!(_IO_FILE, _shortbuf) - 71usize];
+    ["Offset of field: _IO_FILE::_lock"][::std::mem::offset_of!(_IO_FILE, _lock) - 72usize];
+    ["Offset of field: _IO_FILE::_offset"][::std::mem::offset_of!(_IO_FILE, _offset) - 76usize];
+    ["Offset of field: _IO_FILE::_codecvt"][::std::mem::offset_of!(_IO_FILE, _codecvt) - 84usize];
     ["Offset of field: _IO_FILE::_wide_data"]
-        [::std::mem::offset_of!(_IO_FILE, _wide_data) - 160usize];
+        [::std::mem::offset_of!(_IO_FILE, _wide_data) - 88usize];
     ["Offset of field: _IO_FILE::_freeres_list"]
-        [::std::mem::offset_of!(_IO_FILE, _freeres_list) - 168usize];
+        [::std::mem::offset_of!(_IO_FILE, _freeres_list) - 92usize];
     ["Offset of field: _IO_FILE::_freeres_buf"]
-        [::std::mem::offset_of!(_IO_FILE, _freeres_buf) - 176usize];
+        [::std::mem::offset_of!(_IO_FILE, _freeres_buf) - 96usize];
     ["Offset of field: _IO_FILE::_prevchain"]
-        [::std::mem::offset_of!(_IO_FILE, _prevchain) - 184usize];
-    ["Offset of field: _IO_FILE::_mode"][::std::mem::offset_of!(_IO_FILE, _mode) - 192usize];
-    ["Offset of field: _IO_FILE::_unused3"][::std::mem::offset_of!(_IO_FILE, _unused3) - 196usize];
+        [::std::mem::offset_of!(_IO_FILE, _prevchain) - 100usize];
+    ["Offset of field: _IO_FILE::_mode"][::std::mem::offset_of!(_IO_FILE, _mode) - 104usize];
     ["Offset of field: _IO_FILE::_total_written"]
-        [::std::mem::offset_of!(_IO_FILE, _total_written) - 200usize];
-    ["Offset of field: _IO_FILE::_unused2"][::std::mem::offset_of!(_IO_FILE, _unused2) - 208usize];
+        [::std::mem::offset_of!(_IO_FILE, _total_written) - 108usize];
+    ["Offset of field: _IO_FILE::_unused3"][::std::mem::offset_of!(_IO_FILE, _unused3) - 116usize];
+    ["Offset of field: _IO_FILE::_unused2"][::std::mem::offset_of!(_IO_FILE, _unused2) - 120usize];
 };
 impl _IO_FILE {
     #[inline]
@@ -811,17 +809,17 @@ pub struct _IO_cookie_io_functions_t {
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _IO_cookie_io_functions_t"]
-        [::std::mem::size_of::<_IO_cookie_io_functions_t>() - 32usize];
+        [::std::mem::size_of::<_IO_cookie_io_functions_t>() - 16usize];
     ["Alignment of _IO_cookie_io_functions_t"]
-        [::std::mem::align_of::<_IO_cookie_io_functions_t>() - 8usize];
+        [::std::mem::align_of::<_IO_cookie_io_functions_t>() - 4usize];
     ["Offset of field: _IO_cookie_io_functions_t::read"]
         [::std::mem::offset_of!(_IO_cookie_io_functions_t, read) - 0usize];
     ["Offset of field: _IO_cookie_io_functions_t::write"]
-        [::std::mem::offset_of!(_IO_cookie_io_functions_t, write) - 8usize];
+        [::std::mem::offset_of!(_IO_cookie_io_functions_t, write) - 4usize];
     ["Offset of field: _IO_cookie_io_functions_t::seek"]
-        [::std::mem::offset_of!(_IO_cookie_io_functions_t, seek) - 16usize];
+        [::std::mem::offset_of!(_IO_cookie_io_functions_t, seek) - 8usize];
     ["Offset of field: _IO_cookie_io_functions_t::close"]
-        [::std::mem::offset_of!(_IO_cookie_io_functions_t, close) - 24usize];
+        [::std::mem::offset_of!(_IO_cookie_io_functions_t, close) - 12usize];
 };
 pub type cookie_io_functions_t = _IO_cookie_io_functions_t;
 pub type va_list = __gnuc_va_list;
@@ -952,26 +950,26 @@ unsafe extern "C" {
     pub fn vfprintf(
         __s: *mut FILE,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     pub fn vprintf(
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     pub fn vsprintf(
         __s: *mut ::std::os::raw::c_char,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     pub fn snprintf(
         __s: *mut ::std::os::raw::c_char,
-        __maxlen: ::std::os::raw::c_ulong,
+        __maxlen: ::std::os::raw::c_uint,
         __format: *const ::std::os::raw::c_char,
         ...
     ) -> ::std::os::raw::c_int;
@@ -979,16 +977,16 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn vsnprintf(
         __s: *mut ::std::os::raw::c_char,
-        __maxlen: ::std::os::raw::c_ulong,
+        __maxlen: ::std::os::raw::c_uint,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     pub fn vasprintf(
         __ptr: *mut *mut ::std::os::raw::c_char,
         __f: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __gnuc_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
@@ -1009,7 +1007,7 @@ unsafe extern "C" {
     pub fn vdprintf(
         __fd: ::std::os::raw::c_int,
         __fmt: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __gnuc_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
@@ -1041,7 +1039,7 @@ pub type _Float128 = u128;
 pub type _Float32 = f32;
 pub type _Float64 = f64;
 pub type _Float32x = f64;
-pub type _Float64x = u128;
+pub type _Float64x = f64;
 unsafe extern "C" {
     #[link_name = "\u{1}__isoc99_fscanf"]
     pub fn fscanf1(
@@ -1066,20 +1064,20 @@ unsafe extern "C" {
     pub fn vfscanf(
         __s: *mut FILE,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     pub fn vscanf(
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     pub fn vsscanf(
         __s: *const ::std::os::raw::c_char,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
@@ -1087,14 +1085,14 @@ unsafe extern "C" {
     pub fn vfscanf1(
         __s: *mut FILE,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
     #[link_name = "\u{1}__isoc99_vscanf"]
     pub fn vscanf1(
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
@@ -1102,7 +1100,7 @@ unsafe extern "C" {
     pub fn vsscanf1(
         __s: *const ::std::os::raw::c_char,
         __format: *const ::std::os::raw::c_char,
-        __arg: *mut __va_list_tag,
+        __arg: __builtin_va_list,
     ) -> ::std::os::raw::c_int;
 }
 unsafe extern "C" {
@@ -1190,18 +1188,18 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn fread(
         __ptr: *mut ::std::os::raw::c_void,
-        __size: ::std::os::raw::c_ulong,
-        __n: ::std::os::raw::c_ulong,
+        __size: ::std::os::raw::c_uint,
+        __n: ::std::os::raw::c_uint,
         __stream: *mut FILE,
-    ) -> ::std::os::raw::c_ulong;
+    ) -> ::std::os::raw::c_uint;
 }
 unsafe extern "C" {
     pub fn fwrite(
         __ptr: *const ::std::os::raw::c_void,
-        __size: ::std::os::raw::c_ulong,
-        __n: ::std::os::raw::c_ulong,
+        __size: ::std::os::raw::c_uint,
+        __n: ::std::os::raw::c_uint,
         __s: *mut FILE,
-    ) -> ::std::os::raw::c_ulong;
+    ) -> ::std::os::raw::c_uint;
 }
 unsafe extern "C" {
     pub fn fread_unlocked(
@@ -2137,12 +2135,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 pub type HWI_HANDLE_T = UINT32;
 pub type HWI_PRIOR_T = UINT16;
@@ -2161,11 +2159,11 @@ pub struct tagIrqParam {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagIrqParam"][::std::mem::size_of::<tagIrqParam>() - 24usize];
-    ["Alignment of tagIrqParam"][::std::mem::align_of::<tagIrqParam>() - 8usize];
+    ["Size of tagIrqParam"][::std::mem::size_of::<tagIrqParam>() - 12usize];
+    ["Alignment of tagIrqParam"][::std::mem::align_of::<tagIrqParam>() - 4usize];
     ["Offset of field: tagIrqParam::swIrq"][::std::mem::offset_of!(tagIrqParam, swIrq) - 0usize];
-    ["Offset of field: tagIrqParam::pDevId"][::std::mem::offset_of!(tagIrqParam, pDevId) - 8usize];
-    ["Offset of field: tagIrqParam::pName"][::std::mem::offset_of!(tagIrqParam, pName) - 16usize];
+    ["Offset of field: tagIrqParam::pDevId"][::std::mem::offset_of!(tagIrqParam, pDevId) - 4usize];
+    ["Offset of field: tagIrqParam::pName"][::std::mem::offset_of!(tagIrqParam, pName) - 8usize];
 };
 pub type HwiIrqParam = tagIrqParam;
 #[repr(C)]
@@ -2185,22 +2183,22 @@ pub struct HwiControllerOps {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of HwiControllerOps"][::std::mem::size_of::<HwiControllerOps>() - 56usize];
-    ["Alignment of HwiControllerOps"][::std::mem::align_of::<HwiControllerOps>() - 8usize];
+    ["Size of HwiControllerOps"][::std::mem::size_of::<HwiControllerOps>() - 28usize];
+    ["Alignment of HwiControllerOps"][::std::mem::align_of::<HwiControllerOps>() - 4usize];
     ["Offset of field: HwiControllerOps::triggerIrq"]
         [::std::mem::offset_of!(HwiControllerOps, triggerIrq) - 0usize];
     ["Offset of field: HwiControllerOps::clearIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, clearIrq) - 8usize];
+        [::std::mem::offset_of!(HwiControllerOps, clearIrq) - 4usize];
     ["Offset of field: HwiControllerOps::enableIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, enableIrq) - 16usize];
+        [::std::mem::offset_of!(HwiControllerOps, enableIrq) - 8usize];
     ["Offset of field: HwiControllerOps::disableIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, disableIrq) - 24usize];
+        [::std::mem::offset_of!(HwiControllerOps, disableIrq) - 12usize];
     ["Offset of field: HwiControllerOps::setIrqPriority"]
-        [::std::mem::offset_of!(HwiControllerOps, setIrqPriority) - 32usize];
+        [::std::mem::offset_of!(HwiControllerOps, setIrqPriority) - 16usize];
     ["Offset of field: HwiControllerOps::getCurIrqNum"]
-        [::std::mem::offset_of!(HwiControllerOps, getCurIrqNum) - 40usize];
+        [::std::mem::offset_of!(HwiControllerOps, getCurIrqNum) - 20usize];
     ["Offset of field: HwiControllerOps::createIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, createIrq) - 48usize];
+        [::std::mem::offset_of!(HwiControllerOps, createIrq) - 24usize];
 };
 unsafe extern "C" {
     pub static mut __stack_chk_guard: UINT32;
@@ -2293,11 +2291,11 @@ pub struct tagEvent {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagEvent"][::std::mem::size_of::<tagEvent>() - 24usize];
-    ["Alignment of tagEvent"][::std::mem::align_of::<tagEvent>() - 8usize];
+    ["Size of tagEvent"][::std::mem::size_of::<tagEvent>() - 12usize];
+    ["Alignment of tagEvent"][::std::mem::align_of::<tagEvent>() - 4usize];
     ["Offset of field: tagEvent::uwEventID"][::std::mem::offset_of!(tagEvent, uwEventID) - 0usize];
     ["Offset of field: tagEvent::stEventList"]
-        [::std::mem::offset_of!(tagEvent, stEventList) - 8usize];
+        [::std::mem::offset_of!(tagEvent, stEventList) - 4usize];
 };
 #[doc = " @ingroup los_event\n Event control structure"]
 pub type EVENT_CB_S = tagEvent;
@@ -2372,8 +2370,8 @@ pub struct tagUserErrFunc {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 8usize];
-    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 8usize];
+    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 4usize];
+    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 4usize];
     ["Offset of field: tagUserErrFunc::pfnHook"]
         [::std::mem::offset_of!(tagUserErrFunc, pfnHook) - 0usize];
 };
@@ -2427,8 +2425,8 @@ pub struct ArchTickTimer {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of ArchTickTimer"][::std::mem::size_of::<ArchTickTimer>() - 64usize];
-    ["Alignment of ArchTickTimer"][::std::mem::align_of::<ArchTickTimer>() - 8usize];
+    ["Size of ArchTickTimer"][::std::mem::size_of::<ArchTickTimer>() - 40usize];
+    ["Alignment of ArchTickTimer"][::std::mem::align_of::<ArchTickTimer>() - 4usize];
     ["Offset of field: ArchTickTimer::freq"][::std::mem::offset_of!(ArchTickTimer, freq) - 0usize];
     ["Offset of field: ArchTickTimer::irqNum"]
         [::std::mem::offset_of!(ArchTickTimer, irqNum) - 4usize];
@@ -2436,14 +2434,14 @@ const _: () = {
         [::std::mem::offset_of!(ArchTickTimer, periodMax) - 8usize];
     ["Offset of field: ArchTickTimer::init"][::std::mem::offset_of!(ArchTickTimer, init) - 16usize];
     ["Offset of field: ArchTickTimer::getCycle"]
-        [::std::mem::offset_of!(ArchTickTimer, getCycle) - 24usize];
+        [::std::mem::offset_of!(ArchTickTimer, getCycle) - 20usize];
     ["Offset of field: ArchTickTimer::reload"]
-        [::std::mem::offset_of!(ArchTickTimer, reload) - 32usize];
-    ["Offset of field: ArchTickTimer::lock"][::std::mem::offset_of!(ArchTickTimer, lock) - 40usize];
+        [::std::mem::offset_of!(ArchTickTimer, reload) - 24usize];
+    ["Offset of field: ArchTickTimer::lock"][::std::mem::offset_of!(ArchTickTimer, lock) - 28usize];
     ["Offset of field: ArchTickTimer::unlock"]
-        [::std::mem::offset_of!(ArchTickTimer, unlock) - 48usize];
+        [::std::mem::offset_of!(ArchTickTimer, unlock) - 32usize];
     ["Offset of field: ArchTickTimer::tickHandler"]
-        [::std::mem::offset_of!(ArchTickTimer, tickHandler) - 56usize];
+        [::std::mem::offset_of!(ArchTickTimer, tickHandler) - 36usize];
 };
 unsafe extern "C" {
     pub fn ArchEnterSleep() -> UINT32;
@@ -2596,12 +2594,12 @@ pub struct SortLinkList {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 24usize];
-    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 8usize];
+    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 16usize];
+    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 4usize];
     ["Offset of field: SortLinkList::sortLinkNode"]
         [::std::mem::offset_of!(SortLinkList, sortLinkNode) - 0usize];
     ["Offset of field: SortLinkList::responseTime"]
-        [::std::mem::offset_of!(SortLinkList, responseTime) - 16usize];
+        [::std::mem::offset_of!(SortLinkList, responseTime) - 8usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -2610,8 +2608,8 @@ pub struct SortLinkAttribute {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 16usize];
-    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 8usize];
+    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 8usize];
+    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 4usize];
     ["Offset of field: SortLinkAttribute::sortLink"]
         [::std::mem::offset_of!(SortLinkAttribute, sortLink) - 0usize];
 };
@@ -2674,22 +2672,22 @@ pub struct tagTskInitParam {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagTskInitParam"][::std::mem::size_of::<tagTskInitParam>() - 40usize];
-    ["Alignment of tagTskInitParam"][::std::mem::align_of::<tagTskInitParam>() - 8usize];
+    ["Size of tagTskInitParam"][::std::mem::size_of::<tagTskInitParam>() - 28usize];
+    ["Alignment of tagTskInitParam"][::std::mem::align_of::<tagTskInitParam>() - 4usize];
     ["Offset of field: tagTskInitParam::pfnTaskEntry"]
         [::std::mem::offset_of!(tagTskInitParam, pfnTaskEntry) - 0usize];
     ["Offset of field: tagTskInitParam::usTaskPrio"]
-        [::std::mem::offset_of!(tagTskInitParam, usTaskPrio) - 8usize];
+        [::std::mem::offset_of!(tagTskInitParam, usTaskPrio) - 4usize];
     ["Offset of field: tagTskInitParam::uwArg"]
-        [::std::mem::offset_of!(tagTskInitParam, uwArg) - 12usize];
+        [::std::mem::offset_of!(tagTskInitParam, uwArg) - 8usize];
     ["Offset of field: tagTskInitParam::stackAddr"]
-        [::std::mem::offset_of!(tagTskInitParam, stackAddr) - 16usize];
+        [::std::mem::offset_of!(tagTskInitParam, stackAddr) - 12usize];
     ["Offset of field: tagTskInitParam::uwStackSize"]
-        [::std::mem::offset_of!(tagTskInitParam, uwStackSize) - 20usize];
+        [::std::mem::offset_of!(tagTskInitParam, uwStackSize) - 16usize];
     ["Offset of field: tagTskInitParam::pcName"]
-        [::std::mem::offset_of!(tagTskInitParam, pcName) - 24usize];
+        [::std::mem::offset_of!(tagTskInitParam, pcName) - 20usize];
     ["Offset of field: tagTskInitParam::uwResved"]
-        [::std::mem::offset_of!(tagTskInitParam, uwResved) - 32usize];
+        [::std::mem::offset_of!(tagTskInitParam, uwResved) - 24usize];
 };
 #[doc = " @ingroup los_task\n Define the structure of the parameters used for task creation.\n\n Information of specified parameters passed in during task creation."]
 pub type TSK_INIT_PARAM_S = tagTskInitParam;
@@ -2734,8 +2732,8 @@ pub struct tagTskInfo {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagTskInfo"][::std::mem::size_of::<tagTskInfo>() - 120usize];
-    ["Alignment of tagTskInfo"][::std::mem::align_of::<tagTskInfo>() - 8usize];
+    ["Size of tagTskInfo"][::std::mem::size_of::<tagTskInfo>() - 100usize];
+    ["Alignment of tagTskInfo"][::std::mem::align_of::<tagTskInfo>() - 4usize];
     ["Offset of field: tagTskInfo::acName"][::std::mem::offset_of!(tagTskInfo, acName) - 0usize];
     ["Offset of field: tagTskInfo::uwTaskID"]
         [::std::mem::offset_of!(tagTskInfo, uwTaskID) - 32usize];
@@ -2746,24 +2744,24 @@ const _: () = {
     ["Offset of field: tagTskInfo::pTaskSem"]
         [::std::mem::offset_of!(tagTskInfo, pTaskSem) - 40usize];
     ["Offset of field: tagTskInfo::pTaskMux"]
-        [::std::mem::offset_of!(tagTskInfo, pTaskMux) - 48usize];
-    ["Offset of field: tagTskInfo::uwSemID"][::std::mem::offset_of!(tagTskInfo, uwSemID) - 56usize];
-    ["Offset of field: tagTskInfo::uwMuxID"][::std::mem::offset_of!(tagTskInfo, uwMuxID) - 60usize];
-    ["Offset of field: tagTskInfo::uwEvent"][::std::mem::offset_of!(tagTskInfo, uwEvent) - 64usize];
+        [::std::mem::offset_of!(tagTskInfo, pTaskMux) - 44usize];
+    ["Offset of field: tagTskInfo::uwSemID"][::std::mem::offset_of!(tagTskInfo, uwSemID) - 48usize];
+    ["Offset of field: tagTskInfo::uwMuxID"][::std::mem::offset_of!(tagTskInfo, uwMuxID) - 52usize];
+    ["Offset of field: tagTskInfo::uwEvent"][::std::mem::offset_of!(tagTskInfo, uwEvent) - 56usize];
     ["Offset of field: tagTskInfo::uwEventMask"]
-        [::std::mem::offset_of!(tagTskInfo, uwEventMask) - 88usize];
+        [::std::mem::offset_of!(tagTskInfo, uwEventMask) - 68usize];
     ["Offset of field: tagTskInfo::uwStackSize"]
-        [::std::mem::offset_of!(tagTskInfo, uwStackSize) - 92usize];
+        [::std::mem::offset_of!(tagTskInfo, uwStackSize) - 72usize];
     ["Offset of field: tagTskInfo::uwTopOfStack"]
-        [::std::mem::offset_of!(tagTskInfo, uwTopOfStack) - 96usize];
+        [::std::mem::offset_of!(tagTskInfo, uwTopOfStack) - 76usize];
     ["Offset of field: tagTskInfo::uwBottomOfStack"]
-        [::std::mem::offset_of!(tagTskInfo, uwBottomOfStack) - 100usize];
-    ["Offset of field: tagTskInfo::uwSP"][::std::mem::offset_of!(tagTskInfo, uwSP) - 104usize];
+        [::std::mem::offset_of!(tagTskInfo, uwBottomOfStack) - 80usize];
+    ["Offset of field: tagTskInfo::uwSP"][::std::mem::offset_of!(tagTskInfo, uwSP) - 84usize];
     ["Offset of field: tagTskInfo::uwCurrUsed"]
-        [::std::mem::offset_of!(tagTskInfo, uwCurrUsed) - 108usize];
+        [::std::mem::offset_of!(tagTskInfo, uwCurrUsed) - 88usize];
     ["Offset of field: tagTskInfo::uwPeakUsed"]
-        [::std::mem::offset_of!(tagTskInfo, uwPeakUsed) - 112usize];
-    ["Offset of field: tagTskInfo::bOvf"][::std::mem::offset_of!(tagTskInfo, bOvf) - 116usize];
+        [::std::mem::offset_of!(tagTskInfo, uwPeakUsed) - 92usize];
+    ["Offset of field: tagTskInfo::bOvf"][::std::mem::offset_of!(tagTskInfo, bOvf) - 96usize];
 };
 #[doc = " @ingroup los_task\n Task information structure."]
 pub type TSK_INFO_S = tagTskInfo;
@@ -2923,47 +2921,44 @@ pub struct LosTaskCB {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosTaskCB"][::std::mem::size_of::<LosTaskCB>() - 216usize];
-    ["Alignment of LosTaskCB"][::std::mem::align_of::<LosTaskCB>() - 8usize];
+    ["Size of LosTaskCB"][::std::mem::size_of::<LosTaskCB>() - 128usize];
+    ["Alignment of LosTaskCB"][::std::mem::align_of::<LosTaskCB>() - 4usize];
     ["Offset of field: LosTaskCB::stackPointer"]
         [::std::mem::offset_of!(LosTaskCB, stackPointer) - 0usize];
     ["Offset of field: LosTaskCB::taskStatus"]
-        [::std::mem::offset_of!(LosTaskCB, taskStatus) - 8usize];
-    ["Offset of field: LosTaskCB::priority"][::std::mem::offset_of!(LosTaskCB, priority) - 10usize];
+        [::std::mem::offset_of!(LosTaskCB, taskStatus) - 4usize];
+    ["Offset of field: LosTaskCB::priority"][::std::mem::offset_of!(LosTaskCB, priority) - 6usize];
     ["Offset of field: LosTaskCB::timeSlice"]
-        [::std::mem::offset_of!(LosTaskCB, timeSlice) - 12usize];
+        [::std::mem::offset_of!(LosTaskCB, timeSlice) - 8usize];
     ["Offset of field: LosTaskCB::waitTimes"]
-        [::std::mem::offset_of!(LosTaskCB, waitTimes) - 16usize];
-    ["Offset of field: LosTaskCB::sortList"][::std::mem::offset_of!(LosTaskCB, sortList) - 24usize];
+        [::std::mem::offset_of!(LosTaskCB, waitTimes) - 12usize];
+    ["Offset of field: LosTaskCB::sortList"][::std::mem::offset_of!(LosTaskCB, sortList) - 16usize];
     ["Offset of field: LosTaskCB::startTime"]
-        [::std::mem::offset_of!(LosTaskCB, startTime) - 48usize];
+        [::std::mem::offset_of!(LosTaskCB, startTime) - 32usize];
     ["Offset of field: LosTaskCB::stackSize"]
-        [::std::mem::offset_of!(LosTaskCB, stackSize) - 56usize];
+        [::std::mem::offset_of!(LosTaskCB, stackSize) - 40usize];
     ["Offset of field: LosTaskCB::topOfStack"]
-        [::std::mem::offset_of!(LosTaskCB, topOfStack) - 60usize];
-    ["Offset of field: LosTaskCB::taskID"][::std::mem::offset_of!(LosTaskCB, taskID) - 64usize];
+        [::std::mem::offset_of!(LosTaskCB, topOfStack) - 44usize];
+    ["Offset of field: LosTaskCB::taskID"][::std::mem::offset_of!(LosTaskCB, taskID) - 48usize];
     ["Offset of field: LosTaskCB::taskEntry"]
-        [::std::mem::offset_of!(LosTaskCB, taskEntry) - 72usize];
-    ["Offset of field: LosTaskCB::taskSem"][::std::mem::offset_of!(LosTaskCB, taskSem) - 80usize];
-    ["Offset of field: LosTaskCB::taskMux"][::std::mem::offset_of!(LosTaskCB, taskMux) - 88usize];
-    ["Offset of field: LosTaskCB::arg"][::std::mem::offset_of!(LosTaskCB, arg) - 96usize];
-    ["Offset of field: LosTaskCB::taskName"]
-        [::std::mem::offset_of!(LosTaskCB, taskName) - 104usize];
-    ["Offset of field: LosTaskCB::pendList"]
-        [::std::mem::offset_of!(LosTaskCB, pendList) - 112usize];
+        [::std::mem::offset_of!(LosTaskCB, taskEntry) - 52usize];
+    ["Offset of field: LosTaskCB::taskSem"][::std::mem::offset_of!(LosTaskCB, taskSem) - 56usize];
+    ["Offset of field: LosTaskCB::taskMux"][::std::mem::offset_of!(LosTaskCB, taskMux) - 60usize];
+    ["Offset of field: LosTaskCB::arg"][::std::mem::offset_of!(LosTaskCB, arg) - 64usize];
+    ["Offset of field: LosTaskCB::taskName"][::std::mem::offset_of!(LosTaskCB, taskName) - 68usize];
+    ["Offset of field: LosTaskCB::pendList"][::std::mem::offset_of!(LosTaskCB, pendList) - 72usize];
     ["Offset of field: LosTaskCB::timerList"]
-        [::std::mem::offset_of!(LosTaskCB, timerList) - 128usize];
-    ["Offset of field: LosTaskCB::joinList"]
-        [::std::mem::offset_of!(LosTaskCB, joinList) - 144usize];
+        [::std::mem::offset_of!(LosTaskCB, timerList) - 80usize];
+    ["Offset of field: LosTaskCB::joinList"][::std::mem::offset_of!(LosTaskCB, joinList) - 88usize];
     ["Offset of field: LosTaskCB::joinRetval"]
-        [::std::mem::offset_of!(LosTaskCB, joinRetval) - 160usize];
-    ["Offset of field: LosTaskCB::event"][::std::mem::offset_of!(LosTaskCB, event) - 168usize];
+        [::std::mem::offset_of!(LosTaskCB, joinRetval) - 96usize];
+    ["Offset of field: LosTaskCB::event"][::std::mem::offset_of!(LosTaskCB, event) - 100usize];
     ["Offset of field: LosTaskCB::eventMask"]
-        [::std::mem::offset_of!(LosTaskCB, eventMask) - 192usize];
+        [::std::mem::offset_of!(LosTaskCB, eventMask) - 112usize];
     ["Offset of field: LosTaskCB::eventMode"]
-        [::std::mem::offset_of!(LosTaskCB, eventMode) - 196usize];
-    ["Offset of field: LosTaskCB::msg"][::std::mem::offset_of!(LosTaskCB, msg) - 200usize];
-    ["Offset of field: LosTaskCB::errorNo"][::std::mem::offset_of!(LosTaskCB, errorNo) - 208usize];
+        [::std::mem::offset_of!(LosTaskCB, eventMode) - 116usize];
+    ["Offset of field: LosTaskCB::msg"][::std::mem::offset_of!(LosTaskCB, msg) - 120usize];
+    ["Offset of field: LosTaskCB::errorNo"][::std::mem::offset_of!(LosTaskCB, errorNo) - 124usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -2973,10 +2968,10 @@ pub struct LosTask {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosTask"][::std::mem::size_of::<LosTask>() - 16usize];
-    ["Alignment of LosTask"][::std::mem::align_of::<LosTask>() - 8usize];
+    ["Size of LosTask"][::std::mem::size_of::<LosTask>() - 8usize];
+    ["Alignment of LosTask"][::std::mem::align_of::<LosTask>() - 4usize];
     ["Offset of field: LosTask::runTask"][::std::mem::offset_of!(LosTask, runTask) - 0usize];
-    ["Offset of field: LosTask::newTask"][::std::mem::offset_of!(LosTask, newTask) - 8usize];
+    ["Offset of field: LosTask::newTask"][::std::mem::offset_of!(LosTask, newTask) - 4usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -2987,14 +2982,14 @@ pub struct TaskSortLinkAttr {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of TaskSortLinkAttr"][::std::mem::size_of::<TaskSortLinkAttr>() - 16usize];
-    ["Alignment of TaskSortLinkAttr"][::std::mem::align_of::<TaskSortLinkAttr>() - 8usize];
+    ["Size of TaskSortLinkAttr"][::std::mem::size_of::<TaskSortLinkAttr>() - 8usize];
+    ["Alignment of TaskSortLinkAttr"][::std::mem::align_of::<TaskSortLinkAttr>() - 4usize];
     ["Offset of field: TaskSortLinkAttr::sortLink"]
         [::std::mem::offset_of!(TaskSortLinkAttr, sortLink) - 0usize];
     ["Offset of field: TaskSortLinkAttr::cursor"]
-        [::std::mem::offset_of!(TaskSortLinkAttr, cursor) - 8usize];
+        [::std::mem::offset_of!(TaskSortLinkAttr, cursor) - 4usize];
     ["Offset of field: TaskSortLinkAttr::reserved"]
-        [::std::mem::offset_of!(TaskSortLinkAttr, reserved) - 10usize];
+        [::std::mem::offset_of!(TaskSortLinkAttr, reserved) - 6usize];
 };
 #[doc = " @ingroup los_task\n Time slice structure."]
 #[repr(C)]
@@ -3009,11 +3004,11 @@ pub struct TaskTimeSlice {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of TaskTimeSlice"][::std::mem::size_of::<TaskTimeSlice>() - 16usize];
-    ["Alignment of TaskTimeSlice"][::std::mem::align_of::<TaskTimeSlice>() - 8usize];
+    ["Size of TaskTimeSlice"][::std::mem::size_of::<TaskTimeSlice>() - 8usize];
+    ["Alignment of TaskTimeSlice"][::std::mem::align_of::<TaskTimeSlice>() - 4usize];
     ["Offset of field: TaskTimeSlice::task"][::std::mem::offset_of!(TaskTimeSlice, task) - 0usize];
-    ["Offset of field: TaskTimeSlice::time"][::std::mem::offset_of!(TaskTimeSlice, time) - 8usize];
-    ["Offset of field: TaskTimeSlice::tout"][::std::mem::offset_of!(TaskTimeSlice, tout) - 10usize];
+    ["Offset of field: TaskTimeSlice::time"][::std::mem::offset_of!(TaskTimeSlice, time) - 4usize];
+    ["Offset of field: TaskTimeSlice::tout"][::std::mem::offset_of!(TaskTimeSlice, tout) - 6usize];
 };
 #[doc = " @ingroup los_task\n Time slice structure."]
 pub type OsTaskRobin = TaskTimeSlice;
@@ -3244,8 +3239,8 @@ pub struct LosSemCB {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosSemCB"][::std::mem::size_of::<LosSemCB>() - 24usize];
-    ["Alignment of LosSemCB"][::std::mem::align_of::<LosSemCB>() - 8usize];
+    ["Size of LosSemCB"][::std::mem::size_of::<LosSemCB>() - 16usize];
+    ["Alignment of LosSemCB"][::std::mem::align_of::<LosSemCB>() - 4usize];
     ["Offset of field: LosSemCB::semStat"][::std::mem::offset_of!(LosSemCB, semStat) - 0usize];
     ["Offset of field: LosSemCB::semCount"][::std::mem::offset_of!(LosSemCB, semCount) - 2usize];
     ["Offset of field: LosSemCB::maxSemCount"]
@@ -3272,8 +3267,8 @@ pub struct PollWaitQueue {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of PollWaitQueue"][::std::mem::size_of::<PollWaitQueue>() - 16usize];
-    ["Alignment of PollWaitQueue"][::std::mem::align_of::<PollWaitQueue>() - 8usize];
+    ["Size of PollWaitQueue"][::std::mem::size_of::<PollWaitQueue>() - 8usize];
+    ["Alignment of PollWaitQueue"][::std::mem::align_of::<PollWaitQueue>() - 4usize];
     ["Offset of field: PollWaitQueue::queue"]
         [::std::mem::offset_of!(PollWaitQueue, queue) - 0usize];
 };
@@ -3285,10 +3280,10 @@ pub struct PollWaitNode {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of PollWaitNode"][::std::mem::size_of::<PollWaitNode>() - 24usize];
-    ["Alignment of PollWaitNode"][::std::mem::align_of::<PollWaitNode>() - 8usize];
+    ["Size of PollWaitNode"][::std::mem::size_of::<PollWaitNode>() - 12usize];
+    ["Alignment of PollWaitNode"][::std::mem::align_of::<PollWaitNode>() - 4usize];
     ["Offset of field: PollWaitNode::node"][::std::mem::offset_of!(PollWaitNode, node) - 0usize];
-    ["Offset of field: PollWaitNode::table"][::std::mem::offset_of!(PollWaitNode, table) - 16usize];
+    ["Offset of field: PollWaitNode::table"][::std::mem::offset_of!(PollWaitNode, table) - 8usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -3300,13 +3295,13 @@ pub struct PollTable {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of PollTable"][::std::mem::size_of::<PollTable>() - 24usize];
-    ["Alignment of PollTable"][::std::mem::align_of::<PollTable>() - 8usize];
+    ["Size of PollTable"][::std::mem::size_of::<PollTable>() - 16usize];
+    ["Alignment of PollTable"][::std::mem::align_of::<PollTable>() - 4usize];
     ["Offset of field: PollTable::node"][::std::mem::offset_of!(PollTable, node) - 0usize];
-    ["Offset of field: PollTable::event"][::std::mem::offset_of!(PollTable, event) - 8usize];
-    ["Offset of field: PollTable::sem"][::std::mem::offset_of!(PollTable, sem) - 12usize];
+    ["Offset of field: PollTable::event"][::std::mem::offset_of!(PollTable, event) - 4usize];
+    ["Offset of field: PollTable::sem"][::std::mem::offset_of!(PollTable, sem) - 8usize];
     ["Offset of field: PollTable::addQueueFlag"]
-        [::std::mem::offset_of!(PollTable, addQueueFlag) - 16usize];
+        [::std::mem::offset_of!(PollTable, addQueueFlag) - 12usize];
 };
 unsafe extern "C" {
     pub fn PollWaitQueueInit(waitQueue: *mut PollWaitQueue);
@@ -3341,25 +3336,4 @@ unsafe extern "C" {
 unsafe extern "C" {
     pub fn PipePoll(fd: INT32, table: *mut PollTable) -> INT32;
 }
-pub type __builtin_va_list = [__va_list_tag; 1usize];
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __va_list_tag {
-    pub gp_offset: ::std::os::raw::c_uint,
-    pub fp_offset: ::std::os::raw::c_uint,
-    pub overflow_arg_area: *mut ::std::os::raw::c_void,
-    pub reg_save_area: *mut ::std::os::raw::c_void,
-}
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of __va_list_tag"][::std::mem::size_of::<__va_list_tag>() - 24usize];
-    ["Alignment of __va_list_tag"][::std::mem::align_of::<__va_list_tag>() - 8usize];
-    ["Offset of field: __va_list_tag::gp_offset"]
-        [::std::mem::offset_of!(__va_list_tag, gp_offset) - 0usize];
-    ["Offset of field: __va_list_tag::fp_offset"]
-        [::std::mem::offset_of!(__va_list_tag, fp_offset) - 4usize];
-    ["Offset of field: __va_list_tag::overflow_arg_area"]
-        [::std::mem::offset_of!(__va_list_tag, overflow_arg_area) - 8usize];
-    ["Offset of field: __va_list_tag::reg_save_area"]
-        [::std::mem::offset_of!(__va_list_tag, reg_save_area) - 16usize];
-};
+pub type __builtin_va_list = *mut ::std::os::raw::c_char;

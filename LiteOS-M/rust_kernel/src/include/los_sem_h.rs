@@ -307,11 +307,11 @@ pub struct tagIrqParam {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagIrqParam"][::std::mem::size_of::<tagIrqParam>() - 24usize];
-    ["Alignment of tagIrqParam"][::std::mem::align_of::<tagIrqParam>() - 8usize];
+    ["Size of tagIrqParam"][::std::mem::size_of::<tagIrqParam>() - 12usize];
+    ["Alignment of tagIrqParam"][::std::mem::align_of::<tagIrqParam>() - 4usize];
     ["Offset of field: tagIrqParam::swIrq"][::std::mem::offset_of!(tagIrqParam, swIrq) - 0usize];
-    ["Offset of field: tagIrqParam::pDevId"][::std::mem::offset_of!(tagIrqParam, pDevId) - 8usize];
-    ["Offset of field: tagIrqParam::pName"][::std::mem::offset_of!(tagIrqParam, pName) - 16usize];
+    ["Offset of field: tagIrqParam::pDevId"][::std::mem::offset_of!(tagIrqParam, pDevId) - 4usize];
+    ["Offset of field: tagIrqParam::pName"][::std::mem::offset_of!(tagIrqParam, pName) - 8usize];
 };
 pub type HwiIrqParam = tagIrqParam;
 #[repr(C)]
@@ -331,22 +331,22 @@ pub struct HwiControllerOps {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of HwiControllerOps"][::std::mem::size_of::<HwiControllerOps>() - 56usize];
-    ["Alignment of HwiControllerOps"][::std::mem::align_of::<HwiControllerOps>() - 8usize];
+    ["Size of HwiControllerOps"][::std::mem::size_of::<HwiControllerOps>() - 28usize];
+    ["Alignment of HwiControllerOps"][::std::mem::align_of::<HwiControllerOps>() - 4usize];
     ["Offset of field: HwiControllerOps::triggerIrq"]
         [::std::mem::offset_of!(HwiControllerOps, triggerIrq) - 0usize];
     ["Offset of field: HwiControllerOps::clearIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, clearIrq) - 8usize];
+        [::std::mem::offset_of!(HwiControllerOps, clearIrq) - 4usize];
     ["Offset of field: HwiControllerOps::enableIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, enableIrq) - 16usize];
+        [::std::mem::offset_of!(HwiControllerOps, enableIrq) - 8usize];
     ["Offset of field: HwiControllerOps::disableIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, disableIrq) - 24usize];
+        [::std::mem::offset_of!(HwiControllerOps, disableIrq) - 12usize];
     ["Offset of field: HwiControllerOps::setIrqPriority"]
-        [::std::mem::offset_of!(HwiControllerOps, setIrqPriority) - 32usize];
+        [::std::mem::offset_of!(HwiControllerOps, setIrqPriority) - 16usize];
     ["Offset of field: HwiControllerOps::getCurIrqNum"]
-        [::std::mem::offset_of!(HwiControllerOps, getCurIrqNum) - 40usize];
+        [::std::mem::offset_of!(HwiControllerOps, getCurIrqNum) - 20usize];
     ["Offset of field: HwiControllerOps::createIrq"]
-        [::std::mem::offset_of!(HwiControllerOps, createIrq) - 48usize];
+        [::std::mem::offset_of!(HwiControllerOps, createIrq) - 24usize];
 };
 unsafe extern "C" {
     pub static mut __stack_chk_guard: UINT32;
@@ -439,12 +439,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 #[doc = " @ingroup los_event\n Event control structure"]
 #[repr(C)]
@@ -457,11 +457,11 @@ pub struct tagEvent {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagEvent"][::std::mem::size_of::<tagEvent>() - 24usize];
-    ["Alignment of tagEvent"][::std::mem::align_of::<tagEvent>() - 8usize];
+    ["Size of tagEvent"][::std::mem::size_of::<tagEvent>() - 12usize];
+    ["Alignment of tagEvent"][::std::mem::align_of::<tagEvent>() - 4usize];
     ["Offset of field: tagEvent::uwEventID"][::std::mem::offset_of!(tagEvent, uwEventID) - 0usize];
     ["Offset of field: tagEvent::stEventList"]
-        [::std::mem::offset_of!(tagEvent, stEventList) - 8usize];
+        [::std::mem::offset_of!(tagEvent, stEventList) - 4usize];
 };
 #[doc = " @ingroup los_event\n Event control structure"]
 pub type EVENT_CB_S = tagEvent;
@@ -536,8 +536,8 @@ pub struct tagUserErrFunc {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 8usize];
-    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 8usize];
+    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 4usize];
+    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 4usize];
     ["Offset of field: tagUserErrFunc::pfnHook"]
         [::std::mem::offset_of!(tagUserErrFunc, pfnHook) - 0usize];
 };
@@ -591,8 +591,8 @@ pub struct ArchTickTimer {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of ArchTickTimer"][::std::mem::size_of::<ArchTickTimer>() - 64usize];
-    ["Alignment of ArchTickTimer"][::std::mem::align_of::<ArchTickTimer>() - 8usize];
+    ["Size of ArchTickTimer"][::std::mem::size_of::<ArchTickTimer>() - 40usize];
+    ["Alignment of ArchTickTimer"][::std::mem::align_of::<ArchTickTimer>() - 4usize];
     ["Offset of field: ArchTickTimer::freq"][::std::mem::offset_of!(ArchTickTimer, freq) - 0usize];
     ["Offset of field: ArchTickTimer::irqNum"]
         [::std::mem::offset_of!(ArchTickTimer, irqNum) - 4usize];
@@ -600,14 +600,14 @@ const _: () = {
         [::std::mem::offset_of!(ArchTickTimer, periodMax) - 8usize];
     ["Offset of field: ArchTickTimer::init"][::std::mem::offset_of!(ArchTickTimer, init) - 16usize];
     ["Offset of field: ArchTickTimer::getCycle"]
-        [::std::mem::offset_of!(ArchTickTimer, getCycle) - 24usize];
+        [::std::mem::offset_of!(ArchTickTimer, getCycle) - 20usize];
     ["Offset of field: ArchTickTimer::reload"]
-        [::std::mem::offset_of!(ArchTickTimer, reload) - 32usize];
-    ["Offset of field: ArchTickTimer::lock"][::std::mem::offset_of!(ArchTickTimer, lock) - 40usize];
+        [::std::mem::offset_of!(ArchTickTimer, reload) - 24usize];
+    ["Offset of field: ArchTickTimer::lock"][::std::mem::offset_of!(ArchTickTimer, lock) - 28usize];
     ["Offset of field: ArchTickTimer::unlock"]
-        [::std::mem::offset_of!(ArchTickTimer, unlock) - 48usize];
+        [::std::mem::offset_of!(ArchTickTimer, unlock) - 32usize];
     ["Offset of field: ArchTickTimer::tickHandler"]
-        [::std::mem::offset_of!(ArchTickTimer, tickHandler) - 56usize];
+        [::std::mem::offset_of!(ArchTickTimer, tickHandler) - 36usize];
 };
 unsafe extern "C" {
     pub fn ArchEnterSleep() -> UINT32;
@@ -760,12 +760,12 @@ pub struct SortLinkList {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 24usize];
-    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 8usize];
+    ["Size of SortLinkList"][::std::mem::size_of::<SortLinkList>() - 16usize];
+    ["Alignment of SortLinkList"][::std::mem::align_of::<SortLinkList>() - 4usize];
     ["Offset of field: SortLinkList::sortLinkNode"]
         [::std::mem::offset_of!(SortLinkList, sortLinkNode) - 0usize];
     ["Offset of field: SortLinkList::responseTime"]
-        [::std::mem::offset_of!(SortLinkList, responseTime) - 16usize];
+        [::std::mem::offset_of!(SortLinkList, responseTime) - 8usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -774,8 +774,8 @@ pub struct SortLinkAttribute {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 16usize];
-    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 8usize];
+    ["Size of SortLinkAttribute"][::std::mem::size_of::<SortLinkAttribute>() - 8usize];
+    ["Alignment of SortLinkAttribute"][::std::mem::align_of::<SortLinkAttribute>() - 4usize];
     ["Offset of field: SortLinkAttribute::sortLink"]
         [::std::mem::offset_of!(SortLinkAttribute, sortLink) - 0usize];
 };
@@ -838,22 +838,22 @@ pub struct tagTskInitParam {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagTskInitParam"][::std::mem::size_of::<tagTskInitParam>() - 40usize];
-    ["Alignment of tagTskInitParam"][::std::mem::align_of::<tagTskInitParam>() - 8usize];
+    ["Size of tagTskInitParam"][::std::mem::size_of::<tagTskInitParam>() - 28usize];
+    ["Alignment of tagTskInitParam"][::std::mem::align_of::<tagTskInitParam>() - 4usize];
     ["Offset of field: tagTskInitParam::pfnTaskEntry"]
         [::std::mem::offset_of!(tagTskInitParam, pfnTaskEntry) - 0usize];
     ["Offset of field: tagTskInitParam::usTaskPrio"]
-        [::std::mem::offset_of!(tagTskInitParam, usTaskPrio) - 8usize];
+        [::std::mem::offset_of!(tagTskInitParam, usTaskPrio) - 4usize];
     ["Offset of field: tagTskInitParam::uwArg"]
-        [::std::mem::offset_of!(tagTskInitParam, uwArg) - 12usize];
+        [::std::mem::offset_of!(tagTskInitParam, uwArg) - 8usize];
     ["Offset of field: tagTskInitParam::stackAddr"]
-        [::std::mem::offset_of!(tagTskInitParam, stackAddr) - 16usize];
+        [::std::mem::offset_of!(tagTskInitParam, stackAddr) - 12usize];
     ["Offset of field: tagTskInitParam::uwStackSize"]
-        [::std::mem::offset_of!(tagTskInitParam, uwStackSize) - 20usize];
+        [::std::mem::offset_of!(tagTskInitParam, uwStackSize) - 16usize];
     ["Offset of field: tagTskInitParam::pcName"]
-        [::std::mem::offset_of!(tagTskInitParam, pcName) - 24usize];
+        [::std::mem::offset_of!(tagTskInitParam, pcName) - 20usize];
     ["Offset of field: tagTskInitParam::uwResved"]
-        [::std::mem::offset_of!(tagTskInitParam, uwResved) - 32usize];
+        [::std::mem::offset_of!(tagTskInitParam, uwResved) - 24usize];
 };
 #[doc = " @ingroup los_task\n Define the structure of the parameters used for task creation.\n\n Information of specified parameters passed in during task creation."]
 pub type TSK_INIT_PARAM_S = tagTskInitParam;
@@ -898,8 +898,8 @@ pub struct tagTskInfo {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagTskInfo"][::std::mem::size_of::<tagTskInfo>() - 120usize];
-    ["Alignment of tagTskInfo"][::std::mem::align_of::<tagTskInfo>() - 8usize];
+    ["Size of tagTskInfo"][::std::mem::size_of::<tagTskInfo>() - 100usize];
+    ["Alignment of tagTskInfo"][::std::mem::align_of::<tagTskInfo>() - 4usize];
     ["Offset of field: tagTskInfo::acName"][::std::mem::offset_of!(tagTskInfo, acName) - 0usize];
     ["Offset of field: tagTskInfo::uwTaskID"]
         [::std::mem::offset_of!(tagTskInfo, uwTaskID) - 32usize];
@@ -910,24 +910,24 @@ const _: () = {
     ["Offset of field: tagTskInfo::pTaskSem"]
         [::std::mem::offset_of!(tagTskInfo, pTaskSem) - 40usize];
     ["Offset of field: tagTskInfo::pTaskMux"]
-        [::std::mem::offset_of!(tagTskInfo, pTaskMux) - 48usize];
-    ["Offset of field: tagTskInfo::uwSemID"][::std::mem::offset_of!(tagTskInfo, uwSemID) - 56usize];
-    ["Offset of field: tagTskInfo::uwMuxID"][::std::mem::offset_of!(tagTskInfo, uwMuxID) - 60usize];
-    ["Offset of field: tagTskInfo::uwEvent"][::std::mem::offset_of!(tagTskInfo, uwEvent) - 64usize];
+        [::std::mem::offset_of!(tagTskInfo, pTaskMux) - 44usize];
+    ["Offset of field: tagTskInfo::uwSemID"][::std::mem::offset_of!(tagTskInfo, uwSemID) - 48usize];
+    ["Offset of field: tagTskInfo::uwMuxID"][::std::mem::offset_of!(tagTskInfo, uwMuxID) - 52usize];
+    ["Offset of field: tagTskInfo::uwEvent"][::std::mem::offset_of!(tagTskInfo, uwEvent) - 56usize];
     ["Offset of field: tagTskInfo::uwEventMask"]
-        [::std::mem::offset_of!(tagTskInfo, uwEventMask) - 88usize];
+        [::std::mem::offset_of!(tagTskInfo, uwEventMask) - 68usize];
     ["Offset of field: tagTskInfo::uwStackSize"]
-        [::std::mem::offset_of!(tagTskInfo, uwStackSize) - 92usize];
+        [::std::mem::offset_of!(tagTskInfo, uwStackSize) - 72usize];
     ["Offset of field: tagTskInfo::uwTopOfStack"]
-        [::std::mem::offset_of!(tagTskInfo, uwTopOfStack) - 96usize];
+        [::std::mem::offset_of!(tagTskInfo, uwTopOfStack) - 76usize];
     ["Offset of field: tagTskInfo::uwBottomOfStack"]
-        [::std::mem::offset_of!(tagTskInfo, uwBottomOfStack) - 100usize];
-    ["Offset of field: tagTskInfo::uwSP"][::std::mem::offset_of!(tagTskInfo, uwSP) - 104usize];
+        [::std::mem::offset_of!(tagTskInfo, uwBottomOfStack) - 80usize];
+    ["Offset of field: tagTskInfo::uwSP"][::std::mem::offset_of!(tagTskInfo, uwSP) - 84usize];
     ["Offset of field: tagTskInfo::uwCurrUsed"]
-        [::std::mem::offset_of!(tagTskInfo, uwCurrUsed) - 108usize];
+        [::std::mem::offset_of!(tagTskInfo, uwCurrUsed) - 88usize];
     ["Offset of field: tagTskInfo::uwPeakUsed"]
-        [::std::mem::offset_of!(tagTskInfo, uwPeakUsed) - 112usize];
-    ["Offset of field: tagTskInfo::bOvf"][::std::mem::offset_of!(tagTskInfo, bOvf) - 116usize];
+        [::std::mem::offset_of!(tagTskInfo, uwPeakUsed) - 92usize];
+    ["Offset of field: tagTskInfo::bOvf"][::std::mem::offset_of!(tagTskInfo, bOvf) - 96usize];
 };
 #[doc = " @ingroup los_task\n Task information structure."]
 pub type TSK_INFO_S = tagTskInfo;
@@ -1087,47 +1087,44 @@ pub struct LosTaskCB {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosTaskCB"][::std::mem::size_of::<LosTaskCB>() - 216usize];
-    ["Alignment of LosTaskCB"][::std::mem::align_of::<LosTaskCB>() - 8usize];
+    ["Size of LosTaskCB"][::std::mem::size_of::<LosTaskCB>() - 128usize];
+    ["Alignment of LosTaskCB"][::std::mem::align_of::<LosTaskCB>() - 4usize];
     ["Offset of field: LosTaskCB::stackPointer"]
         [::std::mem::offset_of!(LosTaskCB, stackPointer) - 0usize];
     ["Offset of field: LosTaskCB::taskStatus"]
-        [::std::mem::offset_of!(LosTaskCB, taskStatus) - 8usize];
-    ["Offset of field: LosTaskCB::priority"][::std::mem::offset_of!(LosTaskCB, priority) - 10usize];
+        [::std::mem::offset_of!(LosTaskCB, taskStatus) - 4usize];
+    ["Offset of field: LosTaskCB::priority"][::std::mem::offset_of!(LosTaskCB, priority) - 6usize];
     ["Offset of field: LosTaskCB::timeSlice"]
-        [::std::mem::offset_of!(LosTaskCB, timeSlice) - 12usize];
+        [::std::mem::offset_of!(LosTaskCB, timeSlice) - 8usize];
     ["Offset of field: LosTaskCB::waitTimes"]
-        [::std::mem::offset_of!(LosTaskCB, waitTimes) - 16usize];
-    ["Offset of field: LosTaskCB::sortList"][::std::mem::offset_of!(LosTaskCB, sortList) - 24usize];
+        [::std::mem::offset_of!(LosTaskCB, waitTimes) - 12usize];
+    ["Offset of field: LosTaskCB::sortList"][::std::mem::offset_of!(LosTaskCB, sortList) - 16usize];
     ["Offset of field: LosTaskCB::startTime"]
-        [::std::mem::offset_of!(LosTaskCB, startTime) - 48usize];
+        [::std::mem::offset_of!(LosTaskCB, startTime) - 32usize];
     ["Offset of field: LosTaskCB::stackSize"]
-        [::std::mem::offset_of!(LosTaskCB, stackSize) - 56usize];
+        [::std::mem::offset_of!(LosTaskCB, stackSize) - 40usize];
     ["Offset of field: LosTaskCB::topOfStack"]
-        [::std::mem::offset_of!(LosTaskCB, topOfStack) - 60usize];
-    ["Offset of field: LosTaskCB::taskID"][::std::mem::offset_of!(LosTaskCB, taskID) - 64usize];
+        [::std::mem::offset_of!(LosTaskCB, topOfStack) - 44usize];
+    ["Offset of field: LosTaskCB::taskID"][::std::mem::offset_of!(LosTaskCB, taskID) - 48usize];
     ["Offset of field: LosTaskCB::taskEntry"]
-        [::std::mem::offset_of!(LosTaskCB, taskEntry) - 72usize];
-    ["Offset of field: LosTaskCB::taskSem"][::std::mem::offset_of!(LosTaskCB, taskSem) - 80usize];
-    ["Offset of field: LosTaskCB::taskMux"][::std::mem::offset_of!(LosTaskCB, taskMux) - 88usize];
-    ["Offset of field: LosTaskCB::arg"][::std::mem::offset_of!(LosTaskCB, arg) - 96usize];
-    ["Offset of field: LosTaskCB::taskName"]
-        [::std::mem::offset_of!(LosTaskCB, taskName) - 104usize];
-    ["Offset of field: LosTaskCB::pendList"]
-        [::std::mem::offset_of!(LosTaskCB, pendList) - 112usize];
+        [::std::mem::offset_of!(LosTaskCB, taskEntry) - 52usize];
+    ["Offset of field: LosTaskCB::taskSem"][::std::mem::offset_of!(LosTaskCB, taskSem) - 56usize];
+    ["Offset of field: LosTaskCB::taskMux"][::std::mem::offset_of!(LosTaskCB, taskMux) - 60usize];
+    ["Offset of field: LosTaskCB::arg"][::std::mem::offset_of!(LosTaskCB, arg) - 64usize];
+    ["Offset of field: LosTaskCB::taskName"][::std::mem::offset_of!(LosTaskCB, taskName) - 68usize];
+    ["Offset of field: LosTaskCB::pendList"][::std::mem::offset_of!(LosTaskCB, pendList) - 72usize];
     ["Offset of field: LosTaskCB::timerList"]
-        [::std::mem::offset_of!(LosTaskCB, timerList) - 128usize];
-    ["Offset of field: LosTaskCB::joinList"]
-        [::std::mem::offset_of!(LosTaskCB, joinList) - 144usize];
+        [::std::mem::offset_of!(LosTaskCB, timerList) - 80usize];
+    ["Offset of field: LosTaskCB::joinList"][::std::mem::offset_of!(LosTaskCB, joinList) - 88usize];
     ["Offset of field: LosTaskCB::joinRetval"]
-        [::std::mem::offset_of!(LosTaskCB, joinRetval) - 160usize];
-    ["Offset of field: LosTaskCB::event"][::std::mem::offset_of!(LosTaskCB, event) - 168usize];
+        [::std::mem::offset_of!(LosTaskCB, joinRetval) - 96usize];
+    ["Offset of field: LosTaskCB::event"][::std::mem::offset_of!(LosTaskCB, event) - 100usize];
     ["Offset of field: LosTaskCB::eventMask"]
-        [::std::mem::offset_of!(LosTaskCB, eventMask) - 192usize];
+        [::std::mem::offset_of!(LosTaskCB, eventMask) - 112usize];
     ["Offset of field: LosTaskCB::eventMode"]
-        [::std::mem::offset_of!(LosTaskCB, eventMode) - 196usize];
-    ["Offset of field: LosTaskCB::msg"][::std::mem::offset_of!(LosTaskCB, msg) - 200usize];
-    ["Offset of field: LosTaskCB::errorNo"][::std::mem::offset_of!(LosTaskCB, errorNo) - 208usize];
+        [::std::mem::offset_of!(LosTaskCB, eventMode) - 116usize];
+    ["Offset of field: LosTaskCB::msg"][::std::mem::offset_of!(LosTaskCB, msg) - 120usize];
+    ["Offset of field: LosTaskCB::errorNo"][::std::mem::offset_of!(LosTaskCB, errorNo) - 124usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1137,10 +1134,10 @@ pub struct LosTask {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosTask"][::std::mem::size_of::<LosTask>() - 16usize];
-    ["Alignment of LosTask"][::std::mem::align_of::<LosTask>() - 8usize];
+    ["Size of LosTask"][::std::mem::size_of::<LosTask>() - 8usize];
+    ["Alignment of LosTask"][::std::mem::align_of::<LosTask>() - 4usize];
     ["Offset of field: LosTask::runTask"][::std::mem::offset_of!(LosTask, runTask) - 0usize];
-    ["Offset of field: LosTask::newTask"][::std::mem::offset_of!(LosTask, newTask) - 8usize];
+    ["Offset of field: LosTask::newTask"][::std::mem::offset_of!(LosTask, newTask) - 4usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1151,14 +1148,14 @@ pub struct TaskSortLinkAttr {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of TaskSortLinkAttr"][::std::mem::size_of::<TaskSortLinkAttr>() - 16usize];
-    ["Alignment of TaskSortLinkAttr"][::std::mem::align_of::<TaskSortLinkAttr>() - 8usize];
+    ["Size of TaskSortLinkAttr"][::std::mem::size_of::<TaskSortLinkAttr>() - 8usize];
+    ["Alignment of TaskSortLinkAttr"][::std::mem::align_of::<TaskSortLinkAttr>() - 4usize];
     ["Offset of field: TaskSortLinkAttr::sortLink"]
         [::std::mem::offset_of!(TaskSortLinkAttr, sortLink) - 0usize];
     ["Offset of field: TaskSortLinkAttr::cursor"]
-        [::std::mem::offset_of!(TaskSortLinkAttr, cursor) - 8usize];
+        [::std::mem::offset_of!(TaskSortLinkAttr, cursor) - 4usize];
     ["Offset of field: TaskSortLinkAttr::reserved"]
-        [::std::mem::offset_of!(TaskSortLinkAttr, reserved) - 10usize];
+        [::std::mem::offset_of!(TaskSortLinkAttr, reserved) - 6usize];
 };
 #[doc = " @ingroup los_task\n Time slice structure."]
 #[repr(C)]
@@ -1173,11 +1170,11 @@ pub struct TaskTimeSlice {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of TaskTimeSlice"][::std::mem::size_of::<TaskTimeSlice>() - 16usize];
-    ["Alignment of TaskTimeSlice"][::std::mem::align_of::<TaskTimeSlice>() - 8usize];
+    ["Size of TaskTimeSlice"][::std::mem::size_of::<TaskTimeSlice>() - 8usize];
+    ["Alignment of TaskTimeSlice"][::std::mem::align_of::<TaskTimeSlice>() - 4usize];
     ["Offset of field: TaskTimeSlice::task"][::std::mem::offset_of!(TaskTimeSlice, task) - 0usize];
-    ["Offset of field: TaskTimeSlice::time"][::std::mem::offset_of!(TaskTimeSlice, time) - 8usize];
-    ["Offset of field: TaskTimeSlice::tout"][::std::mem::offset_of!(TaskTimeSlice, tout) - 10usize];
+    ["Offset of field: TaskTimeSlice::time"][::std::mem::offset_of!(TaskTimeSlice, time) - 4usize];
+    ["Offset of field: TaskTimeSlice::tout"][::std::mem::offset_of!(TaskTimeSlice, tout) - 6usize];
 };
 #[doc = " @ingroup los_task\n Time slice structure."]
 pub type OsTaskRobin = TaskTimeSlice;
@@ -1408,8 +1405,8 @@ pub struct LosSemCB {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosSemCB"][::std::mem::size_of::<LosSemCB>() - 24usize];
-    ["Alignment of LosSemCB"][::std::mem::align_of::<LosSemCB>() - 8usize];
+    ["Size of LosSemCB"][::std::mem::size_of::<LosSemCB>() - 16usize];
+    ["Alignment of LosSemCB"][::std::mem::align_of::<LosSemCB>() - 4usize];
     ["Offset of field: LosSemCB::semStat"][::std::mem::offset_of!(LosSemCB, semStat) - 0usize];
     ["Offset of field: LosSemCB::semCount"][::std::mem::offset_of!(LosSemCB, semCount) - 2usize];
     ["Offset of field: LosSemCB::maxSemCount"]

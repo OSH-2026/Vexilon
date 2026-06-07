@@ -60,12 +60,12 @@ pub struct UserTaskCB {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of UserTaskCB"][::std::mem::size_of::<UserTaskCB>() - 24usize];
-    ["Alignment of UserTaskCB"][::std::mem::align_of::<UserTaskCB>() - 8usize];
+    ["Size of UserTaskCB"][::std::mem::size_of::<UserTaskCB>() - 12usize];
+    ["Alignment of UserTaskCB"][::std::mem::align_of::<UserTaskCB>() - 4usize];
     ["Offset of field: UserTaskCB::userArea"]
         [::std::mem::offset_of!(UserTaskCB, userArea) - 0usize];
-    ["Offset of field: UserTaskCB::userSp"][::std::mem::offset_of!(UserTaskCB, userSp) - 8usize];
-    ["Offset of field: UserTaskCB::boxID"][::std::mem::offset_of!(UserTaskCB, boxID) - 16usize];
+    ["Offset of field: UserTaskCB::userSp"][::std::mem::offset_of!(UserTaskCB, userSp) - 4usize];
+    ["Offset of field: UserTaskCB::boxID"][::std::mem::offset_of!(UserTaskCB, boxID) - 8usize];
 };
 unsafe extern "C" {
     pub fn OsUserTaskInit(taskID: UINT32, entry: UINTPTR, userArea: UINTPTR, userSp: UINTPTR);

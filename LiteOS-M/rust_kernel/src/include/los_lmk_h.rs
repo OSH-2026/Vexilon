@@ -96,12 +96,12 @@ pub struct LOS_DL_LIST {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 16usize];
-    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 8usize];
+    ["Size of LOS_DL_LIST"][::std::mem::size_of::<LOS_DL_LIST>() - 8usize];
+    ["Alignment of LOS_DL_LIST"][::std::mem::align_of::<LOS_DL_LIST>() - 4usize];
     ["Offset of field: LOS_DL_LIST::pstPrev"]
         [::std::mem::offset_of!(LOS_DL_LIST, pstPrev) - 0usize];
     ["Offset of field: LOS_DL_LIST::pstNext"]
-        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 8usize];
+        [::std::mem::offset_of!(LOS_DL_LIST, pstNext) - 4usize];
 };
 #[doc = " @ingroup los_err\n @brief Define the pointer to the error handling function.\n\n @par Description:\n This API is used to define the pointer to the error handling function.\n @attention\n <ul>\n <li>None.</li>\n </ul>\n\n @param  fileName  [IN] Log file that stores error information.\n @param  lineNo    [IN] Line number of the erroneous line.\n @param  errorNo   [IN] Error code.\n @param  paraLen   [IN] Length of the input parameter pPara.\n @param  para      [IN] User label of the error.\n\n @retval None.\n @par Dependency:\n <ul><li>los_err.h: the header file that contains the API declaration.</li></ul>\n @see None."]
 pub type LOS_ERRORHANDLE_FUNC = ::std::option::Option<
@@ -132,8 +132,8 @@ pub struct tagUserErrFunc {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 8usize];
-    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 8usize];
+    ["Size of tagUserErrFunc"][::std::mem::size_of::<tagUserErrFunc>() - 4usize];
+    ["Alignment of tagUserErrFunc"][::std::mem::align_of::<tagUserErrFunc>() - 4usize];
     ["Offset of field: tagUserErrFunc::pfnHook"]
         [::std::mem::offset_of!(tagUserErrFunc, pfnHook) - 0usize];
 };
@@ -188,15 +188,15 @@ pub struct LosLmkOpsNode {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosLmkOpsNode"][::std::mem::size_of::<LosLmkOpsNode>() - 40usize];
-    ["Alignment of LosLmkOpsNode"][::std::mem::align_of::<LosLmkOpsNode>() - 8usize];
+    ["Size of LosLmkOpsNode"][::std::mem::size_of::<LosLmkOpsNode>() - 20usize];
+    ["Alignment of LosLmkOpsNode"][::std::mem::align_of::<LosLmkOpsNode>() - 4usize];
     ["Offset of field: LosLmkOpsNode::priority"]
         [::std::mem::offset_of!(LosLmkOpsNode, priority) - 0usize];
     ["Offset of field: LosLmkOpsNode::freeMem"]
-        [::std::mem::offset_of!(LosLmkOpsNode, freeMem) - 8usize];
+        [::std::mem::offset_of!(LosLmkOpsNode, freeMem) - 4usize];
     ["Offset of field: LosLmkOpsNode::restoreTask"]
-        [::std::mem::offset_of!(LosLmkOpsNode, restoreTask) - 16usize];
-    ["Offset of field: LosLmkOpsNode::node"][::std::mem::offset_of!(LosLmkOpsNode, node) - 24usize];
+        [::std::mem::offset_of!(LosLmkOpsNode, restoreTask) - 8usize];
+    ["Offset of field: LosLmkOpsNode::node"][::std::mem::offset_of!(LosLmkOpsNode, node) - 12usize];
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -208,12 +208,12 @@ pub struct LosLmkOps {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of LosLmkOps"][::std::mem::size_of::<LosLmkOps>() - 24usize];
-    ["Alignment of LosLmkOps"][::std::mem::align_of::<LosLmkOps>() - 8usize];
+    ["Size of LosLmkOps"][::std::mem::size_of::<LosLmkOps>() - 12usize];
+    ["Alignment of LosLmkOps"][::std::mem::align_of::<LosLmkOps>() - 4usize];
     ["Offset of field: LosLmkOps::lmkOpsList"]
         [::std::mem::offset_of!(LosLmkOps, lmkOpsList) - 0usize];
     ["Offset of field: LosLmkOps::isMemFreed"]
-        [::std::mem::offset_of!(LosLmkOps, isMemFreed) - 16usize];
+        [::std::mem::offset_of!(LosLmkOps, isMemFreed) - 8usize];
 };
 unsafe extern "C" {
     #[doc = " @ingroup los_lmk\n @brief Register a low memory killer node.\n\n @par Description:\n This API is used to register a low memory killer node. A LosLmkOpsNode node\n can be registered only once.\n\n @attention None.\n\n @param  lmkNode [IN] The LosLmkOpsNode node to be registered.\n\n @retval LOS_OK The LosLmkOpsNode node is registered successfully.\n @retval LOS_ERRNO_LMK_INVALID_PARAMETER  The parameter is invalid.\n @retval LOS_ERRNO_LMK_ALREADY_REGISTERED The LosLmkOpsNode node already registered.\n @par Dependency:\n <ul><li>los_lmk.h: the header file that contains the API declaration.</li></ul>\n @see"]
