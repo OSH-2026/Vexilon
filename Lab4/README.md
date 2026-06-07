@@ -4,8 +4,7 @@
 >
 > 本项目完成 llama.cpp 单机部署、性能测试、参数优化、输出质量评估、RPC 分布式推理、
 > llama-server 并发测试，以及基于 Ray 的批量推理调度、负载均衡与失败重试。
->
-> 详细检查清单见 [`docs/final_checklist.md`](docs/final_checklist.md)。
+
 
 ---
 
@@ -666,14 +665,14 @@ kill -9 $(ss -tlnp | grep 8080 | grep -oP 'pid=\K[0-9]+')
 
 ## 15. 截图位置说明
 
-| 目录 | 内容 | 状态 |
-|---|---|---|
-| `screenshots/single_deploy/` | 编译成功、模型文件、单次推理、benchmark 运行、结果文件 | ✅ 5 张，见目录内 README |
-| `screenshots/rpc_deploy/` | RPC server 启动、RPC 推理成功 | ❌ 待 B 补充 |
-| `screenshots/llama_server_concurrency/` | server 启动、并发测试运行 | ❌ 待 B 补充 |
-| `screenshots/ray_task/` | Ray 三种策略运行截图 | ❌ 待 C 补充 |
-| `screenshots/ray_load_balance/` | 负载均衡实验截图 | ❌ 待 C 补充 |
-| `screenshots/ray_failure_retry/` | 失败重试实验截图（含 kill server） | ❌ 待 C 补充 |
+| 目录 | 内容 |
+|---|---|
+| `screenshots/single_deploy/` | 编译成功、模型文件、单次推理、benchmark 运行、结果文件 |
+| `screenshots/rpc_deploy/` | RPC server 启动、RPC 推理成功 |
+| `screenshots/llama_server_concurrency/` | server 启动、并发测试运行 |
+| `screenshots/ray_task/` | Ray 三种策略运行截图 |
+| `screenshots/ray_load_balance/` | 负载均衡实验截图 |
+| `screenshots/ray_failure_retry/` | 失败重试实验截图（含 kill server） |
 
 ---
 
@@ -699,8 +698,8 @@ GGUF 模型文件（~469 MB）已被 `.gitignore` 排除。助教复现时需要
 Ray 实验（Role C）的 2 个 llama-server 运行在**同一台 Linux 机器**的不同端口（8080、8081），
 模拟多节点部署。Ray 使用 `ray.init()` local 模式。
 
-- ✅ **测试了**：Ray 调度逻辑、Actor/Task 分发、轮询/并行策略、负载均衡算法、失败重试机制
-- ❌ **未测试**：真实跨节点网络延迟、异构硬件调度、集群扩缩容
+- **测试了**：Ray 调度逻辑、Actor/Task 分发、轮询/并行策略、负载均衡算法、失败重试机制
+- **未测试**：真实跨节点网络延迟、异构硬件调度、集群扩缩容
 
 这已在 `docs/ray_task.md` 和 `configs/server_ports.md` 中明确说明。
 
