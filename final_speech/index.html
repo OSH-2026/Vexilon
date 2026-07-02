@@ -1119,6 +1119,11 @@
       gap: 18px;
     }
 
+    .correctness-gallery .evidence-card img {
+      height: 560px;
+      object-position: center top;
+    }
+
     .evidence-card {
       margin: 0;
       border: 1px solid var(--line);
@@ -1210,6 +1215,10 @@
         grid-column: auto;
       }
 
+      .correctness-gallery .evidence-card img {
+        height: 520px;
+      }
+
       .flow-row {
         grid-template-columns: 1fr;
       }
@@ -1290,6 +1299,10 @@
       .terminal-body {
         font-size: 12px;
         padding: 16px;
+      }
+
+      .correctness-gallery .evidence-card img {
+        height: 420px;
       }
     }
 
@@ -2089,6 +2102,28 @@
 │       ├── cortex-m4_stm32f429ig_firechallenger_gcc/       STM32F407 上板固件工程
 │       └── agent/                                          EcoPet PC 端 Python Agent
 └── final_speech/                                           结题汇报</div>
+        </div>
+      </section>
+
+      <section class="evidence-section" id="rust-correctness">
+        <div class="wrap">
+          <div class="evidence-head">
+            <h2>Rust改写正确性验证</h2>
+          </div>
+          <div class="evidence-gallery correctness-gallery">
+            <figure class="evidence-card">
+              <img src="./evidence/rust_correctness_mem_box.jpg" alt="Rust 改写正确性验证终端截图" loading="lazy" />
+            </figure>
+            <figure class="evidence-card">
+              <img src="./evidence/rust_correctness_task.jpg" alt="Rust 改写正确性验证终端截图" loading="lazy" />
+            </figure>
+            <figure class="evidence-card">
+              <img src="./evidence/rust_correctness_tick.jpg" alt="Rust 改写正确性验证终端截图" loading="lazy" />
+            </figure>
+            <figure class="evidence-card">
+              <img src="./evidence/rust_correctness_sortlink.jpg" alt="Rust 改写正确性验证终端截图" loading="lazy" />
+            </figure>
+          </div>
         </div>
       </section>
 
