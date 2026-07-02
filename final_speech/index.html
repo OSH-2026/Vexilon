@@ -1606,7 +1606,7 @@
               <div class="node"><strong>Python Agent</strong><span>主线程交互 + 后台串口监听</span></div>
               <div class="node"><strong>Ollama + Qwen3</strong><span>自然语言解析与响应解释</span></div>
               <div class="node"><strong>串口协议</strong><span>STATUS / FEED / PLAY / SLEEP / HEAL</span></div>
-              <div class="node"><strong>USART1</strong><span>COM5 @ 115200</span></div>
+              <div class="node"><strong>USART1</strong><span>COMX（取决于电脑，不确定具体值） @ 115200</span></div>
             </div>
             <div class="layer-label" style="margin-top:18px;">Board / LiteOS-M Application Layer</div>
             <div class="flow-row">
@@ -1690,7 +1690,8 @@
                     <td>正常喂食：<code class="inline">hunger -= param</code>，<code class="inline">mood += 5</code>，返回 <code
                         class="inline">OK:FEED</code></td>
                     <td>若 <code class="inline">hunger &lt; 20</code> 且 <code class="inline">param &gt; 50</code>，触发
-                      <code class="inline">WARN:OVERFED</code>，health -= 15，mood -= 10，hunger -= param/2</td>
+                      <code class="inline">WARN:OVERFED</code>，health -= 15，mood -= 10，hunger -= param/2
+                    </td>
                   </tr>
                   <tr>
                     <td><code class="inline">PLAY &lt;1-100&gt;</code></td>
