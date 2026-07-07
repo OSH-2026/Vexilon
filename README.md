@@ -140,20 +140,33 @@ LED 状态反馈如下：
 ```text
 Vexilon/
 ├── README.md                                               项目主页与导航
-├── docs/                                                   项目文档
+├── docs/                                                   项目文档与汇报材料
 │   ├── research_report.md                                  调研报告，记录早期选题、背景和技术方向
 │   ├── feasibility_report.md                               可行性报告，记录早期实现路径与上板设想
-│   └── final_report.md                                     结题报告，最终实现与实验结果以此为准
+│   ├── final_report.md                                     结题报告，最终实现与实验结果以此为准
+│   ├── mid_term_presentation/                              中期汇报材料
+│   │   └── Vexilon中期项目汇报：基于Rust与IronClaw重构LiteOS-M内核.pptx
+│   └── final_presentation/                                 结题汇报材料
+│       ├── Vexilon_final_presentation.html                 GitHub Pages/浏览器展示用完整项目介绍页面
+│       ├── evidence/                                       结题 HTML 依赖图片与测试证据截图
+│       │   ├── rust_correctness_sortlink.jpg               los_sortlink 测试截图
+│       │   ├── rust_correctness_tick.jpg                   los_tick 测试截图
+│       │   ├── rust_correctness_mem_box.jpg                los_membox 测试截图
+│       │   ├── rust_correctness_task.jpg                   los_task 测试截图
+│       │   ├── rust_correctness_sched.png                  los_sched 测试截图
+│       │   ├── ecopet_board_led_green.jpg                  EcoPet 上板绿灯亮实机图
+│       │   ├── ecopet_board_powered.jpg                    EcoPet 上板通电实机图
+│       │   └── ecopet_agent_terminal.png                   PC 端 Agent 串口交互截图
+│       └── （结题 PPT 如需归档，建议放在本目录下）
 ├── img/                                                    README 和报告使用的图片资源
 ├── Lab4/                                                   课程 Lab4 相关内容
-├── LiteOS-M/
-│   ├── rust_kernel/                                        Rust 重构内核模块与相关构建产物
-│   ├── c_kernel/                                           C 侧 LiteOS-M 相关代码
-│   ├── test/                                               测试代码与测试结果
-│   └── on-board/
-│       ├── cortex-m4_stm32f429ig_firechallenger_gcc/       STM32F407 上板固件工程
-│       └── agent/                                          EcoPet PC 端 Python Agent
-└── final_speech/                                           结题汇报
+└── LiteOS-M/
+    ├── rust_kernel/                                        Rust 重构内核模块与相关构建产物
+    ├── c_kernel/                                           C 侧 LiteOS-M 相关代码
+    ├── test/                                               测试代码与测试结果
+    └── on-board/
+        ├── cortex-m4_stm32f429ig_firechallenger_gcc/       STM32F407 上板固件工程
+        └── agent/                                          EcoPet PC 端 Python Agent
 ```
 
 ## 相关文档
@@ -161,6 +174,8 @@ Vexilon/
 1. [调研报告](./docs/research_report.md)：记录项目早期背景、模块选择依据、行业调研和前瞻方案。
 2. [可行性报告](./docs/feasibility_report.md)：记录早期技术路线、FFI 设想、EcoPet 上板可行性分析和风险评估。
 3. [结题报告](./docs/final_report.md)：记录最终实现、实验结果、IronClaw 方案调整原因、EcoPet Demo 和 Agent 细节。项目最终结论以此文档为准。
+4. [中期汇报 PPT](./docs/mid_term_presentation/Vexilon中期项目汇报：基于Rust与IronClaw重构LiteOS-M内核.pptx)：中期路线、早期 IronClaw 设想和阶段性方案说明。
+5. [结题展示 HTML](./docs/final_presentation/Vexilon_final_presentation.html)：结题展示页面，依赖图片位于 [evidence](./docs/final_presentation/evidence/) 目录。
 
 ## 参考链接
 

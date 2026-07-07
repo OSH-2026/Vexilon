@@ -223,7 +223,20 @@ LiteOS-M 原工程以 C 语言为主，本项目的 Rust 模块需要与原有�
 
 本项目围绕五个 Rust 重构模块设计了单元测试、接口兼容性测试和异常输入测试，并在 EcoPet 上板 Demo 中对任务创建、队列通信、串口收发和状态定时更新进行了联动验证。测试结论主要用于说明重构模块在当前用例下能够保持原有功能行为，并对部分非法输入和边界状态具备更明确的检查路径；它不能等同于对完整 LiteOS-M 内核的形式化证明或长期工业级压力验证。
 
-### 7.1 模块单元测试
+### 7.1 测试证据图片索引
+
+结题展示页面使用的测试证据图片统一保存在 `docs/final_presentation/evidence/` 目录中，报告中的测试分析与这些截图对应。由于图片主要服务于汇报展示，正文只引用其相对路径并说明含义，具体视觉呈现可在 `docs/final_presentation/Vexilon_final_presentation.html` 中查看。
+
+1. [los_sortlink 有序链表测试截图](./final_presentation/evidence/rust_correctness_sortlink.jpg)：用于佐证有序插入、删除和超时时间获取等路径的测试结果；
+2. [los_tick 时钟节拍测试截图](./final_presentation/evidence/rust_correctness_tick.jpg)：用于佐证 tick 初始化、递增、换算和边界处理测试；
+3. [los_membox 内存块管理测试截图](./final_presentation/evidence/rust_correctness_mem_box.jpg)：用于佐证固定块分配、释放、重复释放和状态统计测试；
+4. [los_task 任务管理测试截图](./final_presentation/evidence/rust_correctness_task.jpg)：用于佐证任务创建、状态切换和非法参数处理测试；
+5. [los_sched 调度器测试截图](./final_presentation/evidence/rust_correctness_sched.png)：用于佐证调度响应时间重置、任务入队/出队、挂起/恢复、优先级修改、最高优先级任务选择、超时时间获取和调度器未启动时容错等测试；
+6. [EcoPet 上板绿灯亮实机图](./final_presentation/evidence/ecopet_board_led_green.jpg)：用于佐证 PF9/PF10 LED 状态反馈中的绿灯点亮场景；
+7. [EcoPet 上板通电实机图](./final_presentation/evidence/ecopet_board_powered.jpg)：用于佐证开发板通电运行和 LED 熄灭场景；
+8. [PC 端 Agent 串口交互截图](./final_presentation/evidence/ecopet_agent_terminal.png)：用于佐证 Ollama/Qwen3 Agent 与开发板通过串口完成 `STATUS`、`PLAY`、`FEED`、`HEAL`、`SLEEP` 等交互。
+
+### 7.2 模块单元测试
 
 项目为 `los_sched`、`los_sortlink`、`los_tick`、`los_task`、`los_membox` 编写了独立测试用例，覆盖基础功能、边界参数、重复操作和空参数等场景。
 
@@ -247,15 +260,15 @@ LiteOS-M 原工程以 C 语言为主，本项目的 Rust 模块需要与原有�
 
 测试内容包括任务入队/出队、挂起恢复后的调度状态更新、优先级修改、最高优先级任务筛选、最小超时时间获取和空调度场景容错。测试用于验证调度器在常见路径下能够维持队列状态一致。
 
-### 7.2 功能兼容性测试
+### 7.3 功能兼容性测试
 
 在当前测试集合中，重构后的模块能够完成任务创建、任务调度、时钟节拍、内存块分配释放和链表操作等基础功能。项目保留了 C 侧原有接口和数据布局，并通过 `#[repr(C)]`、`#[no_mangle]`、bindgen/cbindgen 等方式减少 C/Rust 混合调用中的 ABI 风险。
 
-### 7.3 异常与安全性测试
+### 7.4 异常与安全性测试
 
 项目对空参数、越界参数、重复释放、重复删除、非法任务状态等场景进行了测试。Rust 版本通过类型封装、显式错误返回和边界检查减少了部分 C 语言实现中容易出现的误用风险。由于 LiteOS-M 仍然保留大量 C 代码，且 Rust FFI 边界不可避免存在 `unsafe` 区域，因此报告中将其表述为“降低风险、提高可检查性”，而不是“彻底消除所有安全问题”。
 
-### 7.4 真机联动验证
+### 7.5 真机联动验证
 
 EcoPet Demo 在 STM32F407 上完成了基础联动验证：USART1 接收用户命令，`UartRxTask` 从环形缓冲读取指令并写入队列，`PetStateTask` 更新宠物状态，`TelemetryTask` 定期进行状态衰减和告警输出，PF9/PF10 LED 根据状态变化点亮或熄灭。该验证说明重构后的任务、队列、时钟和硬件交互链路能够支撑一个持续运行的嵌入式应用 Demo。后续仍需补充长时间运行、高负载任务和异常串口输入压力测试。
 
